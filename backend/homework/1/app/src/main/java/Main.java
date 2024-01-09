@@ -1,12 +1,11 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String args[]){
+    public static void main(String [] args){
 
         logs.slf4jLogger.debug("Started");
-        StudentRepository S = new StudentRepository();
+        StudentRepository studentRepository = new StudentRepository();
         int i=0;
         Scanner sc = new Scanner(System.in);
         while (i!=4) {
@@ -23,7 +22,7 @@ public class Main {
                 int age = Integer.parseInt(sc.next());
                 System.out.print("Grade : ");
                 Character grade = sc.next().charAt(0);
-                S.addStudent(id, name, age, grade);
+                studentRepository.addStudent(id, name, age, grade);
             } else if (i == 2) {//get
                 System.out.println("Searchby - ");
                 System.out.println("Name : 1");
@@ -35,13 +34,13 @@ public class Main {
                 ArrayList<Student> res;
                 if (option == 1) {
                     String value = sc.next();
-                    res = S.retreiveStudent(value);
+                    res = studentRepository.retreiveStudent(value);
                 } else if (option == 2) {
                     int value = Integer.parseInt(sc.next());
-                    res = S.retreiveStudent(value);
+                    res = studentRepository.retreiveStudent(value);
                 } else {
                     Character value = sc.next().charAt(0);
-                    res = S.retreiveStudent(value);
+                    res = studentRepository.retreiveStudent(value);
                 }
                 for (Student student : res) {
                     System.out.println("Details:");
@@ -58,17 +57,17 @@ public class Main {
                 System.out.print("Choice = ");
                 int option = Integer.parseInt(sc.next());
                 System.out.print("Enter ID of person to be updated: ");
-                int ID = Integer.parseInt(sc.next());
+                int id = Integer.parseInt(sc.next());
                 System.out.print("Enter updated valuet: ");
                 if (option == 1) {
-                    String Name = sc.next();
-                    S.updateStudent(ID, Name);
+                    String name = sc.next();
+                    studentRepository.updateStudent(id, name);
                 } else if (option == 2) {
-                    int Age = Integer.parseInt(sc.next());
-                    S.updateStudent(ID, Age);
+                    int age = Integer.parseInt(sc.next());
+                    studentRepository.updateStudent(id, age);
                 } else {
                     Character grade = sc.next().charAt(0);
-                    S.updateStudent(ID, grade);
+                    studentRepository.updateStudent(id, grade);
                 }
             } else {
                 i = 4;

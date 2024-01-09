@@ -29,7 +29,7 @@ public class StudentRepository {
     public ArrayList<Student> retreiveStudent(Character Grade){
         ArrayList<Student> result = new ArrayList<Student>();
         for (Student student : Students) {
-            if (student.getGrade() == Grade) {
+            if (student.getGrade().equals(Grade)) {
                 result.add(student);
             }
         }
