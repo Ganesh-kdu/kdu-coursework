@@ -6,7 +6,10 @@ public class User {
     private String lastName;
     private String gender;
     private String email;
-
+    private boolean insured;
+    private int age;
+    private boolean smoking;
+    private HealthInsurancePlan insurancePlan = null;
     public long getId() {
         return id;
     }
@@ -45,5 +48,35 @@ public class User {
 
     public String getFullName(){
         return firstName.concat(lastName);
+    }
+
+    public void setInsured(boolean insured){
+        this.insured = insured;
+    }
+
+    public boolean getInsured(){
+        return this.insured;
+    }
+
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public void setSmoking(boolean smoking){
+        this.smoking = smoking;
+    }
+    public void setInsurancePlan(HealthInsurancePlan insurancePlan){
+        this.insurancePlan = insurancePlan;
+    }
+    public int getAge(){
+        return this.age;
+    }
+
+    public boolean getSmoking(){
+        return this.smoking;
+    }
+
+    public HealthInsurancePlan getInsurancePlan(){
+        return this.insurancePlan;
     }
 }
