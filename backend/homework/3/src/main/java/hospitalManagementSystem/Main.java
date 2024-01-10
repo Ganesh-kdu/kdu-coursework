@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 import org.slf4j.LoggerFactory;
 

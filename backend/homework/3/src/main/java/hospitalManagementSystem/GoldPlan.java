@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public class GoldPlan extends HealthInsurancePlan{
     public GoldPlan(){

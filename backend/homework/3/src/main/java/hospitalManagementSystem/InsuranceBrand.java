@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public interface InsuranceBrand {
     public double computeMonthlyPremium(HealthInsurancePlan insurancePlan, int age, boolean smoking);

@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public class Billing {
 

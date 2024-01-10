@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 public class Staff extends  User {
     private long staffId;
     private int yearsOfExperience;

@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public class Nurse extends Staff{
     private long nurseId;

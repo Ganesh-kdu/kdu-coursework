@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public class BlueCrossBlueShield implements InsuranceBrand{
     public double computeMonthlyPremium(HealthInsurancePlan insurancePlan, int age, boolean smoking){

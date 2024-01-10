@@ -1,4 +1,4 @@
-package HMS;
+package hospitalManagementSystem;
 
 public abstract class HealthInsurancePlan {
     private double coverage;
