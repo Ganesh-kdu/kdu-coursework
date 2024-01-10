@@ -1,4 +1,4 @@
-package hospitalManagementSystem;
+package hms;
 
 public class User {
     private long id;

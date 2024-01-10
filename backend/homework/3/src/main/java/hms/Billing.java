@@ -1,4 +1,4 @@
-package hospitalManagementSystem;
+package hms;
 
 public class Billing {
     public static double[] computePaymentAmount(Patient patient,double amount){

@@ -1,4 +1,4 @@
-package hospitalManagementSystem;
+package hms;
 
 public class SilverPlan extends HealthInsurancePlan{
     public SilverPlan(){

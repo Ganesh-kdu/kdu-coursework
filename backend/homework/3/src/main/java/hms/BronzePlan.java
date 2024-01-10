@@ -1,4 +1,4 @@
-package hospitalManagementSystem;
+package hms;
 
 public class BronzePlan extends HealthInsurancePlan{
     public BronzePlan(){
