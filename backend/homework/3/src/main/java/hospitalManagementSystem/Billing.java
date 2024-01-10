@@ -1,10 +1,6 @@
 package hospitalManagementSystem;
 
 public class Billing {
-
-    private Billing(){
-
-    }
     public static double[] computePaymentAmount(Patient patient,double amount){
         HealthInsurancePlan healthInsurancePlan = patient.getInsurancePlan();
         double[] answer = new double[2];
@@ -13,12 +9,12 @@ public class Billing {
             answer[1] = amount - calculatePlan(patient.getInsurancePlan());
             return answer;
         }
-        double temp = healthInsurancePlan.getCoverage(); //0.9
+        double insurance = healthInsurancePlan.getCoverage(); //0.9
 
-        answer[0] = temp * amount; //900
+        answer[0] = insurance * amount; //900
         double userCurrent = amount - answer[0]; //100
         double discount = calculatePlan(patient.getInsurancePlan());
-        answer[1] = userCurrent - discount;
+        answer[1] = Math.max(0, userCurrent - discount);
         return answer;
     }
 
@@ -34,5 +30,12 @@ public class Billing {
         }else{
             return 20;
         }
+    }
+    public static void main(String[] args) {
+        HealthInsurancePlan insurancePlan = new PlatinumPlan();
+        Patient patient = new Patient(1,"Alice","Bob","Male","email@email.com",11,true,insurancePlan);
+        double[] payments = Billing.computePaymentAmount(patient, 1000.0);
+        String output = "\nAmount covered By insurance company is: " + payments[0] +"\nAmount that patient has to pay is: " + payments[1];
+        Logs.slf4jLogger.debug(output);
     }
 }

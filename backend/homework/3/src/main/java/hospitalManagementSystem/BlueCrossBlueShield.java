@@ -2,57 +2,57 @@ package hospitalManagementSystem;
 
 public class BlueCrossBlueShield implements InsuranceBrand{
     public double computeMonthlyPremium(HealthInsurancePlan insurancePlan, int age, boolean smoking){
-        double[] ans = new double[2];
+        double ans;
         if(insurancePlan instanceof PlatinumPlan){
             ans = premium(age, smoking);
         }else if(insurancePlan instanceof GoldPlan){
             ans = gold(age, smoking);
         }else if(insurancePlan instanceof SilverPlan){
             ans = silver(age, smoking);
-        }else if(insurancePlan instanceof BronzePlan){
+        }else{
             ans = bronze(age, smoking);
         }
-        return ans[0] + ans[1];
+        return ans;
     }
 
-    public static double[] premium(int age,boolean smoking){
-        double[] arr = new double[2];
+    public static double premium(int age,boolean smoking){
+        double ans = 0;
         if(age > 55){
-            arr[0] = 200;
+            ans += 200;
         }
         if(smoking){
-            arr[1] = 100;
+            ans+= 100;
         }
-        return arr;
+        return ans;
     }
-    public static double[] gold(int age,boolean smoking){
-        double[] arr = new double[2];
+    public static double gold(int age,boolean smoking){
+        double ans = 0;
         if(age > 55){
-            arr[0] = 150;
+            ans += 150;
         }
         if(smoking){
-            arr[1] = 90;
+            ans += 90;
         }
-        return arr;
+        return ans;
     }
-    public static double[] silver(int age,boolean smoking){
-        double[] arr = new double[2];
+    public static double silver(int age,boolean smoking){
+        double ans = 0;
         if(age > 55){
-            arr[0] = 100;
+            ans += 100;
         }
         if(smoking){
-            arr[1] = 80;
+            ans += 80;
         }
-        return arr;
+        return ans;
     }
-    public static double[] bronze(int age,boolean smoking){
-        double[] arr = new double[2];
+    public static double bronze(int age,boolean smoking){
+        double ans = 0;
         if(age > 55){
-            arr[0] = 50;
+            ans += 50;
         }
         if(smoking){
-            arr[1] = 70;
+            ans += 70;
         }
-        return arr;
+        return ans;
     }
 }
