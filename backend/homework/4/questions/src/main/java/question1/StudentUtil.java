@@ -4,7 +4,7 @@ import com.ganesh.LogMaster;
 import java.util.HashMap;
 
 public class StudentUtil {
-    public static double[] calculateGPA(int[] studentIdList, char[][] studentsGrades) throws IllegalArgumentException{
+    public static double[] calculateGPA(int[] studentIdList, char[][] studentsGrades) throws IllegalArgumentException, MissingGradeException{
         if (studentsGrades.length != studentIdList.length){
             throw new IllegalArgumentException("studentIdList & studentsGrades are out-of-sync. studentIdList.length: " + studentIdList.length + ", studentsGrades.length: " + studentsGrades.length);
         }
@@ -19,8 +19,12 @@ public class StudentUtil {
             int length = grades.length;
             double gpa = 0.0;
             //find sum of all grades
-            for (char grade : grades)
+            for (char grade : grades) {
+                if (grade == ' '){
+                    throw  new MissingGradeException(studentIdList[index]);
+                }
                 gpa += gradeMapping.get(grade);
+            }
             gpa /= length;
             finalResults[index] = gpa;
         }
@@ -29,10 +33,17 @@ public class StudentUtil {
 
     public static int[] getStudentsByGPA(double lower, double higher, int[] studentIdList, char[][] studentsGrades) {
         //data validity check
-        if (lower < 0 || higher > 4 || studentIdList.length != studentsGrades.length) {
-            return null;
+        if (lower < 0 || higher > 4) {
+            return new int[0];
         }
-        double[] gpas = calculateGPA(studentIdList, studentsGrades);
+        double[] gpas;
+        try {
+            gpas = calculateGPA(studentIdList, studentsGrades);
+        } catch (MissingGradeException e) {
+            throw new InvalidDataException("Missing Grade Exception",e);
+        }catch (IllegalArgumentException e){
+            throw new InvalidDataException("Missing/extra student Exception", e);
+        }
         int count = 0;
         //find count of students in given range to allocate correct memory
         for (double gpa : gpas) {
@@ -50,7 +61,7 @@ public class StudentUtil {
 
     public static void main(String[] args) {
         int[] students = StudentUtil.getStudentsByGPA(3.2, 3.5, new int[]{1001}, new char[][]{{'A', 'A', 'A', 'B'}, {'A', 'B', 'B'}});
-        for (int student : students){}
-            LogMaster.print(3);
+        for (int student : students)
+            LogMaster.print(student);
     }
 }
