@@ -43,16 +43,8 @@ public class Main {
         Thread thread2= new Thread(calculate);
         thread.start();
         thread2.start();
-        try {
-            thread2.join();
-        } catch (InterruptedException e) {
-            throw e;
-        }
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw e;
-        }
+        thread2.join();
+        thread.join();
         LogMaster.print("Ending main thread");
     }
 }
