@@ -9,8 +9,8 @@ public class Main1 {
         Thread[] receivers = new Thread[3];
         for (int i=0;i<3;i++){
             senders[i] = new Thread(new MessageSender(i+1,messageQueue));
-            receivers[i] = new Thread(new MessageReceiver(i+1,messageQueue));
             senders[i].start();
+            receivers[i] = new Thread(new MessageReceiver(i+1,messageQueue));
             receivers[i].start();
         }
         for (int i=0;i<3;i++){

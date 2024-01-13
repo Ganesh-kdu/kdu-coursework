@@ -21,7 +21,7 @@ public class MessageQueue implements Runnable{
     }
     @Override
     public void run() {
-        LogMaster.print("Message Queue Closed");
+        LogMaster.print("Message Queue Started");
         while(!Thread.currentThread().isInterrupted()){
             //do stuff
             try{

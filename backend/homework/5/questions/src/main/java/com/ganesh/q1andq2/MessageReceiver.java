@@ -24,7 +24,7 @@ public class MessageReceiver implements Runnable {
         while (totalReceived.getAndIncrement()<90){
             String message = messageQueue.get();
             if(message == null){
-                totalReceived.decrementAndGet();
+                totalReceived.getAndDecrement();
                 continue;
             }
             LogMaster.print("{} || Received by receiver {}",message,id);
