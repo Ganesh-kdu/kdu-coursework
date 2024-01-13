@@ -2,10 +2,11 @@ package com.ganesh.q2;
 
 import com.ganesh.LogMaster;
 
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MessageQueue implements Runnable{
-    public ConcurrentLinkedQueue<String> messages;
+    private Queue<String> messages;
     public MessageQueue() {
         this.messages = new ConcurrentLinkedQueue<>();
     }

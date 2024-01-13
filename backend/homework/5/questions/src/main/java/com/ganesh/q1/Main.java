@@ -4,8 +4,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String [] args) throws InterruptedException {
-        AtomicInteger endSignal = new AtomicInteger(0);
-
         MessageQueue messageQueue = new MessageQueue();
         Thread queue = new Thread(messageQueue);
         queue.start();

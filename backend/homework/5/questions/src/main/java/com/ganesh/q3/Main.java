@@ -1,6 +1,7 @@
 package com.ganesh.q3;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import com.ganesh.LogMaster;
 public class Main {
@@ -13,14 +14,9 @@ public class Main {
                 result*=i;
             }
             LogMaster.print("Factorial done");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                return 0;
-            }
             return result;
         }
-        public ArrayList<Integer> factors() {
+        public List<Integer> factors() {
             ArrayList<Integer> result = new ArrayList<Integer>();
             for (int i = 1; i < target; i++) {
                 if (target % i == 0) {
@@ -28,11 +24,6 @@ public class Main {
                 }
             }
             LogMaster.print("Factors done");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                return new ArrayList<Integer>();
-            }
             return result;
         }
         @Override
