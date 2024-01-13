@@ -1,8 +1,6 @@
-package com.ganesh.q1;
+package com.ganesh.q1andq2;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class Main {
+public class Main1 {
     public static void main(String [] args) throws InterruptedException {
         MessageQueue messageQueue = new MessageQueue();
         Thread queue = new Thread(messageQueue);

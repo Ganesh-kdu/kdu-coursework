@@ -1,7 +1,6 @@
-package com.ganesh.q2;
+package com.ganesh.q1andq2;
 
 import com.ganesh.LogMaster;
-
 public class MessageSender implements Runnable{
     private int id;
     MessageQueue messageQueue;

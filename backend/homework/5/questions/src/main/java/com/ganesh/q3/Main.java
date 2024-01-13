@@ -17,7 +17,7 @@ public class Main {
             return result;
         }
         public List<Integer> factors() {
-            ArrayList<Integer> result = new ArrayList<Integer>();
+            ArrayList<Integer> result = new ArrayList<>();
             for (int i = 1; i < target; i++) {
                 if (target % i == 0) {
                     result.add(i);
