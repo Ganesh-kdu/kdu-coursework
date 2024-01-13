@@ -36,7 +36,7 @@ public class Main {
             
         }
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         target = 10;
         FactorialAndFactors calculate = new FactorialAndFactors();
         Thread thread = new Thread(calculate);
@@ -46,12 +46,12 @@ public class Main {
         try {
             thread2.join();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
         try {
             thread.join();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
         LogMaster.print("Ending main thread");
     }
