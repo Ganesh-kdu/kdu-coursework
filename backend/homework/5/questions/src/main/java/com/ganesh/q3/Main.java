@@ -2,7 +2,7 @@ package com.ganesh.q3;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import com.ganesh.LogMaster;
 public class Main {
     private static int target;
     private static class FactorialAndFactors implements Runnable{
@@ -12,7 +12,7 @@ public class Main {
             for (int i=1; i<target; i++){
                 result*=i;
             }
-            System.out.println("Factorial done");
+            LogMaster.print("Factorial done");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -27,7 +27,7 @@ public class Main {
                     result.add(i);
                 }
             }
-            System.out.println("Factors done");
+            LogMaster.print("Factors done");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -38,9 +38,9 @@ public class Main {
         @Override
         public void run() {
             if(0==flag.getAndAdd(1)){
-                System.out.println(factorial());
+                LogMaster.print(factorial());
             }else {
-                System.out.println(factors().toString());
+                LogMaster.print(factors().toString());
             }
             
         }
@@ -62,6 +62,6 @@ public class Main {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
+        LogMaster.print("Ending main thread");
     }
 }

@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>questions</module>
+        <module>logger</module>
     </modules>
 
     <properties>

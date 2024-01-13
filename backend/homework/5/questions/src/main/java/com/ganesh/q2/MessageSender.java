@@ -1,8 +1,6 @@
-package com.ganesh.q1;
+package com.ganesh.q2;
 
 import com.ganesh.LogMaster;
-
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MessageSender implements Runnable{
     private int id;

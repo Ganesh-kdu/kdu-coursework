@@ -1,4 +1,4 @@
-package com.ganesh.q1;
+package com.ganesh.q2;
 
 import com.ganesh.LogMaster;
 
