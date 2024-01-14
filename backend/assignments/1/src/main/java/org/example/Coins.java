@@ -29,10 +29,11 @@ public class Coins {
         return symbol;
     }
 
-    public Double getPrice() {
+    public synchronized Double getPrice() {
         return price;
     }
 
+    public synchronized void setPrice(double price){this.price = price;}
     public AtomicLong getCirculatingSupply() {
         return circulatingSupply;
     }

@@ -34,5 +34,5 @@ public class Log {
             default -> logger.info(message);
         }
     }
-    private static final Logger logger = LoggerFactory.getLogger(Logger.class);
+    private static final Logger logger = LoggerFactory.getLogger(Log.class);
 }

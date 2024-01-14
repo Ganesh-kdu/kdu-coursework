@@ -53,23 +53,9 @@ public class Main {
 
     }
     public static void main(String [] args) throws IOException, InterruptedException {
-//        JsonNode jsonTransactions = parseJsonFile("src/main/resources/medium_transaction.json");
-//        CountDownLatch latch = new CountDownLatch(jsonTransactions.size());
-//        System.out.println(latch.getCount());
-//        executeTransactions(jsonTransactions, latch);
-        JsonNode jsonTransactions2 = parseJsonFile("src/main/resources/small_transaction.json");
-        CountDownLatch latch2 = new CountDownLatch(jsonTransactions2.size());
-        System.out.println(latch2.getCount());
-        executeTransactions(jsonTransactions2, latch2);
-//        JsonNode jsonTransactions3 = parseJsonFile("src/main/resources/large_transaction.json");
-//        CountDownLatch latch3 = new CountDownLatch(jsonTransactions3.size());
-//        System.out.println(latch3.getCount());
-//        executeTransactions(jsonTransactions3, latch3);
-
-//        latch.await();
-//        latch3.await();
-        latch2.await();
-
-//        System.out.println(latch.getCount());
+        JsonNode jsonTransactions = parseJsonFile("src/main/resources/small_transaction.json");
+        CountDownLatch latch = new CountDownLatch(jsonTransactions.size());
+        executeTransactions(jsonTransactions, latch);
+        latch.await();
     }
 }

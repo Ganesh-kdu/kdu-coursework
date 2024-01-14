@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 public class ExecuteTransaction implements Runnable{
-    public static List<Coins> marketPlace;
-    public static List<User> traders;
+    private static List<Coins> marketPlace;
+    private static List<User> traders;
     private User trader;
     private Coins coin;
     private JsonNode transactionDetails;
@@ -18,12 +18,7 @@ public class ExecuteTransaction implements Runnable{
             marketPlace = Main.parseCSV("src/main/resources/coins.csv");
             traders = Main.parseUserCSV("src/main/resources/traders.csv");
         } catch (IOException e) {
-            System.out.println("File not found");
-            try {
-                throw e;
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            Log.customLogger("File not found","ERROR");
         }
     }
 
@@ -37,32 +32,27 @@ public class ExecuteTransaction implements Runnable{
     public void run() {
         boolean success = false;
         getTransactionCoin();
+        getTransactionTrader();
         while (!success){
             if (transactionType.equals("BUY")){
-                if(this.trader ==null)
-                    getTransactionTrader();
                 success = buyTransaction();
             } else if (transactionType.equals("SELL")) {
-                if(this.trader ==null)
-                    getTransactionTrader();
                 success = sellTransaction();
             }else if (transactionType.equals("UPDATE_PRICE")){
                 success = updatePrice();
             }else {
                 success = updateVolume();
             }
-            if(success){
-                break;
-            }
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                System.out.println("Sleep no happen");
-                throw new RuntimeException(e);
+            if(!success){
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    Log.customLogger("Crashed while attempting to sleep thread","ERROR");
+                }
             }
         }
         latch.countDown();
-//        System.out.println(String.format("Exiting %d",latch.getCount()));
+        Log.customLogger(String.format("Exiting %d",latch.getCount()),"DEBUG");
     }
 
     private boolean updateVolume() {
@@ -73,14 +63,18 @@ public class ExecuteTransaction implements Runnable{
     }
 
     private boolean updatePrice() {
+        synchronized (coin.getPrice()) {
+            coin.setPrice(transactionDetails.get("data").get("price").asDouble());
+        }
         return true;
     }
     private void getTransactionTrader(){
-
-        synchronized (traders){
-            for(User t: traders){
-                if(t.getWalletId().equals(transactionDetails.get("data").get("wallet_address").asText())){
-                    this.trader = t;
+        if(transactionType.equals("BUY") || transactionType.equals("SELL")) {
+            synchronized (traders) {
+                for (User t : traders) {
+                    if (t.getWalletId().equals(transactionDetails.get("data").get("wallet_address").asText())) {
+                        this.trader = t;
+                    }
                 }
             }
         }
