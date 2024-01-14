@@ -43,17 +43,21 @@ public class Main {
         }
         return userList;
     }
-    public static void executeTransactions(JsonNode jsonTransactions, CountDownLatch latch) {
+    public static void executeTransactions(JsonNode jsonTransactions, CountDownLatch latch) throws InterruptedException {
         ExecutorService transactionThreadPool = Executors.newFixedThreadPool(jsonTransactions.size());
+        Helper menu = new Helper();
+        Thread menuThread = new Thread(menu);
+        menuThread.start();
         for(JsonNode transaction: jsonTransactions){
             ExecuteTransaction transactionObject = new ExecuteTransaction(transaction, latch);
             transactionThreadPool.execute(transactionObject);
         }
         transactionThreadPool.shutdown();
+        menuThread.join();
 
     }
     public static void main(String [] args) throws IOException, InterruptedException {
-        JsonNode jsonTransactions = parseJsonFile("src/main/resources/small_transaction.json");
+        JsonNode jsonTransactions = parseJsonFile("src/test/resources/test_transaction_4.json");
         CountDownLatch latch = new CountDownLatch(jsonTransactions.size());
         executeTransactions(jsonTransactions, latch);
         latch.await();

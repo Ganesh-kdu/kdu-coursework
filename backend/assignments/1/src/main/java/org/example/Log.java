@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 enum LogLevel
 {
     DEBUG,
-    ERROR
+    ERROR,
+    INFO,
+    TRACE
 }
 public class Log {
     private Log(){}
@@ -17,6 +19,7 @@ public class Log {
         switch (LogLevel.valueOf(String.valueOf(type).toUpperCase()))  {
             case ERROR -> logger.error(message);
             case DEBUG -> logger.debug(message);
+            case TRACE -> logger.trace(message);
             default -> logger.info(message);
         }
     }
@@ -31,6 +34,7 @@ public class Log {
         switch (LogLevel.valueOf(String.valueOf(type).toUpperCase()))  {
             case ERROR -> logger.error(message);
             case DEBUG -> logger.debug(message);
+            case TRACE -> logger.trace(message);
             default -> logger.info(message);
         }
     }
