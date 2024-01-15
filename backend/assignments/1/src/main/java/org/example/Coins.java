@@ -41,4 +41,6 @@ public class Coins {
     public synchronized void updateCirculatingSupply(long change){
         circulatingSupply.getAndAdd(change);
     }
+
+
 }

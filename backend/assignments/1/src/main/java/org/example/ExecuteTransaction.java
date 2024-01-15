@@ -18,13 +18,15 @@ public class ExecuteTransaction implements Runnable{
     private int retries;
     static {
         try {
-            marketPlace = Main.parseCSV("src/main/resources/coins.csv");
+            marketPlace = Main.parseCoinCSV("src/main/resources/coins.csv");
             traders = Main.parseUserCSV("src/main/resources/traders.csv");
         } catch (IOException e) {
             Log.customLogger("File not found",ERROR);
         }
     }
+    ExecuteTransaction(){
 
+    }
     ExecuteTransaction(JsonNode transactionDetails, CountDownLatch latch){
         this.transactionDetails = transactionDetails;
         this.latch = latch;
@@ -77,7 +79,7 @@ public class ExecuteTransaction implements Runnable{
         }
         temp-=199999998;
         while (transactionHash.length() < 128) {
-            int index =  (rnd.nextInt() * saltchars.length());
+            int index =  (int)(rnd.nextFloat() * saltchars.length());
             transactionHash.append(saltchars.charAt(index));
         }
         String hashCode = transactionHash.toString();

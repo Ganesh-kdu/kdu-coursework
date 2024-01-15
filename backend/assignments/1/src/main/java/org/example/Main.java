@@ -8,6 +8,7 @@ import com.opencsv.CSVReaderBuilder;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -20,7 +21,18 @@ public class Main {
         File from = new File(path);
         return mapper.readTree(from);
     }
-    public static List<Coins> parseCSV(String path) throws IOException {
+    public static List<String []> parseCSV(Path path) throws IOException {
+        ArrayList<String []> coinList = new ArrayList<>();
+        FileReader fileReader = new FileReader(path.toFile());
+        CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
+        String[] nextRecord;
+        while (( nextRecord = csvReader.readNext())!=null){
+            coinList.add(nextRecord);
+        }
+        return coinList;
+    }
+
+    public static List<Coins> parseCoinCSV(String path) throws IOException {
         ArrayList<Coins> coinList = new ArrayList<>();
         FileReader fileReader = new FileReader(new File(path));
         CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
@@ -47,13 +59,13 @@ public class Main {
         ExecutorService transactionThreadPool = Executors.newFixedThreadPool(jsonTransactions.size());
         Helper menu = new Helper();
         Thread menuThread = new Thread(menu);
-        menuThread.start();
+//        menuThread.start();
         for(JsonNode transaction: jsonTransactions){
             ExecuteTransaction transactionObject = new ExecuteTransaction(transaction, latch);
             transactionThreadPool.execute(transactionObject);
         }
         transactionThreadPool.shutdown();
-        menuThread.join();
+//        menuThread.join();
 
     }
     public static void main(String [] args) throws IOException, InterruptedException {
