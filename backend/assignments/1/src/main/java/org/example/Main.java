@@ -59,13 +59,13 @@ public class Main {
         ExecutorService transactionThreadPool = Executors.newFixedThreadPool(jsonTransactions.size());
         Helper menu = new Helper();
         Thread menuThread = new Thread(menu);
-//        menuThread.start();
+        menuThread.start();
         for(JsonNode transaction: jsonTransactions){
             ExecuteTransaction transactionObject = new ExecuteTransaction(transaction, latch);
             transactionThreadPool.execute(transactionObject);
         }
         transactionThreadPool.shutdown();
-//        menuThread.join();
+        menuThread.join();
 
     }
     public static void main(String [] args) throws IOException, InterruptedException {
