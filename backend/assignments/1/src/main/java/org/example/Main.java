@@ -65,7 +65,7 @@ public class Main {
             transactionThreadPool.execute(transactionObject);
         }
         transactionThreadPool.shutdown();
-        menuThread.join();
+        //menuThread.join();
 
     }
     public static void main(String [] args) throws IOException, InterruptedException {
