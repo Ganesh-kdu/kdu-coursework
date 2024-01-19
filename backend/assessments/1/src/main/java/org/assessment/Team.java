@@ -13,6 +13,7 @@ public class Team {
     private Integer runsScored;
 
     public Team(){
+        this.players = new HashMap<>();
         this.wicketsTaken = 0;
         this.runsScored = 0;
     }

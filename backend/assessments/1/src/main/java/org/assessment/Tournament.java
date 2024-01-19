@@ -30,5 +30,8 @@ public class Tournament {
 //                fixtures.add(new Fixture());
 //            }
 //        }
+        teams.getBestOfTeam("CSK");
+        teams.top3Runs();
+        teams.top3Wicket();
     }
 }
