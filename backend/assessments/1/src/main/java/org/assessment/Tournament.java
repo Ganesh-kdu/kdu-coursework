@@ -35,6 +35,7 @@ public class Tournament {
                         fixtures.add(new Fixture(new Date(2024,1,(int)(i*j/2)%31), teamNames.get(j), teamNames.get(i), matchNumber));
                     }
             }
+            matchNumber+=1;
         }
         teams.getBestOfTeam("RCB");
         teams.top3Runs();
