@@ -1,14 +1,16 @@
 package org.assessment;
 
+import java.util.Date;
+
 public class Fixture {
-    private String date;
+    private Date date;
     private String time;
     private String homeTeam;
     private String awayTeam;
     private Integer matchNumber;
     private String ground;
 
-    public Fixture(String date, String homeTeam, String awayTeam, Integer matchNumber) {
+    public Fixture(Date date, String homeTeam, String awayTeam, Integer matchNumber) {
         this.date = date;
         if (matchNumber%2==0){
             this.time = "6:30";
@@ -22,11 +24,11 @@ public class Fixture {
         this.ground = homeTeam+"_home";
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
