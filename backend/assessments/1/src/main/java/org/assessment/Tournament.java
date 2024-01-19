@@ -23,14 +23,20 @@ public class Tournament {
     }
 
     public static void main(String[] args) {
-//        int matchNumber = 0;
-//
-//        for(int i=0; i<teamNames.size(); i++){
-//            for(int j=0; j<teamNames.size(); j++){
-//                fixtures.add(new Fixture());
-//            }
-//        }
-        teams.getBestOfTeam("CSK");
+        int matchNumber = 0;
+
+        for(int i=0; i<teamNames.size(); i++){
+            for(int j=0; j<teamNames.size(); j++){
+                if (i!=j)
+                    if (matchNumber%2==0) {
+                        fixtures.add(new Fixture("", teamNames.get(i), teamNames.get(j), matchNumber));
+                    }
+                    else {
+                        fixtures.add(new Fixture("", teamNames.get(j), teamNames.get(i), matchNumber));
+                    }
+            }
+        }
+        teams.getBestOfTeam("RCB");
         teams.top3Runs();
         teams.top3Wicket();
     }

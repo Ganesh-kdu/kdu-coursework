@@ -93,6 +93,6 @@ public class Teams {
             }}catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        this.teamNames = new ArrayList<>(teamNames) ;
+        this.teamNames = new ArrayList<>(teamNamesSet) ;
     }
 }

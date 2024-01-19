@@ -8,9 +8,14 @@ public class Fixture {
     private Integer matchNumber;
     private String ground;
 
-    public Fixture(String date, String time, String homeTeam, String awayTeam, Integer matchNumber) {
+    public Fixture(String date, String homeTeam, String awayTeam, Integer matchNumber) {
         this.date = date;
-        this.time = time;
+        if (matchNumber%2==0){
+            this.time = "6:30";
+        }
+        else{
+            this.time = "9:30";
+        }
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.matchNumber = matchNumber;
