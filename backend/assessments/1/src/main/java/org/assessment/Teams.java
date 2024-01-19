@@ -26,6 +26,8 @@ public class Teams {
     }
 
     public List<Player> getBestOfTeam(String team){
+        Log.customLogger("Run Scorer:" + teams.get(team).getRunScorer().getName(),"INFO");
+        Log.customLogger("Run Scorer:" + teams.get(team).getWicketTaker().getName(),"INFO");
         return List.of(new Player[]{teams.get(team).getRunScorer(), teams.get(team).getWicketTaker()});
     }
 
