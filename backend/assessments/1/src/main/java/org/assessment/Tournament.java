@@ -29,10 +29,10 @@ public class Tournament {
             for(int j=0; j<teamNames.size(); j++){
                 if (i!=j)
                     if (matchNumber%2==0) {
-                        fixtures.add(new Fixture( new Date(2024,1,(int)(i*j/2)%31),teamNames.get(i), teamNames.get(j), matchNumber));
+                        fixtures.add(new Fixture( new Date(2024,1,(int)(matchNumber/2)%31),teamNames.get(i), teamNames.get(j), matchNumber));
                     }
                     else {
-                        fixtures.add(new Fixture(new Date(2024,1,(int)(i*j/2)%31), teamNames.get(j), teamNames.get(i), matchNumber));
+                        fixtures.add(new Fixture(new Date(2024,1,(int)(matchNumber/2)%31), teamNames.get(j), teamNames.get(i), matchNumber));
                     }
             }
             matchNumber+=1;
