@@ -8,10 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Tournament {
     private static Teams teams;
@@ -37,8 +34,23 @@ public class Tournament {
             }
             matchNumber+=1;
         }
-        teams.getBestOfTeam("RCB");
-        teams.top3Runs();
-        teams.top3Wicket();
+        int option = 1;
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            option = sc.nextInt();
+            if (option==1) {
+                String team = sc.next();
+                teams.getBowlersOverForty(team);
+            } else if (option==2) {
+                String team = sc.next();
+                teams.getBestOfTeam(team);
+            } else if (option==3) {
+                teams.top3Runs();
+                teams.top3Wicket();
+            }
+            else{
+                break;
+            }
+        }
     }
 }

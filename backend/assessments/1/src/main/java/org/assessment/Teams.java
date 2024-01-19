@@ -22,12 +22,16 @@ public class Teams {
     }
 
     public List<String> getBowlersOverForty(String team){
+        List<String> t = teams.get(team).atLeastForty();
+        for(String s: t){
+            Log.customLogger(s,"INFO");
+        }
         return teams.get(team).atLeastForty();
     }
 
     public List<Player> getBestOfTeam(String team){
         Log.customLogger("Run Scorer:" + teams.get(team).getRunScorer().getName(),"INFO");
-        Log.customLogger("Run Scorer:" + teams.get(team).getWicketTaker().getName(),"INFO");
+        Log.customLogger("Wicket Taker:" + teams.get(team).getWicketTaker().getName(),"INFO");
         return List.of(new Player[]{teams.get(team).getRunScorer(), teams.get(team).getWicketTaker()});
     }
 
@@ -45,7 +49,7 @@ public class Teams {
     }
     public List<Player> top3Wicket(){
         players.sort(new WicketComparator());
-        players.subList(0,3).forEach(u -> Log.customLogger(u.getName()+u.getWickets(),"INFO")
+        players.subList(0,3).forEach(u -> Log.customLogger(u.getName()+" "+u.getWickets(),"INFO")
         );
         return  players.subList(0,3);
     }
@@ -64,7 +68,7 @@ public class Teams {
     }
     public List<Player> top3Runs(){
         players.sort(new RunComparator());
-        players.subList(0,3).forEach(u -> Log.customLogger(u.getName()+u.getRuns(),"INFO")
+        players.subList(0,3).forEach(u -> Log.customLogger(u.getName()+" "+u.getRuns(),"INFO")
         );
         return  players.subList(0,3);
     }

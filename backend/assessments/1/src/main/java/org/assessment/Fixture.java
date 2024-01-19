@@ -10,7 +10,7 @@ public class Fixture {
     private Integer matchNumber;
     private String ground;
 
-    public Fixture(Date date, String homeTeam, String awayTeam, Integer matchNumber) {
+    public Fixture(Date date, String homcompareeTeam, String awayTeam, Integer matchNumber) {
         this.date = date;
         if (matchNumber%2==0){
             this.time = "6:30";
