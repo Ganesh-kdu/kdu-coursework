@@ -1,4 +1,4 @@
-package org.assessment;
+package assessment;
 
 public class Fixture {
 }

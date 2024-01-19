@@ -1,0 +1,36 @@
+<configuration debug="true">
+
+    <!-- Console Appender for INFO level logs -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" level="trace">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender for DEBUG and ERROR level logs -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>src/main/allLogs/debug_error.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender for ERROR level logs -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.FileAppender" level = "ERROR">
+        <file>src/main/allLogs/error.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger configurations -->
+    <logger name="org.example" level="info">
+        <appender-ref ref="STDOUT"/>
+        <!--        <appender-ref ref=""/>-->
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
