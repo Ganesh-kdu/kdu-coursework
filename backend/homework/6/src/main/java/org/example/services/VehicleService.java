@@ -1,11 +1,8 @@
 package org.example.services;
 
 import jakarta.annotation.PostConstruct;
-import org.example.beans.Tyre;
 import org.example.beans.Vehicle;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +13,39 @@ import java.util.List;
 @Import({TyreService.class, SpeakerService.class})
 public class VehicleService {
     List<Vehicle> cars;
-    @Autowired
-    TyreService tyreService;
-
-    @Autowired
-    SpeakerService speakerService;
+    private final TyreService tyreService;
+    private final SpeakerService speakerService;
 
     @Bean
     List<Vehicle> vehicles(){
         return cars;
     }
+
+    /**
+     * Been for the most expensive vehicle in the list
+     * @return Vehicle
+     */
+    @Bean
+    Vehicle getMostExpensive(){
+        Vehicle mostExpensiveVehicle = cars.get(0);
+        for (Vehicle vehicle: cars){
+            if(vehicle.getPrice()>mostExpensiveVehicle.getPrice()){
+                mostExpensiveVehicle = vehicle;
+            }
+        }
+        return mostExpensiveVehicle;
+    }
+    VehicleService(){
+        tyreService = new TyreService();
+        speakerService = new SpeakerService();
+    }
+
+    /**
+     * Post constructor to create a list of cars with different kinds of tyres and speakers
+     * @see org.example.beans.Vehicle
+     * @see org.example.services.TyreService
+     * @see org.example.services.SpeakerService
+     */
     @PostConstruct
     void postConstruct(){
         cars = new ArrayList<>();
