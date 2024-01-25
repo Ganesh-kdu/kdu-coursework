@@ -1,0 +1,7 @@
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/entity/Vehicle.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/DTO/VehicleRequestDto.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/DTO/VehicleResponseDto.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/controller/VehicleController.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/service/VehicleService.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/SbHandson1Application.java
+/home/lenovo/kdu-coursework/backend/homework/8/src/main/java/com/example/sbhandson1/repository/VehicleInventory.java
