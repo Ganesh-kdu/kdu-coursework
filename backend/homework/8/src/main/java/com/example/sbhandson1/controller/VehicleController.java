@@ -2,6 +2,7 @@ package com.example.sbhandson1.controller;
 
 import com.example.sbhandson1.dto.VehicleRequestDto;
 import com.example.sbhandson1.dto.VehicleResponseDto;
+import com.example.sbhandson1.dto.VehicleUpdateDto;
 import com.example.sbhandson1.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,8 @@ public class VehicleController {
     }
 
     @PutMapping("/update-vehicle/{id}")
-    public ResponseEntity<VehicleResponseDto> updateVehicle(@PathVariable Integer id, @RequestBody VehicleRequestDto vehicleRequestDto) {
-        return new ResponseEntity<>(vehicleService.updateVehicle(id, vehicleRequestDto),HttpStatus.OK);
+    public ResponseEntity<VehicleResponseDto> updateVehicle(@PathVariable Integer id, @RequestBody VehicleUpdateDto vehicleUpdateDto) {
+        return new ResponseEntity<>(vehicleService.updateVehicle(id, vehicleUpdateDto),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-vehicle/{id}")

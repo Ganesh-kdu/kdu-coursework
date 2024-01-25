@@ -2,6 +2,7 @@ package com.example.sbhandson1.service;
 
 import com.example.sbhandson1.dto.VehicleRequestDto;
 import com.example.sbhandson1.dto.VehicleResponseDto;
+import com.example.sbhandson1.dto.VehicleUpdateDto;
 import com.example.sbhandson1.entity.Vehicle;
 import com.example.sbhandson1.repository.VehicleInventory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class VehicleService {
         Vehicle vehicle = vehicleInventory.getVehicle(id);
 
         if (vehicle == null) {
-            return new VehicleResponseDto(null, "Vehicle found");
+            return new VehicleResponseDto(null, "Vehicle not found");
         }
         return new VehicleResponseDto(vehicle, "Vehicle found");
     }
-    public VehicleResponseDto updateVehicle(int id, VehicleRequestDto vehicleDto) {
-        Vehicle vehicle = new Vehicle(vehicleDto.getId(), vehicleDto.getCompany(), vehicleDto.getYear(), vehicleDto.getColor(), vehicleDto.getPrice());
+    public VehicleResponseDto updateVehicle(int id, VehicleUpdateDto vehicleDto) {
+        Vehicle vehicle = new Vehicle(id, vehicleDto.getCompany(), vehicleDto.getYear(), vehicleDto.getColor(), vehicleDto.getPrice());
         return vehicleInventory.updateVehicle(id, vehicle);
     }
 

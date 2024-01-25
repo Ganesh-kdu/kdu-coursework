@@ -17,10 +17,7 @@ public class VehicleInventory {
         return new VehicleResponseDto(vehicle, "Vehicle created successfully");
     }
     public Vehicle getVehicle(int id) {
-        if (vehicleList.get(id)!=null){
-                return new Vehicle(vehicleList.get(id).getId(), vehicleList.get(id).getCompany(), vehicleList.get(id).getYear(), vehicleList.get(id).getColor(), vehicleList.get(id).getPrice());
-        }
-        return null;
+        return vehicleList.get(id);
     }
     public VehicleResponseDto updateVehicle(int id, Vehicle vehicle) {
             if(vehicleList.computeIfPresent(id,(k,v)->vehicle) != null) {
