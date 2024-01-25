@@ -1,4 +1,4 @@
-package com.example.sbhandson1.DTO;
+package com.example.sbhandson1.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

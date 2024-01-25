@@ -1,7 +1,7 @@
 package com.example.sbhandson1.controller;
 
-import com.example.sbhandson1.DTO.VehicleRequestDto;
-import com.example.sbhandson1.DTO.VehicleResponseDto;
+import com.example.sbhandson1.dto.VehicleRequestDto;
+import com.example.sbhandson1.dto.VehicleResponseDto;
 import com.example.sbhandson1.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

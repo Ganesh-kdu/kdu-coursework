@@ -1,6 +1,6 @@
 package com.example.sbhandson1.repository;
 
-import com.example.sbhandson1.DTO.VehicleResponseDto;
+import com.example.sbhandson1.dto.VehicleResponseDto;
 import com.example.sbhandson1.entity.Vehicle;
 import org.springframework.stereotype.Repository;
 

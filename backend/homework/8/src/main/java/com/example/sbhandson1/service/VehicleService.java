@@ -1,7 +1,7 @@
 package com.example.sbhandson1.service;
 
-import com.example.sbhandson1.DTO.VehicleRequestDto;
-import com.example.sbhandson1.DTO.VehicleResponseDto;
+import com.example.sbhandson1.dto.VehicleRequestDto;
+import com.example.sbhandson1.dto.VehicleResponseDto;
 import com.example.sbhandson1.entity.Vehicle;
 import com.example.sbhandson1.repository.VehicleInventory;
 import org.springframework.beans.factory.annotation.Autowired;
