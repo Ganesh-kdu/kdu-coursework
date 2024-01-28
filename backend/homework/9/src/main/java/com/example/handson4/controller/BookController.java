@@ -32,7 +32,7 @@ public class BookController {
         return new ResponseEntity<>(bookResponseDto, Objects.isNull(bookResponseDto) ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
-    @PutMapping("/update-book-isbn/{isbn}")
+    @PutMapping("/update-book/{isbn}")
     public ResponseEntity<BookResponseDto> updateBook(@PathVariable String isbn, @RequestBody BookRequestDto bookRequestDto) throws ObjectNotFoundException {
         BookResponseDto bookResponseDto = bookService.updateBook(isbn, bookRequestDto);
         return new ResponseEntity<>(bookResponseDto, Objects.isNull(bookResponseDto) ? HttpStatus.NOT_MODIFIED : HttpStatus.OK);
