@@ -3,7 +3,6 @@ package com.example.auth.services;
 import com.example.auth.dto.UserDto;
 import com.example.auth.exceptions.custom.NoUserFoundException;
 import com.example.auth.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class UserService{
         this.userRepository = userRepository;
     }
 
-    public List<UserDto> getAllUsers() throws RuntimeException {
+    public List<UserDto> getAllUsers() throws NoUserFoundException {
         try {
             List<UserDto> users = userRepository.getAllUsers();
             if(users.isEmpty()){
@@ -29,7 +28,7 @@ public class UserService{
         }
     }
 
-    public UserDto getUserByName(String name) throws RuntimeException{
+    public UserDto getUserByName(String name) throws NoUserFoundException{
         try {
             UserDto user = userRepository.getUserByName(name);
             if (user != null) {

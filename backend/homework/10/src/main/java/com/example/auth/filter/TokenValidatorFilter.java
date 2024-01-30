@@ -14,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
@@ -45,9 +44,6 @@ public class TokenValidatorFilter extends OncePerRequestFilter {
                 String authorities = (String) claims.get("roles");
                 Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
                         AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-
-                log.info(String.valueOf(auth));
-
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (Exception e) {
