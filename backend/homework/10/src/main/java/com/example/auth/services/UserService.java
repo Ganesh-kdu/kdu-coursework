@@ -28,16 +28,14 @@ public class UserService{
         }
     }
 
-    public UserDto getUserByName(String name) throws NoUserFoundException{
-        try {
+    public UserDto getUserByName(String name){
+
             UserDto user = userRepository.getUserByName(name);
             if (user != null) {
                 return user;
             }
             throw new NoUserFoundException("No user found with name " + name);
-        } catch (NoUserFoundException e) {
-            throw new NoUserFoundException(e.getMessage());
-        }
+
     }
 
     public UserDto addUser(UserDto userDto) {
