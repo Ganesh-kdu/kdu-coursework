@@ -14,7 +14,7 @@ public class ShiftDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     public void saveShift(Shift shift){
-        String sql = "INSERT INTO shift VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO shifts VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, shift.getId(), shift.getShiftTypeId(), shift.getName(),
                 shift.getDateStart(), shift.getDateEnd(), shift.getTimeStart(), shift.getTimeEnd(),
                 shift.getCreatedAt(), shift.getCreatedBy(), shift.getUpdatedBy(), shift.getUpdatedAt(), shift.getTimeZone()
@@ -22,7 +22,7 @@ public class ShiftDao {
     }
 
     public Shift getShiftByid(UUID id){
-        String sql = "SELECT * FROM shift WHERE id=?";
+        String sql = "SELECT * FROM shifts WHERE id=?";
         return jdbcTemplate.queryForObject(sql, new ShiftRowMapper(),id);
     }
 }

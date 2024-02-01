@@ -21,13 +21,55 @@ public class Controller {
     ShiftUserService shiftUserService;
     ShiftService shiftService;
     TenantService tenantService;
+    AllService allService;
 
-    public Controller(UserService userService, ShiftTypeService shiftTypeService, ShiftUserService shiftUserService, ShiftService shiftService, TenantService tenantService){
+    public Controller(UserService userService, ShiftTypeService shiftTypeService, ShiftUserService shiftUserService, ShiftService shiftService, TenantService tenantService, AllService allService){
         this.shiftService=shiftService;
         this.tenantService=tenantService;
         this.shiftTypeService=shiftTypeService;
         this.shiftUserService=shiftUserService;
         this.userService=userService;
+        this.allService=allService;
+    }
+
+    @PostMapping("/add/shiftType")
+    public ResponseEntity<String> addShiftType(@RequestBody ShiftTypeDto shiftTypeDto){
+        String id = shiftTypeService.addShiftType(shiftTypeDto);
+        return ResponseEntity.ok("Shift type added successfully with ID = " + id);
+    }
+
+    @PostMapping("/add/shift")
+    public ResponseEntity<String> addShift(@RequestBody ShiftDto shiftDto){
+        String id = shiftService.addShift(shiftDto);
+        return ResponseEntity.ok("Shift created successfully with ID = " + id);
+    }
+    @PostMapping("/add/shiftUser")
+    public ResponseEntity<String> addShiftUser(@RequestBody ShiftUserDto shiftUserDto){
+        String id = shiftUserService.addShiftUser(shiftUserDto);
+        return ResponseEntity.ok("Shift User added successfully with ID = " + id);
+    }
+   @PostMapping("/add/user")
+    public ResponseEntity<String> addUser(@RequestBody UserDto userDto){
+        String id = userService.addUser(userDto);
+        return ResponseEntity.ok("user added successfully with ID = " + id);
+    }
+
+    @PostMapping("/add/tenant")
+    public ResponseEntity<String> addTenant(@RequestBody TenantDto tenantDto)
+    {
+        String id = tenantService.addTenant(tenantDto);
+        return ResponseEntity.ok("Tenant Added Successfully with ID = " + id);
+    }
+
+    @PostMapping("/add/all")
+    public ResponseEntity<String> addAll(@RequestBody AllDto allDto){
+        try {
+            allService.add(allDto);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.ok("All details added Successfully");
     }
     @GetMapping("/user/all")
     public ResponseEntity<List<User>> getAllUser(){
@@ -57,23 +99,9 @@ public class Controller {
         return  userService.getUserById(uid);
     }
 
-    @PostMapping("/add/user")
-    public ResponseEntity<String> addUser(@RequestBody UserDto userDto){
-        userService.addUser(userDto);
-        return ResponseEntity.ok("user addedd succes");
-    }
-
     @PutMapping("/update/user/{id}")
     public int updateUserName(@PathVariable UUID id, @RequestBody UserDto userDto){
         return userService.updateUser(id, userDto.getUserName());
-    }
-
-
-    @PostMapping("/add/shiftType")
-    public ResponseEntity<String> addShiftType(@RequestBody ShiftTypeDto shiftTypeDto){
-        String message = "Added shift type";
-        shiftTypeService.addShiftType(shiftTypeDto);
-        return ResponseEntity.ok(message);
     }
 
     @GetMapping("/shiftType/search/{id}")
@@ -82,12 +110,7 @@ public class Controller {
     }
 
 
-    @PostMapping("/add/shiftUser")
-    public ResponseEntity<String> addShiftUser(@RequestBody ShiftUserDto shiftUserDto){
-        String message = "Add the shift user success";
-        shiftUserService.addShiftUser(shiftUserDto);
-        return ResponseEntity.ok(message);
-    }
+
 
     @GetMapping("/shiftUser/search/{id}")
     public ShiftUser getShiftUserById(@PathVariable  UUID id){
@@ -96,23 +119,13 @@ public class Controller {
 
 
 
-    @PostMapping("/add/shift")
-    public ResponseEntity<String> addShift(@RequestBody ShiftDto shiftDto){
-        String message = "add the shift user success";
-        shiftService.addShift(shiftDto);
-        return ResponseEntity.ok(message);
-    }
+
 
     @GetMapping("/shift/search/{id}")
     public Shift getShiftById(@PathVariable UUID id){
         return shiftService.getShiftById(id);
     }
 
-    @PostMapping("/add/tenant")
-    public ResponseEntity<String> addTenant(@RequestBody TenantDto tenantDto)
-    {
-        tenantService.addTenant(tenantDto);
-        return ResponseEntity.ok("Tenant Added Successfully");
-    }
+
 
 }

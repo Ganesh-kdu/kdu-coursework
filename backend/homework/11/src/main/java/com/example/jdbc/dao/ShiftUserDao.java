@@ -16,11 +16,11 @@ public class ShiftUserDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     public void saveShiftUser(ShiftUser shiftUser){
-        String sql= "INSERT INTO shiftuser VALUES(?,?,?,?)";
+        String sql= "INSERT INTO shift_user VALUES(?,?,?,?)";
         jdbcTemplate.update(sql, shiftUser.getId(), shiftUser.getShiftId(), shiftUser.getUserId(), shiftUser.getTenantId());
     }
     public ShiftUser getShiftUserById(UUID id){
-        String  sql = "SELECT * FROM shiftuser WHERE id=?";
+        String  sql = "SELECT * FROM shift_user WHERE id=?";
         return jdbcTemplate.queryForObject(sql, new ShiftUserRowMapper(),id);
     }
 }

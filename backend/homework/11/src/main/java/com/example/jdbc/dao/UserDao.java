@@ -33,7 +33,7 @@ public class UserDao {
     }
 
     public int updateNameForId(UUID id, String name){
-        String sql = "UPDATE users SET userName = ? WHERE id = ?";
+        String sql = "UPDATE users SET username = ? WHERE id = ?";
         return jdbcTemplate.update(sql, name, id);
     }
     public List<User> getUsers(){

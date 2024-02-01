@@ -14,11 +14,12 @@ public class ShiftTypeDao {
         this.jdbcTemplate = jdbcTemplate;
     }
     public void saveShiftType(ShiftType shiftType){
-        String sql = "INSERT INTO shifttypes VALUES(?,?,?,?,?,?,?,?)";
+
+        String sql = "INSERT INTO shift_types VALUES(?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, shiftType.getId(), shiftType.getName(), shiftType.getDescription(), shiftType.isActive(), shiftType.getCreatedAt(), shiftType.getUpdatedAt(), shiftType.getTimeZone(), shiftType.getTenantId());
     }
     public ShiftType getShiftTypeById(UUID id){
-        String sql = "SELECT * FROM shifttypes WHERE id=?";
+        String sql = "SELECT * FROM shift_types WHERE id=?";
         return jdbcTemplate.queryForObject(sql, new ShiftTypeRowMapper(), id);
     }
 }

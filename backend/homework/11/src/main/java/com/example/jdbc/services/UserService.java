@@ -2,6 +2,7 @@ package com.example.jdbc.services;
 
 import com.example.jdbc.dao.UserDao;
 import com.example.jdbc.dto.UserDto;
+import com.example.jdbc.mapper.DtoToModel;
 import com.example.jdbc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,23 +13,18 @@ import java.util.UUID;
 @Service
 public class UserService {
     UserDao userDao;
-    public UserService(UserDao userDao){
+    DtoToModel dtoUtil;
+    public UserService(UserDao userDao, DtoToModel dtoUtil){
         this.userDao = userDao;
+        this.dtoUtil = dtoUtil;
     }
-    public void addUser(UserDto userDto){
-        User user = mapUserDtoToUser(userDto);
+    public String addUser(UserDto userDto){
+        User user = dtoUtil.mapUserDtoToUser(userDto);
         userDao.saveUser(user);
+        return user.getId().toString();
     }
 
-    public User mapUserDtoToUser(UserDto userDto) {
-        User user = new User();
-        user.setId(UUID.randomUUID());
-        user.setUserName(userDto.getUserName());
-        user.setLoggedIn(userDto.isLoggedIn());
-        user.setTimeZone(userDto.getTimeZone());
-        user.setTenantId(UUID.fromString(userDto.getTenantId()));
-        return user;
-    }
+
 
     public User getUserById(UUID id){
         return userDao.getUserById(id);

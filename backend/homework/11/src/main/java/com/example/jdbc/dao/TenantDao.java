@@ -2,15 +2,12 @@ package com.example.jdbc.dao;
 
 import com.example.jdbc.mapper.TenantRowMapper;
 import com.example.jdbc.model.Tenant;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class TenantDao {
     final JdbcTemplate jdbcTemplate;
-
-    @Autowired
     public TenantDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }

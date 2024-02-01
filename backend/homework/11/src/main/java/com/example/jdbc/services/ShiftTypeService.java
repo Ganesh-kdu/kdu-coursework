@@ -2,6 +2,7 @@ package com.example.jdbc.services;
 
 import com.example.jdbc.dao.ShiftTypeDao;
 import com.example.jdbc.dto.ShiftTypeDto;
+import com.example.jdbc.mapper.DtoToModel;
 import com.example.jdbc.model.ShiftType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,27 +12,20 @@ import java.util.UUID;
 
 @Service
 public class ShiftTypeService {
+    DtoToModel dtoUtil;
     ShiftTypeDao shiftTypeDao;
-    public ShiftTypeService(ShiftTypeDao shiftTypeDao){
+    public ShiftTypeService(ShiftTypeDao shiftTypeDao, DtoToModel dtoUtil){
         this.shiftTypeDao = shiftTypeDao;
+        this.dtoUtil = dtoUtil;
     }
-    public void addShiftType(ShiftTypeDto shiftTypeDto){
-        ShiftType shiftType = mapShiftTypeDtoToShiftType(shiftTypeDto);
+    public String addShiftType(ShiftTypeDto shiftTypeDto){
+        ShiftType shiftType = dtoUtil.mapShiftTypeDtoToShiftType(shiftTypeDto);
         shiftTypeDao.saveShiftType(shiftType);
+        return shiftType.getId().toString();
     }
 
-    public ShiftType mapShiftTypeDtoToShiftType(ShiftTypeDto shiftTypeDto) {
-        ShiftType shiftType = new ShiftType();
-        shiftType.setId(UUID.randomUUID());
-        shiftType.setName(shiftTypeDto.getName());
-        shiftType.setDescription(shiftTypeDto.getDescription());
-        shiftType.setActive(shiftTypeDto.isActive());
-        shiftType.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        shiftType.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-        shiftType.setTimeZone(shiftTypeDto.getTimeZone());
-        shiftType.setTenantId(UUID.fromString(shiftTypeDto.getTenantId()));
-        return shiftType;
-    }
+
+
 
     public ShiftType getShiftTypeById(UUID id){
         return shiftTypeDao.getShiftTypeById(id);
