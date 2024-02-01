@@ -2,6 +2,8 @@ package com.example.jdbc.mapper;
 
 import com.example.jdbc.dto.*;
 import com.example.jdbc.model.*;
+import lombok.experimental.UtilityClass;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -9,7 +11,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class DtoToModel {
-    public Shift mapShiftDtoToShift(ShiftDto shiftDto) {
+    public static Shift mapShiftDtoToShift(ShiftDto shiftDto) {
         Shift shift = new Shift();
         shift.setId(UUID.randomUUID());
         shift.setShiftTypeId(UUID.fromString(shiftDto.getShiftTypeId()));
@@ -25,7 +27,7 @@ public class DtoToModel {
         return shift;
     }
 
-    public ShiftType mapShiftTypeDtoToShiftType(ShiftTypeDto shiftTypeDto) {
+    public static ShiftType mapShiftTypeDtoToShiftType(ShiftTypeDto shiftTypeDto) {
         ShiftType shiftType = new ShiftType();
         shiftType.setId(UUID.randomUUID());
         shiftType.setName(shiftTypeDto.getName());
@@ -38,7 +40,7 @@ public class DtoToModel {
         return shiftType;
     }
 
-    public ShiftUser mapShiftUserDtoToShiftUser(ShiftUserDto shiftUserDto) {
+    public static ShiftUser mapShiftUserDtoToShiftUser(ShiftUserDto shiftUserDto) {
         ShiftUser shiftUser = new ShiftUser();
         shiftUser.setId(UUID.randomUUID());
         shiftUser.setShiftId(UUID.fromString(shiftUserDto.getShiftId()));
@@ -47,7 +49,7 @@ public class DtoToModel {
         return shiftUser;
     }
 
-    public Tenant mapTenantDtoToTenant(TenantDto tenantDto) {
+    public static Tenant mapTenantDtoToTenant(TenantDto tenantDto) {
         Tenant tenant = new Tenant();
         tenant.setId(UUID.randomUUID());
         tenant.setName(tenantDto.getName());
@@ -58,7 +60,7 @@ public class DtoToModel {
         return tenant;
     }
 
-    public User mapUserDtoToUser(UserDto userDto) {
+    public static User mapUserDtoToUser(UserDto userDto) {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setUserName(userDto.getUserName());

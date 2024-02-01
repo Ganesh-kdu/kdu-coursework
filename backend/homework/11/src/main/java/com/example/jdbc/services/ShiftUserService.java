@@ -13,14 +13,11 @@ import java.util.UUID;
 @Service
 public class ShiftUserService {
     ShiftUserDao shiftUserDao;
-    DtoToModel dtoUtil;
-
-    public ShiftUserService(ShiftUserDao shiftUserDao, DtoToModel dtoUtil){
+    public ShiftUserService(ShiftUserDao shiftUserDao){
         this.shiftUserDao = shiftUserDao;
-        this.dtoUtil = dtoUtil;
     }
     public String addShiftUser(ShiftUserDto shiftUserDto){
-        ShiftUser shiftUser = dtoUtil.mapShiftUserDtoToShiftUser(shiftUserDto);
+        ShiftUser shiftUser = DtoToModel.mapShiftUserDtoToShiftUser(shiftUserDto);
         shiftUserDao.saveShiftUser(shiftUser);
         return shiftUser.getId().toString();
     }

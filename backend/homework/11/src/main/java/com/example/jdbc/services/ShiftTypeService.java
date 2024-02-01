@@ -12,14 +12,12 @@ import java.util.UUID;
 
 @Service
 public class ShiftTypeService {
-    DtoToModel dtoUtil;
     ShiftTypeDao shiftTypeDao;
-    public ShiftTypeService(ShiftTypeDao shiftTypeDao, DtoToModel dtoUtil){
+    public ShiftTypeService(ShiftTypeDao shiftTypeDao){
         this.shiftTypeDao = shiftTypeDao;
-        this.dtoUtil = dtoUtil;
     }
     public String addShiftType(ShiftTypeDto shiftTypeDto){
-        ShiftType shiftType = dtoUtil.mapShiftTypeDtoToShiftType(shiftTypeDto);
+        ShiftType shiftType = DtoToModel.mapShiftTypeDtoToShiftType(shiftTypeDto);
         shiftTypeDao.saveShiftType(shiftType);
         return shiftType.getId().toString();
     }

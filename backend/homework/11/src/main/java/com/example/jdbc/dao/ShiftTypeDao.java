@@ -15,8 +15,8 @@ public class ShiftTypeDao {
     }
     public void saveShiftType(ShiftType shiftType){
 
-        String sql = "INSERT INTO shift_types VALUES(?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, shiftType.getId(), shiftType.getName(), shiftType.getDescription(), shiftType.isActive(), shiftType.getCreatedAt(), shiftType.getUpdatedAt(), shiftType.getTimeZone(), shiftType.getTenantId());
+        String sql = "INSERT INTO shift_types VALUES(?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, shiftType.getId(), shiftType.getName(), shiftType.getDescription(), shiftType.isActive(), shiftType.getCreatedAt(),shiftType.getCreatedBy(), shiftType.getUpdatedAt(), shiftType.getUpdatedBy(), shiftType.getTimeZone(), shiftType.getTenantId());
     }
     public ShiftType getShiftTypeById(UUID id){
         String sql = "SELECT * FROM shift_types WHERE id=?";
