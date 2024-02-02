@@ -7,15 +7,18 @@ import com.example.assessment.exceptions.custom.NoUserFoundException;
 import com.example.assessment.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService{
     private final UsersRepository usersRepository;
+    private HashMap<String,HashMap<String,Integer>> carts;
 
     public UserService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+        this.carts = new HashMap<>();
     }
 
     public List<UserEntity> getAllUsers() throws NoUserFoundException {
@@ -48,5 +51,7 @@ public class UserService{
             throw new RuntimeException("Error occurred while adding user");
         }
     }
+
+
 }
 
