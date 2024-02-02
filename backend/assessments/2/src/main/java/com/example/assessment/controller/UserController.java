@@ -12,35 +12,29 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
-
     @PostMapping("/update-profile")
     public ResponseEntity<String> updateProfile(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
-    }
-    @PostMapping("/update-address")
-    public ResponseEntity<String> updateAddress(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
     @PostMapping("/add-address")
     public ResponseEntity<String> addAddress(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
     @PostMapping("/add-cart")
     public ResponseEntity<String> updateItem(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
     @PostMapping("/view-cart")
     public ResponseEntity<String> viewCart(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
     @PostMapping("/checkout")
     public ResponseEntity<String> checkout(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
     @PostMapping("/delete-cart")
     public ResponseEntity<String> deleteCart(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("Not implemented", HttpStatus.NO_CONTENT);
     }
 
 }
