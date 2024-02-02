@@ -23,4 +23,10 @@ public class InventoryService {
         itemsRepository.save(new Item(java.util.UUID.fromString(uuid), inventoryItemDto.getName(), inventoryItemDto.getDescription(),inventoryItemDto.getPrice(),inventoryItemDto.getQuantity()));
         return "Successfully updated";
     }
+
+    public String delete(String uuid){
+        itemsRepository.deleteById(UUID.fromString(uuid
+        ));
+        return "Successfully deleted";
+    }
 }

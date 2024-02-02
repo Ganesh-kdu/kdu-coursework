@@ -25,8 +25,8 @@ public class InventoryController {
         return new ResponseEntity<>("Not implemented", HttpStatus.CREATED);
     }
     @PostMapping("/delete")
-    public ResponseEntity<String> deleteItem(){
-
-        return new ResponseEntity<>("Not implemented", HttpStatus.OK);
+    public ResponseEntity<String> deleteItem(@RequestParam String id){
+        String message = inventoryService.delete(id);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }
