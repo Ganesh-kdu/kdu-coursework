@@ -3,9 +3,11 @@ package com.example.assessment.services;
 import com.example.assessment.dto.InventoryItemDto;
 import com.example.assessment.entity.Item;
 import com.example.assessment.repository.ItemsRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class InventoryService {
     ItemsRepository itemsRepository;
     public InventoryService(ItemsRepository itemsRepository){
