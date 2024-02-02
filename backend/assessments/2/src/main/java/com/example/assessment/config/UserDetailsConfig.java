@@ -3,6 +3,7 @@ package com.example.assessment.config;
 
 
 import com.example.assessment.dto.UserDto;
+import com.example.assessment.entity.UserEntity;
 import com.example.assessment.services.UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +25,7 @@ public class UserDetailsConfig implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        UserDto user = userService.getUserByName(name);
+        UserEntity user = userService.getUserByName(name);
         String userName = null;
         String userPassword = null;
         List<GrantedAuthority> authorities = null;

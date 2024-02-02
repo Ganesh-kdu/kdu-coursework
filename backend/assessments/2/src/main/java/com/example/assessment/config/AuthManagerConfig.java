@@ -1,7 +1,7 @@
 package com.example.assessment.config;
 
 
-import com.example.assessment.dto.UserDto;
+import com.example.assessment.entity.UserEntity;
 import com.example.assessment.services.UserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,7 +29,7 @@ public class AuthManagerConfig implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-        UserDto user = userService.getUserByName(name);
+        UserEntity user = userService.getUserByName(name);
 
         if(user == null){
             throw new BadCredentialsException("No user registered with this details!");

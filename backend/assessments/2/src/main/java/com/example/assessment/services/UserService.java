@@ -1,26 +1,28 @@
 package com.example.assessment.services;
 
+import com.example.assessment.dto.RegistrationSuccessDto;
 import com.example.assessment.dto.UserDto;
+import com.example.assessment.entity.UserEntity;
 import com.example.assessment.exceptions.custom.NoUserFoundException;
-import com.example.assessment.repository.UserRepository;
+import com.example.assessment.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService{
+    private final UsersRepository usersRepository;
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
     }
 
-    public List<UserDto> getAllUsers() throws NoUserFoundException {
+    public List<UserEntity> getAllUsers() throws NoUserFoundException {
         try {
-            List<UserDto> users = userRepository.getAllUsers();
+            List<UserEntity> users = usersRepository.findAll();
             if(users.isEmpty()){
-                throw new NoUserFoundException("No users found in the database");
+                throw new NoUserFoundException("No UsersRepository found in the database");
             }
             return users;
         } catch (NoUserFoundException e) {
@@ -28,20 +30,20 @@ public class UserService{
         }
     }
 
-    public UserDto getUserByName(String name){
+    public UserEntity getUserByName(String name){
+            Optional<UserEntity> user = usersRepository.findById(name);
 
-            UserDto user = userRepository.getUserByName(name);
-            if (user != null) {
-                return user;
+            if (user.isPresent()) {
+                return user.get();
             }
             throw new NoUserFoundException("No user found with name " + name);
 
     }
 
-    public UserDto addUser(UserDto userDto) {
+    public RegistrationSuccessDto addUser(UserDto userDto) {
         try {
-            userRepository.addUser(userDto);
-            return userDto;
+            usersRepository.save(new UserEntity(userDto));
+            return new RegistrationSuccessDto(userDto.getUsername(), userDto.getEmail(), userDto.getRole());
         } catch (Exception e) {
             throw new RuntimeException("Error occurred while adding user");
         }

@@ -47,7 +47,7 @@ public class TokenGeneratorFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return !request.getServletPath().equals("/person/login");
+        return !(request.getServletPath().equals("/auth/login"));
     }
 
     private String populateAuthorities(Collection<? extends GrantedAuthority> collection) {

@@ -55,6 +55,6 @@ public class TokenValidatorFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getServletPath().equals("/person/login");
+        return request.getServletPath().equals("/auth/login")||request.getServletPath().equals("/auth/register");
     }
 }
