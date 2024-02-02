@@ -1,27 +1,32 @@
 package com.example.assessment.controller;
 
+import com.example.assessment.dto.InventoryItemDto;
+import com.example.assessment.services.InventoryService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.net.http.HttpResponse;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
-    @PostMapping("/update")
-    public ResponseEntity<String> updateItem(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+    InventoryService inventoryService;
+    public InventoryController(InventoryService inventoryService){
+        this.inventoryService = inventoryService;
+    }
+    @PostMapping("/update/")
+    public ResponseEntity<String> updateItem(@RequestParam String id, @RequestBody InventoryItemDto inventoryItemDto){
+        String message = inventoryService.update(id, inventoryItemDto);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
     @PostMapping("/add")
-    public ResponseEntity<String> addItem(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+    public ResponseEntity<String> addItem(@RequestBody InventoryItemDto inventoryItemDto){
+        inventoryService.add(inventoryItemDto);
+        return new ResponseEntity<>("Not implemented", HttpStatus.CREATED);
     }
     @PostMapping("/delete")
     public ResponseEntity<String> deleteItem(){
-        return new ResponseEntity<>("Not implemented", HttpStatus.I_AM_A_TEAPOT);
+
+        return new ResponseEntity<>("Not implemented", HttpStatus.OK);
     }
 }
