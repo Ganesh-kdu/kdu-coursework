@@ -1,8 +1,6 @@
 package com.example.assessment.config;
 
 
-
-import com.example.assessment.dto.UserDto;
 import com.example.assessment.entity.UserEntity;
 import com.example.assessment.services.UserService;
 import org.springframework.security.core.GrantedAuthority;
