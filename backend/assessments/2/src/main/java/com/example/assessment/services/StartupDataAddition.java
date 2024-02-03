@@ -19,7 +19,5 @@ public class StartupDataAddition implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        userRepository.save(new UserEntity(new UserDto("Ganesh1", passwordEncoder.encode("a1"), "ganesh1@kickdrum.com", "ROLE_ADMIN")));
-        userRepository.save(new UserEntity(new UserDto("Ganesh2", passwordEncoder.encode("a1"), "ganesh2@kickdrum.com", "ROLE_USER")));
     }
 }

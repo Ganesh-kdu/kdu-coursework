@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
@@ -21,12 +23,17 @@ public class InventoryController {
     }
     @PostMapping("/add")
     public ResponseEntity<String> addItem(@RequestBody InventoryItemDto inventoryItemDto){
-        inventoryService.add(inventoryItemDto);
-        return new ResponseEntity<>("Not implemented", HttpStatus.CREATED);
+        String id = inventoryService.add(inventoryItemDto).toString();
+        return new ResponseEntity<>("Added item with id = "+id, HttpStatus.CREATED);
     }
     @PostMapping("/delete")
     public ResponseEntity<String> deleteItem(@RequestParam String id){
         String message = inventoryService.delete(id);
         return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<InventoryItemDto> getItem(@RequestParam String id){
+        return new ResponseEntity<>(inventoryService.get(id),HttpStatus.OK);
     }
 }
