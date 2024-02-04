@@ -3,7 +3,7 @@ package com.kdu.smarthome.services;
 
 import com.kdu.smarthome.dto.UserDto;
 import com.kdu.smarthome.entities.User;
-import com.kdu.smarthome.exceptions.custom.NoUserFoundException;
+import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import com.kdu.smarthome.mapper.DtoToEntities;
 import com.kdu.smarthome.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -19,15 +19,15 @@ public class UserService{
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() throws NoUserFoundException {
+    public List<User> getAllUsers() throws NotFoundException {
         try {
             List<User> users = userRepository.findAll();
             if(users.isEmpty()){
-                throw new NoUserFoundException("No UsersRepository found in the database");
+                throw new NotFoundException("No UsersRepository found in the database");
             }
             return users;
-        } catch (NoUserFoundException e) {
-            throw new NoUserFoundException(e.getMessage());
+        } catch (NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ public class UserService{
         if (user.isPresent()) {
             return user.get();
         }
-        throw new NoUserFoundException("No user found with name " + name);
+        throw new NotFoundException("No user found with name " + name);
 
     }
 

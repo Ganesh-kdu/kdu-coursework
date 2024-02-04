@@ -86,24 +86,24 @@ class SmartHomeApplicationTests {
         RoomControllerTest.addRoomWithInvalidAuth(mockMvc);
     }
 
-//    @Test
-//    @Order(8)
-//    void addRoomByAdmin() throws Exception {
-//        RoomControllerTest.addRoomByAdmin(mockMvc);
-//    }
-//
+    @Test
+    @Order(8)
+    void addRoomByAdmin() throws Exception {
+        RoomControllerTest.addRoomByAdmin(mockMvc);
+    }
 
-//    @Test
-//    @Order(9)
-//    void addRoomForInvalidHouse() throws Exception {
-//        RoomControllerTest.addRoomForInvalidHouse(mockMvc);
-//    }
-//
-//    /**
-//     * Tests to display all registered houses.
-//     *
-//     * @throws Exception If an error occurs during the tests.
-//     */
+
+    @Test
+    @Order(9)
+    void addRoomForInvalidHouse() throws Exception {
+        RoomControllerTest.addRoomForInvalidHouse(mockMvc);
+    }
+
+    /**
+     * Tests to display all registered houses.
+     *
+     * @throws Exception If an error occurs during the tests.
+     */
     @Test
     @Order(10)
     void displayAllHouses() throws Exception {

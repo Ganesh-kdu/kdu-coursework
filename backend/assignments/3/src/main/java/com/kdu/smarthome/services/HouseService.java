@@ -6,7 +6,7 @@ import com.kdu.smarthome.entities.CompositeKey;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.entities.Residents;
 import com.kdu.smarthome.entities.User;
-import com.kdu.smarthome.exceptions.custom.NoUserFoundException;
+import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import com.kdu.smarthome.mapper.DtoToEntities;
 import com.kdu.smarthome.repository.HouseRepository;
 import com.kdu.smarthome.repository.ResidentRepository;
@@ -63,7 +63,7 @@ public class HouseService {
             try {
                 newUser = userRepository.findById(username).get();
             }catch (Exception e){
-                throw new NoUserFoundException("User or house doesn't exist");
+                throw new NotFoundException("User or house doesn't exist");
             }
             CompositeKey newUserResidentKey = new CompositeKey(house,newUser);
             Residents newResidentRecord = new Residents(newUserResidentKey, Boolean.FALSE);
