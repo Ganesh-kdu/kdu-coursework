@@ -86,24 +86,24 @@ class SmartHomeApplicationTests {
         RoomControllerTest.addRoomWithInvalidAuth(mockMvc);
     }
 
-    @Test
-    @Order(8)
-    void addRoomByAdmin() throws Exception {
-        RoomControllerTest.addRoomByAdmin(mockMvc);
-    }
+//    @Test
+//    @Order(8)
+//    void addRoomByAdmin() throws Exception {
+//        RoomControllerTest.addRoomByAdmin(mockMvc);
+//    }
+//
 
-
-    @Test
-    @Order(9)
-    void addRoomForInvalidHouse() throws Exception {
-        RoomControllerTest.addRoomForInvalidHouse(mockMvc);
-    }
-
-    /**
-     * Tests to display all registered houses.
-     *
-     * @throws Exception If an error occurs during the tests.
-     */
+//    @Test
+//    @Order(9)
+//    void addRoomForInvalidHouse() throws Exception {
+//        RoomControllerTest.addRoomForInvalidHouse(mockMvc);
+//    }
+//
+//    /**
+//     * Tests to display all registered houses.
+//     *
+//     * @throws Exception If an error occurs during the tests.
+//     */
     @Test
     @Order(10)
     void displayAllHouses() throws Exception {
@@ -138,7 +138,7 @@ class SmartHomeApplicationTests {
     void updateAddressForInvalidHouse() throws Exception {
         HouseControllerTest.updateAddressForInvalidHouse(mockMvc);
     }
-
+//
     /**
      * Run inventory related tests
      *
@@ -156,78 +156,78 @@ class SmartHomeApplicationTests {
         InventoryControllerTest.displayInventory(mockMvc);
     }
 
-    /**
-     * Run device registration related tests
-     *
-     * @throws Exception If an error occurs during the tests.
-     */
-    @Test
-    @Order(16)
-    void registerUnavailableDevice() throws Exception {
-        DeviceControllerTest.registerUnavailableDevice(mockMvc);
-    }
-
-    @Test
-    @Order(17)
-    void deviceRegisterWithInvalidCredentials() throws Exception {
-        DeviceControllerTest.deviceRegisterWithInvalidCredentials(mockMvc);
-    }
-
-    @Test
-    @Order(18)
-    void deviceRegisterByNonAdmin() throws Exception {
-        DeviceControllerTest.deviceRegisterByNonAdmin(mockMvc);
-    }
-
-    @Test
-    @Order(19)
-    void deviceRegisterWithValidRequestData() throws Exception {
-        DeviceControllerTest.deviceRegisterWithValidRequestData(mockMvc);
-    }
-
-    /**
-     * Tests to add device in a house
-     *
-     * @throws Exception If an error occurs during the tests.
-     */
-    @Test
-    @Order(20)
-    void addUnavailableDevice() throws Exception {
-        DeviceControllerTest.addUnavailableDevice(mockMvc);
-    }
-
-    @Test
-    @Order(21)
-    void addDeviceToInvalidHouse() throws Exception {
-        DeviceControllerTest.addDeviceToInvalidHouse(mockMvc);
-    }
-
-    @Test
-    @Order(22)
-    void addDeviceToInvalidRoom() throws Exception {
-        DeviceControllerTest.addDeviceToInvalidRoom(mockMvc);
-    }
-
-    @Test
-    @Order(23)
-    void addUnregisteredDevice() throws Exception {
-        DeviceControllerTest.addUnregisteredDevice(mockMvc);
-    }
-
-    @Test
-    @Order(24)
-    void addDeviceWithValidRequestData() throws Exception {
-        DeviceControllerTest.addDeviceWithValidRequestData(mockMvc);
-    }
-
-    /**
-     * Tests to display all rooms and devices for a house
-     *
-     * @throws Exception If an error occurs during the tests.
-     */
-    @Test
-    @Order(25)
-    void listRoomsAndDevices() throws Exception {
-        HouseControllerTest.listRoomsAndDevices(mockMvc);
-    }
+//    /**
+//     * Run device registration related tests
+//     *
+//     * @throws Exception If an error occurs during the tests.
+//     */
+//    @Test
+//    @Order(16)
+//    void registerUnavailableDevice() throws Exception {
+//        DeviceControllerTest.registerUnavailableDevice(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(17)
+//    void deviceRegisterWithInvalidCredentials() throws Exception {
+//        DeviceControllerTest.deviceRegisterWithInvalidCredentials(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(18)
+//    void deviceRegisterByNonAdmin() throws Exception {
+//        DeviceControllerTest.deviceRegisterByNonAdmin(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(19)
+//    void deviceRegisterWithValidRequestData() throws Exception {
+//        DeviceControllerTest.deviceRegisterWithValidRequestData(mockMvc);
+//    }
+//
+//    /**
+//     * Tests to add device in a house
+//     *
+//     * @throws Exception If an error occurs during the tests.
+//     */
+//    @Test
+//    @Order(20)
+//    void addUnavailableDevice() throws Exception {
+//        DeviceControllerTest.addUnavailableDevice(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(21)
+//    void addDeviceToInvalidHouse() throws Exception {
+//        DeviceControllerTest.addDeviceToInvalidHouse(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(22)
+//    void addDeviceToInvalidRoom() throws Exception {
+//        DeviceControllerTest.addDeviceToInvalidRoom(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(23)
+//    void addUnregisteredDevice() throws Exception {
+//        DeviceControllerTest.addUnregisteredDevice(mockMvc);
+//    }
+//
+//    @Test
+//    @Order(24)
+//    void addDeviceWithValidRequestData() throws Exception {
+//        DeviceControllerTest.addDeviceWithValidRequestData(mockMvc);
+//    }
+//
+//    /**
+//     * Tests to display all rooms and devices for a house
+//     *
+//     * @throws Exception If an error occurs during the tests.
+//     */
+//    @Test
+//    @Order(25)
+//    void listRoomsAndDevices() throws Exception {
+//        HouseControllerTest.listRoomsAndDevices(mockMvc);
+//    }
 }

@@ -13,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class HouseListDto {
     private String message;
-    private List<House> houses;
+    private String houses;
     private HttpStatus httpStatus;
 }

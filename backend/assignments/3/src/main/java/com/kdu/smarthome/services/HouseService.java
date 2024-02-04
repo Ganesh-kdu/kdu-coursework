@@ -6,6 +6,7 @@ import com.kdu.smarthome.entities.CompositeKey;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.entities.Residents;
 import com.kdu.smarthome.entities.User;
+import com.kdu.smarthome.exceptions.custom.NoUserFoundException;
 import com.kdu.smarthome.mapper.DtoToEntities;
 import com.kdu.smarthome.repository.HouseRepository;
 import com.kdu.smarthome.repository.ResidentRepository;
@@ -13,8 +14,6 @@ import com.kdu.smarthome.repository.UserRepository;
 import com.kdu.smarthome.utilities.JsonUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -43,12 +42,28 @@ public class HouseService {
     }
 
     public String addUser(Long houseId, String username) throws JsonProcessingException {
-        User user = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).get();
+        User user;
+        try {
+            user = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).get();
+        }catch (Exception e){
+            throw new IllegalCallerException("You are not an admin for this house");
+        }
+        System.out.println(user);
         House house = houseRepository.findById(houseId).get();
         CompositeKey residentKey = new CompositeKey(house,user);
-        Residents residentRecord = residentRepository.findById(residentKey).get();
+        Residents residentRecord;
+        try{
+            residentRecord = residentRepository.findById(residentKey).get();
+        }catch (Exception e){
+            throw new IllegalCallerException("You are not an admin for this house");
+        }
         if (residentRecord.getAdmin()){
-            User newUser = userRepository.findById(username).get();
+            User newUser;
+            try {
+                newUser = userRepository.findById(username).get();
+            }catch (Exception e){
+                throw new NoUserFoundException("User or house doesn't exist");
+            }
             CompositeKey newUserResidentKey = new CompositeKey(house,newUser);
             Residents newResidentRecord = new Residents(newUserResidentKey, Boolean.FALSE);
             return jsonUtils.convertObjToJsonString(residentRepository.save(newResidentRecord));

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kdu.smarthome.dto.*;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.services.HouseService;
+import com.kdu.smarthome.utilities.JsonUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +15,16 @@ import java.util.List;
 @RequestMapping("/api/v1/house")
 public class HouseController {
     HouseService houseService;
+    JsonUtils jsonUtils;
 
-    public HouseController(HouseService houseService) {
+    public HouseController(HouseService houseService, JsonUtils jsonUtils) {
         this.houseService = houseService;
+        this.jsonUtils = jsonUtils;
     }
 
     @PostMapping("")
     public ResponseEntity<HouseResponseDto> addHouse(@RequestBody HouseCreateRequestDto houseRequestDto){
-        House createdHouse =houseService.createHouse(houseRequestDto);
+        ResponseHouseDto createdHouse = new ResponseHouseDto(houseService.createHouse(houseRequestDto));
         return new ResponseEntity<>(new HouseResponseDto("Created Successfully", createdHouse, HttpStatus.CREATED), HttpStatus.OK);
     }
 
@@ -31,10 +34,10 @@ public class HouseController {
         return new ResponseEntity<>(new AddUserResponseDto("User added successfully",object,HttpStatus.OK), HttpStatus.OK);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<HouseListDto> listHouses(){
+    @GetMapping("")
+    public ResponseEntity<HouseListDto> listHouses() throws JsonProcessingException {
         List<House> houseList = houseService.getAll();
-        return new ResponseEntity<>(new HouseListDto("List of all houses", houseList, HttpStatus.OK),HttpStatus.OK);
+        return new ResponseEntity<>(new HouseListDto("List of all houses", jsonUtils.convertListToJsonString(houseList), HttpStatus.OK),HttpStatus.OK);
     }
 
     @PutMapping("")
