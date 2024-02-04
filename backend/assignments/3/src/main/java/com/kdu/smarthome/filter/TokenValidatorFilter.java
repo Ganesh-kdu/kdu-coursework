@@ -14,12 +14,10 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.crypto.SecretKey;
@@ -40,25 +38,19 @@ public class TokenValidatorFilter extends OncePerRequestFilter {
             try {
                 String jwt = token.replace("Bearer ","");
 
-                System.out.println(1);
                 SecretKey key = Keys.hmacShaKeyFor(JWT_KEY.getBytes(StandardCharsets.UTF_8));
-                System.out.println(2);
                 Claims claims = Jwts.parser()
                         .verifyWith(key)
                         .build()
                         .parseSignedClaims(jwt)
                         .getPayload();
-                System.out.println(3);
                 String username = String.valueOf(claims.get("username"));
                 String authorities = (String) claims.get("roles");
-                System.out.println(4);
                 Authentication auth = new UsernamePasswordAuthenticationToken(username, null,
                         AuthorityUtils.commaSeparatedStringToAuthorityList(authorities));
-                System.out.println(5);
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (Exception e) {
-//                System.out.println(e.getLocalizedMessage());
                 ErrorDto errorResponse = new ErrorDto(e.getLocalizedMessage());
 
                 response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());

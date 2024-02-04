@@ -26,6 +26,6 @@ public class InventoryController {
     @PostMapping("")
     public ResponseEntity<AddDeviceDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
         String object = inventoryService.registerDevice(requestInventoryDto);
-        return new ResponseEntity<AddDeviceDto>(new AddDeviceDto("Added device",object,HttpStatus.OK),HttpStatus.OK);
+        return new ResponseEntity<>(new AddDeviceDto("Added device",object,HttpStatus.OK),HttpStatus.OK);
     }
 }

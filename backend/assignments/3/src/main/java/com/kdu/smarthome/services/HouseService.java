@@ -23,6 +23,8 @@ public class HouseService {
     private final UserRepository userRepository;
     private final ResidentRepository residentRepository;
     private final JsonUtils jsonUtils;
+    private static final String NOT_AN_ADMIN
+            = "You are not an admin for this house";
 
     public HouseService(HouseRepository houseRepository, UserRepository userRepository, ResidentRepository residentRepository, JsonUtils jsonUtils) {
         this.houseRepository = houseRepository;
@@ -46,18 +48,17 @@ public class HouseService {
         try {
             user = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).get();
         }catch (Exception e){
-            throw new IllegalCallerException("You are not an admin for this house");
+            throw new IllegalCallerException(NOT_AN_ADMIN);
         }
-        System.out.println(user);
         House house = houseRepository.findById(houseId).get();
         CompositeKey residentKey = new CompositeKey(house,user);
         Residents residentRecord;
         try{
             residentRecord = residentRepository.findById(residentKey).get();
         }catch (Exception e){
-            throw new IllegalCallerException("You are not an admin for this house");
+            throw new IllegalCallerException(NOT_AN_ADMIN);
         }
-        if (residentRecord.getAdmin()){
+        if (residentRecord.getAdmin().equals(Boolean.TRUE)){
             User newUser;
             try {
                 newUser = userRepository.findById(username).get();
@@ -68,7 +69,7 @@ public class HouseService {
             Residents newResidentRecord = new Residents(newUserResidentKey, Boolean.FALSE);
             return jsonUtils.convertObjToJsonString(residentRepository.save(newResidentRecord));
         }else {
-            throw new IllegalCallerException("You are not an admin for this house");
+            throw new IllegalCallerException(NOT_AN_ADMIN);
         }
     }
 

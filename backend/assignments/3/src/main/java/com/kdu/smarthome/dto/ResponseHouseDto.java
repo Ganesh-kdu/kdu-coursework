@@ -1,7 +1,6 @@
 package com.kdu.smarthome.dto;
 
 import com.kdu.smarthome.entities.House;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

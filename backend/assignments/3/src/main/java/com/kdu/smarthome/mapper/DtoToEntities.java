@@ -7,9 +7,9 @@ import com.kdu.smarthome.entities.Device;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.entities.User;
 
-import java.util.HashMap;
 
 public class DtoToEntities {
+    private DtoToEntities(){}
     public static User dtoToUser(UserDto userDto){
         User user = new User();
         user.setUsername(userDto.getUsername());

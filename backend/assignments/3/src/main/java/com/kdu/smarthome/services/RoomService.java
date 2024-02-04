@@ -20,6 +20,6 @@ public class RoomService {
     }
 
     public void addRoom(Long houseId, String roomName){
-        
+
     }
 }

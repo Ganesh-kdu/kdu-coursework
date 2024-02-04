@@ -1,7 +1,6 @@
 package com.kdu.smarthome.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kdu.smarthome.entities.House;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

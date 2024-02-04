@@ -1,9 +1,6 @@
 package com.kdu.smarthome.services;
 
-//import com.example.assessment.dto.RegistrationSuccessDto;
-//import com.example.assessment.dto.UserDto;
-//import com.example.assessment.entity.UserEntity;
-import com.kdu.smarthome.dto.RegistrationSuccessDto;
+
 import com.kdu.smarthome.dto.UserDto;
 import com.kdu.smarthome.entities.User;
 import com.kdu.smarthome.exceptions.custom.NoUserFoundException;
