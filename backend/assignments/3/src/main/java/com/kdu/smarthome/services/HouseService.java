@@ -64,7 +64,7 @@ public class HouseService {
         CompositeKey residentKey = new CompositeKey(house,user);
         Optional<Residents> residentRecordCheck = residentRepository.findById(residentKey);
         if (residentRecordCheck.isEmpty()){
-            throw new NotFoundException("Resident not found");
+            throw new IllegalCallerException("Resident not found");
         }
         Residents residentRecord = residentRecordCheck.get();
         if (residentRecord.getAdmin().equals(Boolean.TRUE)){
