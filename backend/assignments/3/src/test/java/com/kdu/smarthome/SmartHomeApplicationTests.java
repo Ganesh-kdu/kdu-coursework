@@ -156,35 +156,35 @@ class SmartHomeApplicationTests {
         InventoryControllerTest.displayInventory(mockMvc);
     }
 
-//    /**
-//     * Run device registration related tests
-//     *
-//     * @throws Exception If an error occurs during the tests.
-//     */
-//    @Test
-//    @Order(16)
-//    void registerUnavailableDevice() throws Exception {
-//        DeviceControllerTest.registerUnavailableDevice(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(17)
-//    void deviceRegisterWithInvalidCredentials() throws Exception {
-//        DeviceControllerTest.deviceRegisterWithInvalidCredentials(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(18)
-//    void deviceRegisterByNonAdmin() throws Exception {
-//        DeviceControllerTest.deviceRegisterByNonAdmin(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(19)
-//    void deviceRegisterWithValidRequestData() throws Exception {
-//        DeviceControllerTest.deviceRegisterWithValidRequestData(mockMvc);
-//    }
-//
+    /**
+     * Run device registration related tests
+     *
+     * @throws Exception If an error occurs during the tests.
+     */
+    @Test
+    @Order(16)
+    void registerUnavailableDevice() throws Exception {
+        DeviceControllerTest.registerUnavailableDevice(mockMvc);
+    }
+
+    @Test
+    @Order(17)
+    void deviceRegisterWithInvalidCredentials() throws Exception {
+        DeviceControllerTest.deviceRegisterWithInvalidCredentials(mockMvc);
+    }
+
+    @Test
+    @Order(18)
+    void deviceRegisterByNonAdmin() throws Exception {
+        DeviceControllerTest.deviceRegisterByNonAdmin(mockMvc);
+    }
+
+    @Test
+    @Order(19)
+    void deviceRegisterWithValidRequestData() throws Exception {
+        DeviceControllerTest.deviceRegisterWithValidRequestData(mockMvc);
+    }
+
 //    /**
 //     * Tests to add device in a house
 //     *
