@@ -20,12 +20,12 @@ public class InventoryController {
 
     @GetMapping("")
     public ResponseEntity<InventoryAllDto> getAllItems() throws JsonProcessingException {
-        inventoryService.getAllItems();
-        return new ResponseEntity<>(new InventoryAllDto(), HttpStatus.OK);
+        String devices = inventoryService.getAllItems();
+        return new ResponseEntity<>(new InventoryAllDto(devices,HttpStatus.OK), HttpStatus.OK);
     }
     @PostMapping("")
-    public ResponseEntity<AddDeviceDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto){
-        inventoryService.registerDevice(requestInventoryDto);
-        return new ResponseEntity<AddDeviceDto>(new AddDeviceDto("","",HttpStatus.OK),HttpStatus.OK);
+    public ResponseEntity<AddDeviceDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
+        String object = inventoryService.registerDevice(requestInventoryDto);
+        return new ResponseEntity<AddDeviceDto>(new AddDeviceDto("Added device",object,HttpStatus.OK),HttpStatus.OK);
     }
 }

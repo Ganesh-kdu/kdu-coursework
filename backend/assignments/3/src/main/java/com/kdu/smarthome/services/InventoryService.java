@@ -3,6 +3,7 @@ package com.kdu.smarthome.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kdu.smarthome.dto.RequestInventoryDto;
 import com.kdu.smarthome.entities.Device;
+import com.kdu.smarthome.mapper.DtoToEntities;
 import com.kdu.smarthome.repository.DeviceRepository;
 import com.kdu.smarthome.utilities.JsonUtils;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ public class InventoryService {
         return jsonUtils.convertListToJsonString(allDevices);
     }
 
-    public String registerDevice(RequestInventoryDto requestInventoryDto){
-        return "";
+    public String registerDevice(RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
+
+        return jsonUtils.convertObjToJsonString(deviceRepository.save(DtoToEntities.dtoToDevice(requestInventoryDto)));
     }
 }
