@@ -22,5 +22,5 @@ public class House {
     private String address;
 
     @Column(name = "house_name")
-    private String house_name;
+    private String houseName;
 }

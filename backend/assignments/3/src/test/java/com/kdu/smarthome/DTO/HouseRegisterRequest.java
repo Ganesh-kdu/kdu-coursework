@@ -1,12 +1,9 @@
-package com.kdu.smartHome.DTO;
+package com.kdu.smarthome.DTO;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-
-import jakarta.persistence.Column;
 
 @Builder
 @Data

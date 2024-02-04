@@ -2,10 +2,11 @@ package com.kdu.smarthome.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class RegistrationSuccessDto {
-    private String message;
-    private String token;
+@NoArgsConstructor
+public class AddUserDto {
+    private String username;
 }

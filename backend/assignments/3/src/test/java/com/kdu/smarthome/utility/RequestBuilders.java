@@ -1,18 +1,15 @@
-package com.kdu.smartHome.utility;
+package com.kdu.smarthome.utility;
 
-import com.kdu.smartHome.DTO.AddDeviceRequest;
-import com.kdu.smartHome.DTO.AddRoomRequest;
-import com.kdu.smartHome.DTO.AddUserToHouseRequest;
-import com.kdu.smartHome.DTO.DeviceRegisterRequest;
-import com.kdu.smartHome.DTO.HouseRegisterRequest;
-import com.kdu.smartHome.DTO.UpdateAddressRequest;
-import com.kdu.smartHome.DTO.UserRegisterRequest;
-import com.kdu.smartHome.DTO.InventoryRequest;
+import com.kdu.smarthome.DTO.AddDeviceRequest;
+import com.kdu.smarthome.DTO.AddRoomRequest;
+import com.kdu.smarthome.DTO.AddUserToHouseRequest;
+import com.kdu.smarthome.DTO.DeviceRegisterRequest;
+import com.kdu.smarthome.DTO.HouseRegisterRequest;
+import com.kdu.smarthome.DTO.UpdateAddressRequest;
+import com.kdu.smarthome.DTO.UserRegisterRequest;
+import com.kdu.smarthome.DTO.InventoryRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class RequestBuilders {
 

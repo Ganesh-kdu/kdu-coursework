@@ -1,6 +1,5 @@
-package com.kdu.smartHome.configuration;
+package com.kdu.smarthome.configuration;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

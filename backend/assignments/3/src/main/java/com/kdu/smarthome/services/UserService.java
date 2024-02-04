@@ -44,10 +44,9 @@ public class UserService{
 
     }
 
-    public RegistrationSuccessDto addUser(UserDto userDto) {
+    public void addUser(UserDto userDto) {
         try {
             userRepository.save(DtoToEntities.dtoToUser(userDto));
-            return new RegistrationSuccessDto("Done");
         } catch (Exception e) {
             throw new RuntimeException("Error occurred while adding user");
         }

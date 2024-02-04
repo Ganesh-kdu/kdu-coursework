@@ -1,11 +1,10 @@
-package com.kdu.smartHome;
+package com.kdu.smarthome;
 
-import com.kdu.smartHome.controller.AuthControllerTest;
-import com.kdu.smartHome.controller.DeviceControllerTest;
-import com.kdu.smartHome.controller.HouseControllerTest;
-import com.kdu.smartHome.controller.InventoryControllerTest;
-import com.kdu.smartHome.controller.RoomControllerTest;
-import com.kdu.smartHome.utility.TestSuiteDataManager;
+import com.kdu.smarthome.controller.AuthControllerTest;
+import com.kdu.smarthome.controller.DeviceControllerTest;
+import com.kdu.smarthome.controller.HouseControllerTest;
+import com.kdu.smarthome.controller.InventoryControllerTest;
+import com.kdu.smarthome.controller.RoomControllerTest;
 import org.junit.jupiter.api.*;
 
 import org.springframework.beans.factory.annotation.Autowired;

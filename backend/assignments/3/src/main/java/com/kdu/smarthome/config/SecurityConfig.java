@@ -22,6 +22,7 @@ public class SecurityConfig{
                         requests -> requests
                                 .requestMatchers( "/api/v1/auth/register").permitAll()
                                 .requestMatchers("/api/v1/auth/check").hasRole("USER")
+                                .requestMatchers("/api/v1/house**").hasRole("USER")
                                 .anyRequest().authenticated()
                 )
                 .csrf().disable();

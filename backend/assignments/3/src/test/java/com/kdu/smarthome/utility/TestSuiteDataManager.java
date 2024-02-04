@@ -1,4 +1,4 @@
-package com.kdu.smartHome.utility;
+package com.kdu.smarthome.utility;
 
 import java.util.HashMap;
 import java.util.Map;

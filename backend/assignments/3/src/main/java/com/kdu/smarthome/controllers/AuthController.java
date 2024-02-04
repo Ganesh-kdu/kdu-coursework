@@ -28,12 +28,12 @@ public class AuthController {
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userService.addUser(userDto);
         String token = TokenGeneratorFilter.generateToken(userDto.getUsername(), "ROLE_USER");
-        return new ResponseEntity<>(new RegistrationSuccessDto(token), HttpStatus.OK);
+        return new ResponseEntity<>(new RegistrationSuccessDto("Registration success",token), HttpStatus.OK);
     }
 
     @PostMapping("/check")
     public ResponseEntity<RegistrationSuccessDto> check(){
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return new ResponseEntity<>(new RegistrationSuccessDto("Reached"), HttpStatus.OK);
+        String user = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new ResponseEntity<>(new RegistrationSuccessDto("Reached", user), HttpStatus.OK);
     }
 }
