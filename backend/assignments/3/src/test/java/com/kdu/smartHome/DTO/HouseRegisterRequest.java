@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 
 @Builder
 @Data
