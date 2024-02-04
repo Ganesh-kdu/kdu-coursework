@@ -1,6 +1,5 @@
 package com.kdu.smarthome.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kdu.smarthome.entities.*;
 import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import com.kdu.smarthome.repository.*;

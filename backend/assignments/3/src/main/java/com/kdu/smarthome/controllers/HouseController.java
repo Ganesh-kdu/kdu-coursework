@@ -1,7 +1,9 @@
 package com.kdu.smarthome.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.*;
+import com.kdu.smarthome.dto.requests.AddUserDto;
+import com.kdu.smarthome.dto.requests.HouseCreateRequestDto;
+import com.kdu.smarthome.dto.responses.*;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.services.HouseService;
 import com.kdu.smarthome.utilities.JsonUtils;
@@ -46,8 +48,9 @@ public class HouseController {
         return new ResponseEntity<>(new HouseUpdateDto("Updated address", newHouse, HttpStatus.OK), HttpStatus.OK);
     }
 
-    @GetMapping("/api/v1/house/{houseId}")
-    public ResponseEntity<String> getHouse(@PathVariable Long houseId){
-        return new ResponseEntity<>("IDK",HttpStatus.OK);
+    @GetMapping("/{houseId}")
+    public ResponseEntity<RoomAndDeviceDto> getHouse(@PathVariable Long houseId) throws JsonProcessingException {
+        String response = houseService.getRoomsAndDevices(houseId);
+        return new ResponseEntity<>(new RoomAndDeviceDto("List", response, HttpStatus.OK),HttpStatus.OK);
     }
 }

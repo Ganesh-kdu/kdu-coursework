@@ -1,4 +1,4 @@
-package com.kdu.smarthome.dto;
+package com.kdu.smarthome.dto.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

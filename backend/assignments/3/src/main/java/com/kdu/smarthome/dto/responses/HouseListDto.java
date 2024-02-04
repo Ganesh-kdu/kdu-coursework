@@ -1,16 +1,16 @@
-package com.kdu.smarthome.dto;
+package com.kdu.smarthome.dto.responses;
 
-import com.kdu.smarthome.entities.Room;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomResponseDto {
+public class HouseListDto {
     private String message;
-    private ResponseRoomDto room;
+    private String houses;
     private HttpStatus httpStatus;
 }

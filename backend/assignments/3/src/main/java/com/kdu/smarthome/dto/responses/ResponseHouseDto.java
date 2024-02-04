@@ -1,4 +1,4 @@
-package com.kdu.smarthome.dto;
+package com.kdu.smarthome.dto.responses;
 
 import com.kdu.smarthome.entities.House;
 import lombok.AllArgsConstructor;

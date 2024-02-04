@@ -1,7 +1,7 @@
 package com.kdu.smarthome.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.DeviceRegisterRequestDto;
+import com.kdu.smarthome.dto.requests.DeviceRegisterRequestDto;
+import com.kdu.smarthome.dto.requests.AddDeviceRoomDto;
 import com.kdu.smarthome.services.RegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +17,15 @@ public class DeviceController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerDevice(@RequestBody DeviceRegisterRequestDto deviceDto) throws JsonProcessingException {
+    public ResponseEntity<String> registerDevice(@RequestBody DeviceRegisterRequestDto deviceDto){
         registrationService.register(deviceDto);
         return new ResponseEntity<>("Done", HttpStatus.OK);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<String> addToRoom(@RequestBody AddDeviceRoomDto addDeviceRoomDto){
+        registrationService.add(addDeviceRoomDto);
+        return new ResponseEntity<>("Done",HttpStatus.OK);
     }
 
 }

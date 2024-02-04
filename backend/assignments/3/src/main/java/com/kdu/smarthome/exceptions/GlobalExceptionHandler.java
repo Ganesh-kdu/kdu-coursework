@@ -1,7 +1,7 @@
 package com.kdu.smarthome.exceptions;
 
 
-import com.kdu.smarthome.dto.ErrorDto;
+import com.kdu.smarthome.dto.responses.ErrorDto;
 import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +19,4 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDto> handleException(IllegalCallerException exception) {
         return new ResponseEntity<>(new ErrorDto(exception.getMessage()), HttpStatus.UNAUTHORIZED);
     }
-
-//    @ExceptionHandler(NoUserFoundException.class)
-//    public ResponseEntity<ErrorDto> handleNoUser(NoUserFoundException exception){
-//        return new ResponseEntity<>(new ErrorDto(exception.getMessage()),HttpStatus.BAD_REQUEST);
-//    }
 }

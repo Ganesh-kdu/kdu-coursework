@@ -1,4 +1,4 @@
-package com.kdu.smarthome.dto;
+package com.kdu.smarthome.dto.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,8 @@ import org.springframework.http.HttpStatus;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InventoryAllDto {
-    private String inventory;
+public class RoomResponseDto {
+    private String message;
+    private ResponseRoomDto room;
     private HttpStatus httpStatus;
 }

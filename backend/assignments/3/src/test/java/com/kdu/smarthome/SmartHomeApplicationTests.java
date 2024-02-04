@@ -185,49 +185,49 @@ class SmartHomeApplicationTests {
         DeviceControllerTest.deviceRegisterWithValidRequestData(mockMvc);
     }
 
-//    /**
-//     * Tests to add device in a house
-//     *
-//     * @throws Exception If an error occurs during the tests.
-//     */
-//    @Test
-//    @Order(20)
-//    void addUnavailableDevice() throws Exception {
-//        DeviceControllerTest.addUnavailableDevice(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(21)
-//    void addDeviceToInvalidHouse() throws Exception {
-//        DeviceControllerTest.addDeviceToInvalidHouse(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(22)
-//    void addDeviceToInvalidRoom() throws Exception {
-//        DeviceControllerTest.addDeviceToInvalidRoom(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(23)
-//    void addUnregisteredDevice() throws Exception {
-//        DeviceControllerTest.addUnregisteredDevice(mockMvc);
-//    }
-//
-//    @Test
-//    @Order(24)
-//    void addDeviceWithValidRequestData() throws Exception {
-//        DeviceControllerTest.addDeviceWithValidRequestData(mockMvc);
-//    }
-//
-//    /**
-//     * Tests to display all rooms and devices for a house
-//     *
-//     * @throws Exception If an error occurs during the tests.
-//     */
-//    @Test
-//    @Order(25)
-//    void listRoomsAndDevices() throws Exception {
-//        HouseControllerTest.listRoomsAndDevices(mockMvc);
-//    }
+    /**
+     * Tests to add device in a house
+     *
+     * @throws Exception If an error occurs during the tests.
+     */
+    @Test
+    @Order(20)
+    void addUnavailableDevice() throws Exception {
+        DeviceControllerTest.addUnavailableDevice(mockMvc);
+    }
+
+    @Test
+    @Order(21)
+    void addDeviceToInvalidHouse() throws Exception {
+        DeviceControllerTest.addDeviceToInvalidHouse(mockMvc);
+    }
+
+    @Test
+    @Order(22)
+    void addDeviceToInvalidRoom() throws Exception {
+        DeviceControllerTest.addDeviceToInvalidRoom(mockMvc);
+    }
+
+    @Test
+    @Order(23)
+    void addUnregisteredDevice() throws Exception {
+        DeviceControllerTest.addUnregisteredDevice(mockMvc);
+    }
+
+    @Test
+    @Order(24)
+    void addDeviceWithValidRequestData() throws Exception {
+        DeviceControllerTest.addDeviceWithValidRequestData(mockMvc);
+    }
+
+    /**
+     * Tests to display all rooms and devices for a house
+     *
+     * @throws Exception If an error occurs during the tests.
+     */
+    @Test
+    @Order(25)
+    void listRoomsAndDevices() throws Exception {
+        HouseControllerTest.listRoomsAndDevices(mockMvc);
+    }
 }

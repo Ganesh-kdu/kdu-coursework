@@ -1,8 +1,8 @@
 package com.kdu.smarthome.mapper;
 
-import com.kdu.smarthome.dto.HouseCreateRequestDto;
-import com.kdu.smarthome.dto.RequestInventoryDto;
-import com.kdu.smarthome.dto.UserDto;
+import com.kdu.smarthome.dto.requests.DeviceRegisterRequestDto;
+import com.kdu.smarthome.dto.requests.HouseCreateRequestDto;
+import com.kdu.smarthome.dto.requests.RequestInventoryDto;
 import com.kdu.smarthome.entities.Device;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.entities.User;
@@ -10,7 +10,7 @@ import com.kdu.smarthome.entities.User;
 
 public class DtoToEntities {
     private DtoToEntities(){}
-    public static User dtoToUser(UserDto userDto){
+    public static User dtoToUser(DeviceRegisterRequestDto.UserDto userDto){
         User user = new User();
         user.setUsername(userDto.getUsername());
         user.setName(userDto.getName());

@@ -1,9 +1,7 @@
 package com.kdu.smarthome.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.ResponseRoomDto;
-import com.kdu.smarthome.dto.RoomResponseDto;
-import com.kdu.smarthome.entities.Room;
+import com.kdu.smarthome.dto.requests.ResponseRoomDto;
+import com.kdu.smarthome.dto.requests.RoomResponseDto;
 import com.kdu.smarthome.services.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

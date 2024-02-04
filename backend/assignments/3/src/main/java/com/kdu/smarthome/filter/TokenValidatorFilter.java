@@ -2,7 +2,7 @@ package com.kdu.smarthome.filter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kdu.smarthome.dto.ErrorDto;
+import com.kdu.smarthome.dto.responses.ErrorDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

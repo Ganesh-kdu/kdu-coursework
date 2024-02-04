@@ -1,7 +1,7 @@
 package com.kdu.smarthome.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.RequestInventoryDto;
+import com.kdu.smarthome.dto.requests.RequestInventoryDto;
 import com.kdu.smarthome.entities.Device;
 import com.kdu.smarthome.mapper.DtoToEntities;
 import com.kdu.smarthome.repository.DeviceRepository;

@@ -1,41 +1,48 @@
 package com.kdu.smarthome.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.HouseCreateRequestDto;
+import com.kdu.smarthome.dto.requests.HouseCreateRequestDto;
 import com.kdu.smarthome.entities.CompositeKey;
 import com.kdu.smarthome.entities.House;
 import com.kdu.smarthome.entities.Residents;
 import com.kdu.smarthome.entities.User;
 import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import com.kdu.smarthome.mapper.DtoToEntities;
-import com.kdu.smarthome.repository.HouseRepository;
-import com.kdu.smarthome.repository.ResidentRepository;
-import com.kdu.smarthome.repository.UserRepository;
+import com.kdu.smarthome.repository.*;
 import com.kdu.smarthome.utilities.JsonUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HouseService {
     private final HouseRepository houseRepository;
     private final UserRepository userRepository;
     private final ResidentRepository residentRepository;
+    private final RoomRepository roomRepository;
+    private final DeviceAllocationRepository deviceAllocationRepository;
     private final JsonUtils jsonUtils;
     private static final String NOT_AN_ADMIN
             = "You are not an admin for this house";
 
-    public HouseService(HouseRepository houseRepository, UserRepository userRepository, ResidentRepository residentRepository, JsonUtils jsonUtils) {
+    public HouseService(HouseRepository houseRepository, UserRepository userRepository, ResidentRepository residentRepository, RoomRepository roomRepository, DeviceAllocationRepository deviceAllocationRepository, JsonUtils jsonUtils) {
         this.houseRepository = houseRepository;
         this.userRepository = userRepository;
         this.residentRepository = residentRepository;
+        this.roomRepository = roomRepository;
+        this.deviceAllocationRepository = deviceAllocationRepository;
         this.jsonUtils = jsonUtils;
     }
 
     public House createHouse(HouseCreateRequestDto houseDto){
         House house = DtoToEntities.dtoToHouse(houseDto);
-        User user = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).get();
+        Optional<User> optionalUser = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        if(optionalUser.isEmpty()){
+            throw new NotFoundException("User not found");
+        }
+        User user = optionalUser.get();
         House result = houseRepository.save(house);
         CompositeKey residentKey = new CompositeKey(result,user);
         Residents residentRecord = new Residents(residentKey, Boolean.TRUE);
@@ -44,27 +51,28 @@ public class HouseService {
     }
 
     public String addUser(Long houseId, String username) throws JsonProcessingException {
-        User user;
-        try {
-            user = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).get();
-        }catch (Exception e){
+        Optional<User> optionalUser = userRepository.findById((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        if (optionalUser.isEmpty()){
             throw new IllegalCallerException(NOT_AN_ADMIN);
         }
-        House house = houseRepository.findById(houseId).get();
+        User user = optionalUser.get();
+        Optional<House> optionalHouse = houseRepository.findById(houseId);
+        if(optionalHouse.isEmpty()){
+            throw new NotFoundException("House not found");
+        }
+        House house = optionalHouse.get();
         CompositeKey residentKey = new CompositeKey(house,user);
-        Residents residentRecord;
-        try{
-            residentRecord = residentRepository.findById(residentKey).get();
-        }catch (Exception e){
-            throw new IllegalCallerException(NOT_AN_ADMIN);
+        Optional<Residents> residentRecordCheck = residentRepository.findById(residentKey);
+        if (residentRecordCheck.isEmpty()){
+            throw new NotFoundException("Resident not found");
         }
+        Residents residentRecord = residentRecordCheck.get();
         if (residentRecord.getAdmin().equals(Boolean.TRUE)){
-            User newUser;
-            try {
-                newUser = userRepository.findById(username).get();
-            }catch (Exception e){
+            Optional<User> newUserCheck = userRepository.findById(username);
+           if (newUserCheck.isEmpty()){
                 throw new NotFoundException("User or house doesn't exist");
             }
+           User newUser = newUserCheck.get();
             CompositeKey newUserResidentKey = new CompositeKey(house,newUser);
             Residents newResidentRecord = new Residents(newUserResidentKey, Boolean.FALSE);
             return jsonUtils.convertObjToJsonString(residentRepository.save(newResidentRecord));
@@ -82,5 +90,14 @@ public class HouseService {
         houseToUpdate.setAddress(address);
         return houseRepository.save(houseToUpdate).toString();
     }
-
+    public String getRoomsAndDevices(Long houseId) throws JsonProcessingException {
+        Optional<House> optionalHouse = houseRepository.findById(houseId);
+        if(optionalHouse.isEmpty()){
+            throw new NotFoundException("House not found");
+        }
+        House house = optionalHouse.get();
+        String rooms = jsonUtils.convertListToJsonString(roomRepository.findAllByHouse(house.getId()));
+        String devices = jsonUtils.convertListToJsonString(deviceAllocationRepository.findAllByHouse(house.getId()));
+        return rooms + devices;
+    }
 }

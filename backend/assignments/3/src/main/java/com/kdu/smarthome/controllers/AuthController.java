@@ -1,7 +1,7 @@
 package com.kdu.smarthome.controllers;
 
-import com.kdu.smarthome.dto.RegistrationSuccessDto;
-import com.kdu.smarthome.dto.UserDto;
+import com.kdu.smarthome.dto.requests.DeviceRegisterRequestDto;
+import com.kdu.smarthome.dto.responses.RegistrationSuccessDto;
 import com.kdu.smarthome.filter.TokenGeneratorFilter;
 import com.kdu.smarthome.services.UserService;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegistrationSuccessDto> register(@RequestBody UserDto userDto){
+    public ResponseEntity<RegistrationSuccessDto> register(@RequestBody DeviceRegisterRequestDto.UserDto userDto){
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userService.addUser(userDto);
         String token = TokenGeneratorFilter.generateToken(userDto.getUsername(), "ROLE_USER");

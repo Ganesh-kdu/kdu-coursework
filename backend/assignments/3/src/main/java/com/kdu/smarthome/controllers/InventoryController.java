@@ -1,9 +1,9 @@
 package com.kdu.smarthome.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kdu.smarthome.dto.AddDeviceDto;
-import com.kdu.smarthome.dto.InventoryAllDto;
-import com.kdu.smarthome.dto.RequestInventoryDto;
+import com.kdu.smarthome.dto.responses.AddDeviceResponseDto;
+import com.kdu.smarthome.dto.responses.InventoryAllDto;
+import com.kdu.smarthome.dto.requests.RequestInventoryDto;
 import com.kdu.smarthome.services.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +24,8 @@ public class InventoryController {
         return new ResponseEntity<>(new InventoryAllDto(devices,HttpStatus.OK), HttpStatus.OK);
     }
     @PostMapping("")
-    public ResponseEntity<AddDeviceDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
+    public ResponseEntity<AddDeviceResponseDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
         String object = inventoryService.registerDevice(requestInventoryDto);
-        return new ResponseEntity<>(new AddDeviceDto("Added device",object,HttpStatus.OK),HttpStatus.OK);
+        return new ResponseEntity<>(new AddDeviceResponseDto("Added device",object,HttpStatus.OK),HttpStatus.OK);
     }
 }
