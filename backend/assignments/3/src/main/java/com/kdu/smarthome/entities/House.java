@@ -14,6 +14,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "houses")
+/**
+ * House entity to store its details
+ */
 public class House implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

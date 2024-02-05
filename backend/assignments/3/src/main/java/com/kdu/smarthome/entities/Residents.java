@@ -11,6 +11,11 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "residents")
+/**
+ * Residents entity to track users added to each house and respective roles.
+ * Roles are store for each house the user is added to.
+ * @see CompositeKey
+ */
 public class Residents {
     @EmbeddedId
     private CompositeKey id;

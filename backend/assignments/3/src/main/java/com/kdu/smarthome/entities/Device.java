@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+/**
+ * Device entity containing device details
+ */
 @Table(name = "inventory")
 public class Device {
     @Id
@@ -28,7 +31,6 @@ public class Device {
 
     @Column(name = "manufacture_date_time")
     private LocalDateTime manufactureDateTime;
-//    LocalDateTime dateTime = LocalDateTime.parse("2018-05-05T11:50:55");(format: "yyyy-MM-dd'T'HH:mm:ss")
 
     @Column(name = "manufacture_factory_place")
     private String manufactureFactoryPlace;

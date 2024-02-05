@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "allocation")
+/**
+ * Device allocation entity to add a device to house, References Room entity and House entity
+ */
 public class DeviceAllocation {
     @Id
     @Column(name = "kickston_id")

@@ -11,6 +11,9 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "rooms")
+/**
+ * Room entity for each room, references house
+ */
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

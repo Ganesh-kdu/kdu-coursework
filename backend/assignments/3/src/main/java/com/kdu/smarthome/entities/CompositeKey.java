@@ -11,6 +11,11 @@ import java.io.Serializable;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Composite key [not an entity] for Residents entity.
+ * User and House combination makes a unique value.
+ * Key references House and User entities.
+ */
 public class CompositeKey implements Serializable {
     @ManyToOne
     @JoinColumn(name = "house_id")

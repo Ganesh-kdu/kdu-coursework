@@ -12,6 +12,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+/**
+ * User entity to store person details [password is encoded before storing]
+ */
 public class User implements Serializable {
     @Id
     @Column(name = "username")

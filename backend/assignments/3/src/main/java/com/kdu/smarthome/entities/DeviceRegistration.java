@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "device_ownership")
+/**
+ * Device registration entity to track whether a device is registered and by whom, references User entity
+ */
 public class DeviceRegistration {
     @Id
     @Column(name = "kickston_id")
