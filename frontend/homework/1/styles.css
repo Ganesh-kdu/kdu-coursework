@@ -1,0 +1,28 @@
+body{
+    padding: 0;
+    margin: auto;
+    width: 98.5vw;
+
+}
+div {
+    color: rgb(75, 75, 75);
+}
+
+header{
+    width: 100%;
+}
+
+.section_div {
+    display: inline-block;
+    border: 1px solid;
+    /* border-bottom: 0px white ; */
+    height: 100%;
+    width: 100%;
+    border-color: black;
+    padding: 0;
+}
+
+#lists{
+    display: flex;
+}
+
