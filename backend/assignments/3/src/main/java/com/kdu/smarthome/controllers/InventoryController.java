@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/inventory")
+/**
+ * Controller to manage device inventory - add and get
+ */
 public class InventoryController {
     InventoryService inventoryService;
 
@@ -18,11 +21,23 @@ public class InventoryController {
         this.inventoryService = inventoryService;
     }
 
+    /**
+     * List all devices from inventory
+     * @return List of devices
+     * @throws JsonProcessingException
+     */
     @GetMapping("")
     public ResponseEntity<InventoryAllDto> getAllItems() throws JsonProcessingException {
         String devices = inventoryService.getAllItems();
         return new ResponseEntity<>(new InventoryAllDto(devices,HttpStatus.OK), HttpStatus.OK);
     }
+
+    /**
+     * Add a new device to the inventory
+     * @param requestInventoryDto Device details
+     * @return Operation result
+     * @throws JsonProcessingException
+     */
     @PostMapping("")
     public ResponseEntity<AddDeviceResponseDto> addDevice(@RequestBody RequestInventoryDto requestInventoryDto) throws JsonProcessingException {
         String object = inventoryService.registerDevice(requestInventoryDto);

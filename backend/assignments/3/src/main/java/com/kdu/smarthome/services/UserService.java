@@ -2,6 +2,7 @@ package com.kdu.smarthome.services;
 
 
 import com.kdu.smarthome.dto.requests.DeviceRegisterRequestDto;
+import com.kdu.smarthome.dto.requests.UserDto;
 import com.kdu.smarthome.entities.User;
 import com.kdu.smarthome.exceptions.custom.NotFoundException;
 import com.kdu.smarthome.mapper.DtoToEntities;
@@ -41,7 +42,7 @@ public class UserService{
 
     }
 
-    public void addUser(DeviceRegisterRequestDto.UserDto userDto) {
+    public void addUser(UserDto userDto) {
         userRepository.save(DtoToEntities.dtoToUser(userDto));
     }
 

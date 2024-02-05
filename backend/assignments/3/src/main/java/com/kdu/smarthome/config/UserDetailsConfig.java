@@ -21,6 +21,12 @@ public class UserDetailsConfig implements UserDetailsService {
         this.userService = userService;
     }
 
+    /**
+     * Loads user from database and returns a userDetails object
+     * @param name
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         com.kdu.smarthome.entities.User user = userService.getUserByName(name);

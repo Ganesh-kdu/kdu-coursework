@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/device")
+/**
+ * Controller for device interactions - register device and add device to room
+ */
 public class DeviceController {
     RegistrationService registrationService;
 
@@ -16,11 +19,22 @@ public class DeviceController {
         this.registrationService = registrationService;
     }
 
+    /**
+     * Device registration end point, registers device after completing validations
+     * @param deviceDto device details
+     * @return Operation result
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerDevice(@RequestBody DeviceRegisterRequestDto deviceDto){
         registrationService.register(deviceDto);
         return new ResponseEntity<>("Done", HttpStatus.OK);
     }
+
+    /**
+     * Device addition endpoint, device needs to be registered before being added to a room
+     * @param addDeviceRoomDto Room, house and device details
+     * @return Operation result
+     */
 
     @PostMapping("/add")
     public ResponseEntity<String> addToRoom(@RequestBody AddDeviceRoomDto addDeviceRoomDto){

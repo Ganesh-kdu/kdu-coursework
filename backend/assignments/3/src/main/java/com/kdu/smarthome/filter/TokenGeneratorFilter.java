@@ -27,6 +27,14 @@ public class TokenGeneratorFilter extends OncePerRequestFilter {
     public static final String JWT_KEY = "jxgEQeXHuPq8VdbyYFNkANdudQ53YUn4";
     public static final String JWT_HEADER = "Authorization";
 
+    /**
+     * Token generation filter using data passed in the authentication field
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -58,6 +66,12 @@ public class TokenGeneratorFilter extends OncePerRequestFilter {
         return String.join(",", authoritiesSet);
     }
 
+    /**
+     * Generate token for data passed in the body
+     * @param name
+     * @param role
+     * @return
+     */
     public static String generateToken(String name, String role){
         SecretKey key = Keys.hmacShaKeyFor(JWT_KEY.getBytes(StandardCharsets.UTF_8));
         return Jwts.builder().issuer("kdu").subject("JWT Token")

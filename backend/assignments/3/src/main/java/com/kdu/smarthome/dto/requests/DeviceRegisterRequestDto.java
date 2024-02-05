@@ -17,15 +17,4 @@ public class DeviceRegisterRequestDto {
 
     @JsonProperty("device_password")
     private String devicePassword;
-
-    @Data
-    @AllArgsConstructor
-    public static class UserDto {
-        private String username;
-        private String password;
-        private String name;
-        private String firstname;
-        private String lastname;
-        private String emailId;
-    }
 }

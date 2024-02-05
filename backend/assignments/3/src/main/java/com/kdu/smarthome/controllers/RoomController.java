@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/room")
+/**
+ * Controller for room operations - adding a room
+ */
 public class RoomController {
     RoomService roomService;
 
@@ -16,6 +19,12 @@ public class RoomController {
         this.roomService = roomService;
     }
 
+    /**
+     * Endpoint to add a new room to the given house
+     * @param houseId ID of house to add room to
+     * @param roomName Name of new room
+     * @return Room object with ID
+     */
     @PostMapping("")
     public ResponseEntity<RoomResponseDto> addRoom(@RequestParam Long houseId, @RequestBody String roomName){
         ResponseRoomDto room = new ResponseRoomDto(roomService.addRoom(houseId, roomName));

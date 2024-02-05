@@ -24,6 +24,12 @@ public class AuthManagerConfig implements AuthenticationProvider {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * Authentication function to perform login using user details from database
+     * @param authentication
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();

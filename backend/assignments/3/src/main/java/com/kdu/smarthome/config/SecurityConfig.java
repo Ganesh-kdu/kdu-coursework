@@ -13,6 +13,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class SecurityConfig{
+    /**
+     * Role based auth for different paths with filters
+     * @param http
+     * @return
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http

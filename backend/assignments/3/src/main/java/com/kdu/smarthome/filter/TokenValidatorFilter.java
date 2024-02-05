@@ -31,6 +31,9 @@ public class TokenValidatorFilter extends OncePerRequestFilter {
     public static final String JWT_HEADER = "Authorization";
     @SneakyThrows
     @Override
+    /**
+     * Performs token validation and gets data from it
+     */
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader(JWT_HEADER);
