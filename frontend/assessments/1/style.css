@@ -22,6 +22,7 @@ body {
 .navbar {
   width: 86%;
   padding: 2%;
+  position: fixed;
   display: flex;
   justify-content: space-between;
 }
@@ -85,10 +86,14 @@ img {
   }
 }
 .start {
-  background-color: rgb(151, 2, 59);
+  background-color: #BE5569;
   width: -moz-fit-content;
   width: fit-content;
   padding: 7%;
   border: none;
   border-radius: 1rem;
+}
+
+.start:hover {
+  background-color: #ff7891;
 }/*# sourceMappingURL=style.css.map */
