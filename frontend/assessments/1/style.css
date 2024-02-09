@@ -80,11 +80,15 @@ img {
     display: block;
     position: relative;
   }
+  .main {
+    flex-direction: column-reverse;
+  }
 }
 .start {
-  background-color: black;
+  background-color: rgb(151, 2, 59);
   width: -moz-fit-content;
   width: fit-content;
-  padding: 5%;
+  padding: 7%;
+  border: none;
   border-radius: 1rem;
 }/*# sourceMappingURL=style.css.map */
