@@ -9,7 +9,7 @@ const shirts = [
 ];
 
 const warehouse = [...shoes, ...shirts];
-const totalWorth = warehouse.reduce((acc, item) => acc + item.price);
+const totalWorth = warehouse.reduce((acc, item) => acc + item.price,0);
 warehouse.sort((a, b) => b.price - a.price);
 const blueProducts = warehouse.filter(item => item.color === 'blue');
 
