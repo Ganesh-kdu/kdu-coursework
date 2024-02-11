@@ -1,0 +1,144 @@
+
+.navbar{
+    margin-left: 35px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    border-right: 1px solid rgba(73, 73, 73, 0.829);
+    position:fixed;
+}
+.navbar_post{
+    display: flex;
+    padding: 12px;
+}
+.navbar_post_container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content:flex-start;
+}
+.navbar_pre{
+    display: flex;
+    flex-direction: column;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+.logo{
+    display: flex;
+    border-radius: 9999px;
+    padding: 12px;
+    align-items: center;
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.2s;
+}
+.x{
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 20px;
+    height: 2rem;
+    width: 2rem;
+    fill:  rgba(231,233,234,1.00);
+}
+.option{
+    display: flex;
+}
+.option_wrapper{
+    display: flex;
+    border-radius: 9999px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.2s;
+}
+.option_image{
+    width: 1.75rem;
+    height: 1.75rem;
+    fill:  rgba(231,233,234,1.00);
+}
+.option_text{
+    line-height: 24px;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-right: 16px;
+    font-size: 20px;
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: rgb(231, 233, 234);
+    user-select: none
+}
+.option_wrapper:hover{
+    background-color: rgb(17, 17, 17);
+}
+.unread{
+    align-items: stretch;
+    border-radius: 9999px;
+    width: 7px;
+    right: 10px;
+    top: -14px;
+    height: 7px;
+    background-color: rgba(29,155,240,1.00);
+    user-select: none;
+    position: relative;
+}
+.write{
+    flex-direction: column;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    align-items: center;
+    width: 90%;
+}
+.post_button{
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: rgb(231, 233, 234);
+    user-select: none;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight:700;
+    background-color: rgb(29, 155, 240);
+    border: 0;
+    border-radius: 9999px;
+    min-width: 52px;
+    padding-left: 92px;
+    padding-right: 92px;
+    min-height: 52px;
+}
+.post_button:hover{
+    background-color:rgb(23, 126, 194);
+    border: 1px;
+}
+.user_image{
+    border-radius: 9999px;
+    height: max-content;
+    height: 40px;
+}
+.kebab_menu{
+    fill: rgb(231, 233, 234);
+    height: 18.75px;
+    width: 20px;
+}
+.username{
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:     rgb(113, 118, 123);
+    font-size: 15px;
+    font-weight: 700;
+}
+.account_name{
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: rgb(231, 233, 234);
+    font-size: 15px;
+    font-weight: 700;
+}
+.user_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+.kebab_wrapper{
+    justify-self: flex-end;
+    padding-left: 68px;
+}
