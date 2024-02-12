@@ -133,8 +133,6 @@
 
 .user_image {
   border-radius: 9999px;
-  height: -moz-max-content;
-  height: max-content;
   height: 40px;
 }
 
@@ -148,7 +146,7 @@
   font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: rgb(113, 118, 123);
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .account_name {
