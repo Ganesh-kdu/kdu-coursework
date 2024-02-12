@@ -1,5 +1,5 @@
 
-.navbar{
+.navigation-section{
     margin-left: 35px;
     padding-left: 10px;
     display: flex;
@@ -148,7 +148,7 @@
     display: none;
 }
 @media screen and (max-width: 414px) {
-    .navbar{
+    .navigation-section{
         display: none;
     }
     .reactive_top{
@@ -173,7 +173,7 @@
         justify-content: space-around;
         border-top: 1px solid  rgba(73, 73, 73, 0.829);
     }
-    .reactive_profile{
+    .profile-icon{
         height: 32px;
         border-radius: 9999px;
     }

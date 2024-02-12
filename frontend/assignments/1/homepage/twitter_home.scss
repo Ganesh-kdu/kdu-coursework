@@ -3,6 +3,7 @@
 }
 .posts_section{
     width: 600px;
+    min-height: 100vh;
     font-size: 20px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: rgb(231, 233, 234);
@@ -48,7 +49,7 @@
     color:  rgb(231, 233, 234);
     border-bottom: 3px rgb(29, 155, 240) solid;
 }
-.make_post{
+.tweet-box{
     width: 598px;
     display: flex;
     margin-top: 53px;
@@ -57,7 +58,7 @@
     border-bottom: 1px solid rgba(73, 73, 73, 0.829);
 
 }
-.post_input{
+.post-input{
     width: 510px;
     margin-top: 22px;
     font-size: 20px;
@@ -65,7 +66,7 @@
     border: none;
     color:  rgb(231, 233, 234);
 }
-.post_input:focus{
+.post-input:focus{
     border:none;
     outline: none;
 }
@@ -93,7 +94,7 @@
     background-color: rgba(63, 168, 238, 0.185);
 }
 
-.post_submit{
+.tweet-btn{
     margin-top: 16px;
     width: 66.73px;
     height: 36px;
@@ -101,7 +102,18 @@
     border: none;
     border-radius: 9999px;
 }
-.post_submit:hover{
+.mobile-tweet-btn{
+    margin-top: 16px;
+    width: 66.73px;
+    height: 36px;
+    background-color: rgb(29, 155, 240);
+    border: none;
+    border-radius: 9999px;
+}
+.tweet-btn:hover{
+    background-color: rgb(22, 113, 173);
+}
+.mobile-tweet-btn:hover{
     background-color: rgb(22, 113, 173);
 }
 .submit_text{
@@ -242,7 +254,7 @@
     }
 }
 
-.liked{
+.like-post{
     fill:  rgb(249, 24, 128);
     .stat_value{
     color:  rgb(249, 24, 128);
@@ -266,16 +278,14 @@
     min-width: 514px;
     max-width: 514px;
 }
-.reactive_new_post{
-    display: none;
-}
 @media screen and (max-width: 414px) {
-    .make_post{
+    .tweet-box{
         display: none;
     }
     .posts_section{
         width:100%;
         margin-left: 0px;
+        min-height: 0px;
     }
     .category{
         margin-top: 53px;
@@ -298,7 +308,7 @@
         width: 62.13px;
         max-width: 62.13px;
     }
-    .reactive_new_post{
+    .floating-tweet-box-icon{
         display: block;
         padding-top: 15px;
         padding-left: 15px;
@@ -311,7 +321,30 @@
         bottom: 72.5px;
         right: 20px;
     }
+    .limit{
+        min-width: 80%;
+        max-width: 80%;
+    }
+    .drafts{
+        font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: rgb(29, 155, 240);
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .reactive_post_navigation{
+        width: 100vw;
+        display: flex;
+        color: white;
+        fill: white;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        z-index: 2;
+    }
 }
 .invisible{
     display: none;
+}
+.visible{
+    display: block;
 }

@@ -57,7 +57,7 @@ function newPost(){
                     </div>
                     <div class="stat_value"></div>
                   </div>
-                  <div class="stat_container like">
+                  <div class="stat_container like  unlike-post">
                     <div class="stat_icon">
                       <svg viewBox="0 0 32 32">
                         <path
@@ -97,7 +97,7 @@ function newPost(){
               </div>
             </div>
           </div>`
-    document.querySelector('.posts').innerHTML+=post;
+    document.querySelector('.posts').innerHTML=post+document.querySelector('.posts').innerHTML;
     return uuid;
 }
 function createPost(){
@@ -165,7 +165,7 @@ function createPost(){
     })
     likeDiv.addEventListener('click',(event)=>{
         let currentTarget = event.currentTarget;
-        if(currentTarget.classList.contains('liked')){
+        if(currentTarget.classList.contains('like-post')){
             let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
             currentTarget.getElementsByClassName("stat_icon").item(0).innerHTML=`<svg viewBox="0 0 32 32">
                 <path
@@ -190,14 +190,21 @@ function createPost(){
                 currentTarget.getElementsByClassName("stat_value").item(0).innerHTML =`${value+1}`;
             }
         }
-        currentTarget.classList.toggle('liked');
+        currentTarget.classList.toggle('like-post');
+        currentTarget.classList.toggle('unlike-post');
     })
 }
 
 function postScreen(){
-  // category posts reactive_top
-  document.getElementsByClassName("reactive_top").item(0).classList.add("invisible");
-  document.getElementsByClassName("posts").item(0).classList.add("invisible");
-  document.getElementsByClassName("category").item(0).classList.add("invisible");
-  
+  document.getElementsByClassName("reactive_top").item(0).classList.toggle("invisible");
+  document.getElementsByClassName("posts").item(0).classList.toggle("invisible");
+  document.getElementsByClassName("category").item(0).classList.toggle("invisible");
+  document.getElementsByClassName('tweet-box').item(0).classList.toggle("visible");
+  document.getElementsByClassName('reactive_post_navigation').item(0).classList.toggle("invisible");
+}
+
+function mobileCreatePost(){
+  createPost();
+  postScreen();
+
 }
