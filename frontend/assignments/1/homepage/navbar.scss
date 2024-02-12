@@ -141,3 +141,48 @@
     justify-self: flex-end;
     padding-left: 68px;
 }
+.reactive_bottom{
+    display: none;
+}
+.reactive_top{
+    display: none;
+}
+@media screen and (max-width: 414px) {
+    .navbar{
+        display: none;
+    }
+    .reactive_top{
+        display: flex;
+        position: fixed;
+        height: 53px;
+        width: 100%;
+        align-items: center;
+        padding: 16px;
+        justify-content: space-between;
+        fill: rgb(231, 233, 234);
+        border-bottom: 1px solid  rgba(73, 73, 73, 0.829);
+    }
+    .reactive_bottom{
+        display: flex;
+        position: fixed;
+        height: 52.5px;
+        align-items: center;
+        bottom: 0;
+        width: 100%;
+        fill: rgb(231, 233, 234);
+        justify-content: space-around;
+        border-top: 1px solid  rgba(73, 73, 73, 0.829);
+    }
+    .reactive_profile{
+        height: 32px;
+        border-radius: 9999px;
+    }
+    .x{
+        padding-top: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        fill:  rgba(231,233,234,1.00);
+    }
+    
+}

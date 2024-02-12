@@ -4,7 +4,6 @@
 
 .posts_section {
   width: 600px;
-  min-height: 1000vh;
   font-size: 20px;
   font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: rgb(231, 233, 234);
@@ -302,4 +301,55 @@
 .limit {
   min-width: 514px;
   max-width: 514px;
+}
+
+.reactive_new_post {
+  display: none;
+}
+
+@media screen and (max-width: 414px) {
+  .make_post {
+    display: none;
+  }
+  .posts_section {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .category {
+    margin-top: 53px;
+    width: 100vw;
+  }
+  .posts {
+    margin-top: 106px;
+  }
+  .user {
+    width: 100%;
+  }
+  .post_container {
+    width: 100%;
+  }
+  .post_data {
+    width: 100%;
+    max-width: 100%;
+  }
+  .stat_container {
+    width: 62.13px;
+    max-width: 62.13px;
+  }
+  .reactive_new_post {
+    display: block;
+    padding-top: 15px;
+    padding-left: 15px;
+    height: 56px;
+    width: 56px;
+    background-color: rgb(29, 155, 240);
+    border-radius: 9999px;
+    fill: rgb(231, 233, 234);
+    position: fixed;
+    bottom: 72.5px;
+    right: 20px;
+  }
+}
+.invisible {
+  display: none;
 }/*# sourceMappingURL=twitter_home.css.map */

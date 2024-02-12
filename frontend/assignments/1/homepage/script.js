@@ -193,3 +193,11 @@ function createPost(){
         currentTarget.classList.toggle('liked');
     })
 }
+
+function postScreen(){
+  // category posts reactive_top
+  document.getElementsByClassName("reactive_top").item(0).classList.add("invisible");
+  document.getElementsByClassName("posts").item(0).classList.add("invisible");
+  document.getElementsByClassName("category").item(0).classList.add("invisible");
+  
+}
