@@ -12,7 +12,10 @@ body {
 
 .main {
   padding: 10px;
-  background-color: rgb(230, 255, 240);
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -25,20 +28,66 @@ body {
   top: 10px;
   border-radius: 6px;
   font-weight: 100;
+  z-index: 1;
 }
 
 .messages {
-  min-height: 1000vh;
+  margin: 10px;
+  overflow-y: scroll;
+  flex-grow: 1;
+}
+
+.container {
+  display: flex;
+  margin: 5px;
+}
+
+.pfp {
+  display: flex;
+  background-color: rgba(255, 255, 0, 0.753);
+  border-radius: 9999px;
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: auto;
 }
 
 .message-box {
   display: flex;
   padding: 10px;
-  background-color: #DFE1E6;
   justify-content: center;
   align-items: center;
   position: sticky;
   bottom: 10px;
   border-radius: 6px;
   font-weight: 100;
+  background-color: #DFE1E6;
+}
+
+.received {
+  background-color: #DFE1E6;
+}
+
+.sent {
+  background-color: rgba(0, 163, 133, 0.8901960784);
+}
+
+input {
+  padding: 4px;
+  border: none;
+}
+
+label {
+  width: 27px;
+  padding-left: 7px;
+}
+
+#input {
+  width: 100%;
+}
+
+#submit {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
