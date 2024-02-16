@@ -67,7 +67,13 @@ async function getStock(stockName){
 }
 function buy(){
     buyDiv = document.createElement("div");
-    buyDiv.innerText = `QTY: ${document.getElementById("qty").value} Price: ${parseFloat(previous).toFixed(2)}`
+    buyDiv.innerText = `BUY QTY: ${document.getElementById("qty").value} Price: ${parseFloat(previous).toFixed(2)}`
+    document.getElementById("history").appendChild(buyDiv)
+}
+function sell(){
+    buyDiv = document.createElement("div");
+    buyDiv.classList.add("history-item");
+    buyDiv.innerText = `SELL QTY: ${document.getElementById("qty").value} Price: ${parseFloat(previous).toFixed(2)}`
     document.getElementById("history").appendChild(buyDiv)
 }
 getStock('zomato')

@@ -144,6 +144,11 @@ body {
   flex-direction: column;
 }
 
+.history-item {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
 input::-moz-placeholder {
   text-align: center;
 }

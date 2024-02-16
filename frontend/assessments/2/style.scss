@@ -137,6 +137,10 @@ body{
     display: flex;
     flex-direction: column;
 }
+.history-item{
+    border: 1px solid black;
+    border-radius: 10px;
+}
 input::placeholder{
     text-align: center;
 }
