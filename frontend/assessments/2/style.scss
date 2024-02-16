@@ -112,6 +112,19 @@ body{
     .graph{
         height: 500px;
         border: 1px solid black;
+        display: flex;
+        align-items: flex-end;
+        .bar{
+            width: 20px;
+        }
+        .increase{
+            border: 1px solid #2f9e44;
+            background-color: #b2f2bb;
+        }
+        .decrease{
+            border: 1px solid #e03131;
+            background-color: #ffe9e9;
+        }
     }
 }
 .history{

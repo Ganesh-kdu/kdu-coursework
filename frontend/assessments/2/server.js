@@ -3,6 +3,7 @@ const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
 const fs = require('fs');
+const { connect } = require("http2");
 
 const app = express();
 app.use(express.static("public"));
@@ -16,14 +17,25 @@ const io = new socketIo.Server(server, {
     },
 });
 
- 
-io.on("connection", (socket) => {
+let started = false;
+io.on("connection", async (socket) => {
     console.log("New connection");
     socket.on("message", (payload) => {
         console.log(`Message received on server: ${payload}`);
         io.except(socket.id).emit("new-message", payload);
     });
+    while(true){
+        await timeout(1000);
+        socket.emit("latest-price",Math.random() * 500);
+    }
+
 });
+
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 app.get("/zomato", (req, res) => {
     let imageAsBase64 = fs.readFileSync('./zomato_logo.jpg', 'base64');
 
