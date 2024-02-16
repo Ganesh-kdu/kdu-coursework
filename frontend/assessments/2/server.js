@@ -25,7 +25,7 @@ io.on("connection", async (socket) => {
         io.except(socket.id).emit("new-message", payload);
     });
     while(true){
-        await timeout(1000);
+        await timeout(5000);
         socket.emit("latest-price",Math.random() * 500);
     }
 

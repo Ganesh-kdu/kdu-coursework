@@ -108,6 +108,7 @@ body {
   color: #2f9e44;
   background-color: #b2f2bb;
   border-color: #2f9e44;
+  z-index: 2;
 }
 .market-details .data .sell {
   padding: 15px;
@@ -139,4 +140,14 @@ body {
   border: 1px solid black;
   border-radius: 4px;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+input::-moz-placeholder {
+  text-align: center;
+}
+
+input::placeholder {
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

@@ -9,7 +9,7 @@ socket.on("latest-price", (payload) => {
     previous=payload;
     console.log(payload)
 });
-let previous = 0;
+let previous = 1;
 function updatePrice(price){
     let priceDiv = document.getElementById("price-div");
     priceDiv.classList.remove("increase");
@@ -20,6 +20,8 @@ function updatePrice(price){
     else
         priceDiv.classList.add("decrease");
 
+    let change = document.getElementById("change");
+    change.innerText = parseFloat(Math.abs(100*(previous-price)/previous)).toFixed(2);
     
 }
 function createBar(price){
@@ -47,6 +49,7 @@ async function getStock(stockName){
 
     let price = document.createElement("div");
     price.innerText = parseFloat(data.price).toFixed(2);
+    createBar(data.price);
     price.classList.add("price");
     price.id="price-div";
     if(data.price>previous)
@@ -58,7 +61,13 @@ async function getStock(stockName){
     let change = document.createElement("div");
     change.innerText = "0.00";
     change.classList.add("change");
+    change.id="change";
     document.getElementById("stock-price").appendChild(change);
 
+}
+function buy(){
+    buyDiv = document.createElement("div");
+    buyDiv.innerText = `QTY: ${document.getElementById("qty").value} Price: ${parseFloat(previous).toFixed(2)}`
+    document.getElementById("history").appendChild(buyDiv)
 }
 getStock('zomato')

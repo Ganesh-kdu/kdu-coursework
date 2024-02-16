@@ -23,15 +23,15 @@
                             Price
                         </div>
                     </div>
-                    <input type="number" placeholder="Enter QTY">
-                    <button class="buy" name="BUY">BUY</button>
-                    <button class="sell" name="SELL">SELL</button>
+                    <input type="number" placeholder="Enter QTY" id="qty">
+                    <button class="buy" name="BUY" onclick="buy()">BUY</button>
+                    <button class="sell" name="SELL" onclick="sell()">SELL</button>
                 </div> 
                 <div class="graph" id="graph">
 
                 </div>
             </div>
-            <div class="history"></div>
+            <div class="history" id="history">History</div>
         </div>
     </div>
 </body>
