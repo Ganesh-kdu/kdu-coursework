@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <script src="userScript.js" defer></script>
+    <title>KDU stock-market</title>
+</head>
+<body>
+    <div class="page">
+        <div class="navbar">KDU Stock Market Dashboard</div>
+        <div class="stock-market">
+            <div class="market-details">
+                <div class="data">
+                    <div class="stock-label" id="stock-label"></div>
+                    <div class="stock-price" id="stock-price">
+                        <div>
+                            Price
+                        </div>
+                    </div>
+                    <input type="number" placeholder="Enter QTY">
+                    <button class="buy" name="BUY">BUY</button>
+                    <button class="sell" name="SELL">SELL</button>
+                </div> 
+                <div class="graph">
+
+                </div>
+            </div>
+            <div class="history"></div>
+        </div>
+    </div>
+</body>
+</html>
