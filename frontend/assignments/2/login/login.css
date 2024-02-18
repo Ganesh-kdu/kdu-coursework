@@ -1,0 +1,86 @@
+* {
+  font-size: 20px;
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: rgb(231, 233, 234);
+}
+
+body {
+  background-color: black;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.page {
+  display: flex;
+  flex-grow: 1;
+}
+
+.title {
+  padding: 5px;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.title .text {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+}
+.title .logo {
+  display: flex;
+  border-radius: 9999px;
+  align-items: center;
+  transition-property: background-color, box-shadow;
+  transition-duration: 0.2s;
+}
+.title .x {
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 20px;
+  height: 3rem;
+  width: 3rem;
+  fill: rgb(231, 233, 234);
+}
+
+.login {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.login .form {
+  display: flex;
+  flex-direction: column;
+}
+.login input {
+  background-color: black;
+  border: 2px solid rgb(29, 155, 240);
+  border-radius: 4px;
+  margin: 8px;
+  padding: 8px;
+  font-size: 17px;
+}
+.login button {
+  margin: 5px;
+  background-color: rgb(29, 155, 240);
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 5px;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 414px) {
+  .page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    justify-content: center;
+  }
+  .login {
+    width: 100%;
+    justify-content: center;
+  }
+}/*# sourceMappingURL=login.css.map */

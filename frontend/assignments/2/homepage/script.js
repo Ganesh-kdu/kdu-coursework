@@ -1,4 +1,5 @@
 let uuid = 1;
+console.log(JSON.parse(sessionStorage.details));
 function newPost(){
     uuid+=1;
     let post = `<div class="post_container" id="${uuid}">
