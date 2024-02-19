@@ -21,6 +21,7 @@ const io = new socketIo.Server(server, {
 let started = false;
 let connections = {}
 let onlineUserDetails = [];
+let posts = [];
 io.on("connection", async (socket) => {
     console.log("New connection");
     socket.on("register", (payload) => {
@@ -49,7 +50,7 @@ io.on("connection", async (socket) => {
     } else {
         console.log(`User ${user} is not online.`);
     }
-    console.log(payload);
+    console.log(message);
     });
 });
 
@@ -75,6 +76,28 @@ app.post("/api/user/login", (req, res) => {
         })
     }    
 })
+let uuid = 1;
+app.post("/api/posts",(req,res) => {
+    console.log(req.body);
+    let response = req.body;
+    response.id = uuid;
+    posts.splice(0, 0, response);
+    uuid+=1;
+    res.json(response);
+})
+
+app.get("/api/posts", (req, res) => {
+    console.log(req)
+    const size = parseInt(req.query.size);
+    const number = parseInt(req.query.page);
+    const startIndex = (number - 1) * size;
+    const endIndex = startIndex + size;
+
+    // Slice the posts array based on startIndex and endIndex
+    const paginatedPosts = posts.slice(startIndex, endIndex);
+
+    res.send(paginatedPosts);
+});
 
 server.listen(3000, function(err){
     if (err) console.log("Error in server setup")

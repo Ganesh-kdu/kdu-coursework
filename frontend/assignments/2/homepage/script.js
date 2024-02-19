@@ -1,42 +1,36 @@
-let uuid = 1;
 // JSON.parse(sessionStorage.getItem("details"))
-function newPost(){
-    uuid+=1;
-    let post = `<div class="post_container" id="${uuid}">
-            <div class="post">
-              <div class="profile_picture">
-                <img
-                  class="post_user_image"
-                  src="../twiiter base line images/Profile/profile pic.png"
-                  alt=""
-                />
-              </div>
-              <div class="wrapper">
-                <div class="user">
+function newPost(postDetails, latest){
+  console.log(postDetails);
+
+  let post = `<div class="post_container" id="${postDetails.id}">
+      <div class="post">
+          <div class="profile_picture">
+              <img class="post_user_image" src="data:image/png;base64, ${postDetails.user.pfp}" alt=""/>
+          </div>
+          <div class="wrapper">
+              <div class="user">
                   <div class="details">
-                    <div class="detail_wrapper">
-                      <div class="account_name">Nitesh Gupta</div>
-                    </div>
-                    <div class="detail_wrapper">
-                      <div class="username">@nit_hck</div>
-                    </div>
-                    <div class="detail_wrapper">
-                      <div class="spacer">·</div>
-                    </div>
-                    <div class="detail_wrapper">
-                      <div class="post_time">1s</div>
-                    </div>
+                      <div class="detail_wrapper">
+                          <div class="account_name">${postDetails.user.user_name}</div>
+                      </div>
+                      <div class="detail_wrapper">
+                          <div class="username">${postDetails.user.profile_url}</div>
+                      </div>
+                      <div class="detail_wrapper">
+                          <div class="spacer">·</div>
+                      </div>
+                      <div class="detail_wrapper">
+                          <div class="post_time">1s</div>
+                      </div>
                   </div>
                   <div class="kebab_wrapper">
-                    <svg class="kebab_menu grey" viewBox="0 0 32 32">
-                      <path
-                        d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"
-                      ></path>
-                    </svg>
+                      <svg class="kebab_menu grey" viewBox="0 0 32 32">
+                          <path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+                      </svg>
                   </div>
-                </div>
-                <div class="post_data">
-                </div>
+              </div>
+              <div class="post_data"></div>
+
                 <div class="stats">
                   <div class="stat_container comment">
                     <div class="stat_icon">
@@ -97,103 +91,79 @@ function newPost(){
                 </div>
               </div>
             </div>
-          </div>`
-    document.querySelector('.posts').innerHTML=post+document.querySelector('.posts').innerHTML;
-    return uuid;
+          </div>`;
+    let div = document.createElement('div');
+    div.innerHTML = post;
+    let textDiv = document.createElement('div');
+    textDiv.innerText = postDetails.text;
+
+    div.querySelector(".post_data").appendChild(textDiv);
+    if(postDetails.img!=null){
+      let imageDiv = document.createElement("img");
+      imageDiv.setAttribute("src",postDetails.img);
+      div.querySelector(".post_data").appendChild(imageDiv);
+    }
+
+    const posts = document.querySelector('.posts');
+    if(latest)
+      posts.insertBefore(div,posts.firstChild);
+    else
+      posts.appendChild(div);
+    div.querySelector(".retweet").addEventListener("click", (event) => handleInteraction(event, "retweeted"));
+    div.querySelector(".comment").addEventListener("click", (event) => handleInteraction(event, "commented"));
+    div.querySelector(".like").addEventListener("click", (event) => handleInteraction(event, "like-post"));
+
+
+
 }
-function createPost(){
-    const text = document.querySelector('#postText').value;
-    console.log(text);
-    const file = document.querySelector('#image_button').files[0];
-    console.log(file);
-    let id = newPost();
-    if(null!=text){
-        document.getElementById(id.toString()).querySelector(".post_data").innerHTML = text;
-    }
-    if(null!=file){
-        const reader = new FileReader();
-        console.log(reader);
-        reader.readAsDataURL(file);
+
+function handleInteraction(event, className) {
+  const currentTarget = event.currentTarget;
+  const statValue = currentTarget.querySelector(".stat_value");
+
+  if (currentTarget.classList.contains(className)) {
+      if (statValue.textContent === "1") {
+          statValue.textContent = "";
+      } else {
+          const value = parseInt(statValue.textContent);
+          statValue.textContent = `${value - 1}`;
+      }
+  } else if (statValue.textContent) {
+          const value = parseInt(statValue.textContent);
+          statValue.textContent = `${value + 1}`;
+      } else {
+        statValue.textContent = "1";
+      }
+  
+
+  currentTarget.classList.toggle(className);
+}
+async function createPost(){
+  const text = document.querySelector('#postText').value;
+  const file = document.querySelector('#image_button').files[0];
+  if (text == "" && file == null){
+    return;
+  }
+  let imgSrc = null;
+  if (null != file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    imgSrc = await new Promise((resolve) => {
         reader.onload = function () {
-        localStorage.setItem(`${id}`, reader.result);
-        const node = document.createElement("img");
-        node.setAttribute("src",localStorage.getItem(`${id}`));
-        node.classList.add("limit")
-        document.getElementById(id.toString()).querySelector(".post_data").appendChild(node);
+            resolve(reader.result);
         };
+    });
     }
-    let likeDiv = document.getElementById(`${id}`).getElementsByClassName("like").item(0);
-    let retweetDiv = document.getElementById(`${id}`).getElementsByClassName("retweet").item(0);
-    let commentDiv = document.getElementById(`${id}`).getElementsByClassName("comment").item(0);
-    
-    retweetDiv.addEventListener('click',(event)=>{
-        let currentTarget = event.currentTarget;
-        if(currentTarget.classList.contains('retweeted')){
-            let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-            console.log(value);
-            if (value==1){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML="";
-            }else{
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML=`${value-1}`;
-            }
-        }else if(currentTarget.getElementsByClassName("stat_value").text==null || currentTarget.getElementsByClassName("stat_value").text==""){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML='1';
-                console.log(currentTarget);
-            }else{
-                let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML =`${value+1}`;
-            }
-        currentTarget.classList.toggle('retweeted');
+    let response = await fetch("http://127.0.0.1:3000/api/posts/",{
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({user: JSON.parse(sessionStorage.getItem("details")), text: text, img: imgSrc, postTime: Date.now()})
     })
-    commentDiv.addEventListener('click',(event)=>{
-        let currentTarget = event.currentTarget;
-        if(currentTarget.classList.contains('commented')){
-            let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-            console.log(value);
-            if (value==1){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML="";
-            }else{
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML=`${value-1}`;
-            }
-        }else if(currentTarget.getElementsByClassName("stat_value").text==null || currentTarget.getElementsByClassName("stat_value").text==""){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML='1';
-                console.log(currentTarget);
-            }else{
-                let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML =`${value+1}`;
-            }
-        currentTarget.classList.toggle('commented');
-    })
-    likeDiv.addEventListener('click',(event)=>{
-        let currentTarget = event.currentTarget;
-        if(currentTarget.classList.contains('like-post')){
-            let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-            currentTarget.getElementsByClassName("stat_icon").item(0).innerHTML=`<svg viewBox="0 0 32 32">
-                <path
-                  d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"
-                ></path>
-              </svg>`;
-            console.log(value);
-            if (value==1){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML="";
-            }else{
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML=`${value-1}`;
-            }
-        }else{
-            currentTarget.getElementsByClassName("stat_icon").item(0).innerHTML=`<svg viewBox="0 0 32 32">
-            <path d="M20.884 13.19c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"></path>
-              </svg>`;
-            if(currentTarget.getElementsByClassName("stat_value").text==null || currentTarget.getElementsByClassName("stat_value").text==""){
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML='1';
-                console.log(currentTarget);
-            }else{
-                let value = parseInt(currentTarget.getElementsByClassName("stat_value").item(0).innerHTML);
-                currentTarget.getElementsByClassName("stat_value").item(0).innerHTML =`${value+1}`;
-            }
-        }
-        currentTarget.classList.toggle('like-post');
-        currentTarget.classList.toggle('unlike-post');
-    })
+    let data = await response.json();
+    newPost(data, true);
 }
 
 function postScreen(){
@@ -207,5 +177,32 @@ function postScreen(){
 function mobileCreatePost(){
   createPost();
   postScreen();
-
 }
+
+document.getElementById("logged-in-user-1").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
+document.getElementById("logged-in-user-2").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
+document.getElementById("logged-in-user-3").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
+document.getElementById("account-name-1").innerText = JSON.parse(sessionStorage.getItem("details")).user_name;
+document.getElementById("account-id-1").innerText = JSON.parse(sessionStorage.getItem("details")).profile_url;
+
+let posts = 1;
+async function loadMorePosts() {
+  const response = await fetch(`http://127.0.0.1:3000/api/posts?page=${Math.floor(posts/5)+1}&size=5`);
+  const data = await response.json();
+  data.forEach(post => {
+    newPost(post, false);
+    posts+=1;
+  });
+}
+
+function isScrollAtBottom() {
+  return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+}
+
+window.addEventListener('scroll', async () => {
+  if (isScrollAtBottom()) {
+      await loadMorePosts();
+  }
+});
+
+loadMorePosts();

@@ -71,6 +71,7 @@ function createUser(user){
 
     let input = document.createElement("input");
     input.classList.add("input");
+    input.placeholder = "Start a new message";
 
     let send = document.createElement("button");
     send.classList.add("send-button");

@@ -99,6 +99,8 @@ body {
   background-color: #202327;
   width: 100%;
   display: flex;
+  padding: 10px;
+  border-radius: 15px;
 }
 
 .input {
