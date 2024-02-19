@@ -214,4 +214,7 @@
     align-items: center;
     fill: rgb(231, 233, 234);
   }
+}
+a {
+  text-decoration: none;
 }/*# sourceMappingURL=navbar.css.map */

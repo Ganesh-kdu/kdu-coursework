@@ -19,34 +19,40 @@ const io = new socketIo.Server(server, {
 });
 
 let started = false;
+let connections = {}
+let onlineUserDetails = [];
 io.on("connection", async (socket) => {
     console.log("New connection");
-    socket.on("message", (payload) => {
-        console.log(`Message received on server: ${payload}`);
-        io.except(socket.id).emit("new-message", payload);
-    });
-    while(true){
-        await timeout(5000);
-        socket.emit("latest-price",Math.random() * 500);
-    }
-
-});
-
-function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-
-app.get("/zomato", (req, res) => {
-    let imageAsBase64 = fs.readFileSync('./zomato_logo.jpg', 'base64');
-
-    res.send({
-        name:"Zomato",
-        price:10.00,
-        history:{},
-        img:imageAsBase64
+    socket.on("register", (payload) => {
+        console.log(payload);
+        socket.emit("new-users",onlineUserDetails);
+        connections[payload.user_name] = socket.id;
+        onlineUserDetails.push(payload);
+        io.except(socket.id).emit("new-user",payload);
+        console.log(connections);
     })
+    socket.conn.on("close",() => {
+        const disconnectedUser = Object.keys(connections).find(key => connections[key] === socket.id);
+        io.emit("remove-user", disconnectedUser);
+        delete connections[disconnectedUser];
+        const index = onlineUserDetails.findIndex(user => user.user_name === disconnectedUser);
+        if (index !== -1) {
+            onlineUserDetails.splice(index, 1);
+        }
+        console.log(connections);
+    })
+    socket.on("message",(payload) => {
+    const { user, message } = payload;
+    const toSocketId = connections[user];
+    if (toSocketId) {
+        io.to(toSocketId).emit("new-message", payload);
+    } else {
+        console.log(`User ${user} is not online.`);
+    }
+    console.log(payload);
+    });
 });
+
 
 app.post("/api/user/login", (req, res) => {
     if (users[req.body.username]==undefined){
@@ -60,7 +66,7 @@ app.post("/api/user/login", (req, res) => {
             response: "Invalid userID or password"
         })
     }else{
-        let imageAsBase64 = fs.readFileSync(`./pfp/${req.body.username}.png`, 'base64');
+        let imageAsBase64 = fs.readFileSync(`./pfp/${req.body.username}.jpg`, 'base64');
         res.send({
             success: true,
             response: "Success",

@@ -13,9 +13,8 @@ async function login(){
     if(!response.success){
         window.alert(response.response);
     }else{
-        console.log(response.user)
-        window.alert();
+        response.user.pfp = response.pfp;
         sessionStorage.setItem("details", JSON.stringify(response.user));
-        window.location.replace("http://127.0.0.1:5500/homepage/index.html");
+        window.location.href = "http://127.0.0.1:5500/homepage/index.html";
     }
 }
