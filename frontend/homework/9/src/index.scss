@@ -1,0 +1,10 @@
+body{
+    min-height: 100vh;
+    background-color: #FFE68C;
+    padding: 2.5%;
+    display: flex;
+}
+#root{
+    flex-grow: 1;
+    display: flex;
+}
