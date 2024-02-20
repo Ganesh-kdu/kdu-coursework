@@ -67,17 +67,17 @@ body {
     font-size: 15px;
   }
 }
-@media screen and (max-width: 414px){
-    .page{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .title{
-        justify-content: center;
-    }
-    .login{
-        width: 100%;
-        justify-content: center;
-    }
+@media screen and (max-width: 414px) {
+  .page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    justify-content: center;
+  }
+  .login {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,5 +1,5 @@
 // JSON.parse(sessionStorage.getItem("details"))
-function newPost(postDetails, latest){
+function newPost(postDetails, latest) {
   console.log(postDetails);
 
   let post = `<div class="post_container" id="${postDetails.id}">
@@ -92,29 +92,36 @@ function newPost(postDetails, latest){
               </div>
             </div>
           </div>`;
-    let div = document.createElement('div');
-    div.innerHTML = post;
-    let textDiv = document.createElement('div');
-    textDiv.innerText = postDetails.text;
+  let div = document.createElement("div");
+  div.innerHTML = post;
+  let textDiv = document.createElement("div");
+  textDiv.innerText = postDetails.text;
 
-    div.querySelector(".post_data").appendChild(textDiv);
-    if(postDetails.img!=null){
-      let imageDiv = document.createElement("img");
-      imageDiv.setAttribute("src",postDetails.img);
-      div.querySelector(".post_data").appendChild(imageDiv);
-    }
+  div.querySelector(".post_data").appendChild(textDiv);
+  if (postDetails.img != null) {
+    let imageDiv = document.createElement("img");
+    imageDiv.setAttribute("src", postDetails.img);
+    div.querySelector(".post_data").appendChild(imageDiv);
+  }
 
-    const posts = document.querySelector('.posts');
-    if(latest)
-      posts.insertBefore(div,posts.firstChild);
-    else
-      posts.appendChild(div);
-    div.querySelector(".retweet").addEventListener("click", (event) => handleInteraction(event, "retweeted"));
-    div.querySelector(".comment").addEventListener("click", (event) => handleInteraction(event, "commented"));
-    div.querySelector(".like").addEventListener("click", (event) => handleInteraction(event, "like-post"));
-
-
-
+  const posts = document.querySelector(".posts");
+  if (latest) posts.insertBefore(div, posts.firstChild);
+  else posts.appendChild(div);
+  div
+    .querySelector(".retweet")
+    .addEventListener("click", (event) =>
+      handleInteraction(event, "retweeted")
+    );
+  div
+    .querySelector(".comment")
+    .addEventListener("click", (event) =>
+      handleInteraction(event, "commented")
+    );
+  div
+    .querySelector(".like")
+    .addEventListener("click", (event) =>
+      handleInteraction(event, "like-post")
+    );
 }
 
 function handleInteraction(event, className) {
@@ -122,26 +129,25 @@ function handleInteraction(event, className) {
   const statValue = currentTarget.querySelector(".stat_value");
 
   if (currentTarget.classList.contains(className)) {
-      if (statValue.textContent === "1") {
-          statValue.textContent = "";
-      } else {
-          const value = parseInt(statValue.textContent);
-          statValue.textContent = `${value - 1}`;
-      }
+    if (statValue.textContent === "1") {
+      statValue.textContent = "";
+    } else {
+      const value = parseInt(statValue.textContent);
+      statValue.textContent = `${value - 1}`;
+    }
   } else if (statValue.textContent) {
-          const value = parseInt(statValue.textContent);
-          statValue.textContent = `${value + 1}`;
-      } else {
-        statValue.textContent = "1";
-      }
-  
+    const value = parseInt(statValue.textContent);
+    statValue.textContent = `${value + 1}`;
+  } else {
+    statValue.textContent = "1";
+  }
 
   currentTarget.classList.toggle(className);
 }
-async function createPost(){
-  const text = document.querySelector('#postText').value;
-  const file = document.querySelector('#image_button').files[0];
-  if (text == "" && file == null){
+async function createPost() {
+  const text = document.querySelector("#postText").value;
+  const file = document.querySelector("#image_button").files[0];
+  if (text == "" && file == null) {
     return;
   }
   let imgSrc = null;
@@ -149,49 +155,96 @@ async function createPost(){
     const reader = new FileReader();
     reader.readAsDataURL(file);
     imgSrc = await new Promise((resolve) => {
-        reader.onload = function () {
-            resolve(reader.result);
-        };
+      reader.onload = function () {
+        resolve(reader.result);
+      };
     });
-    }
-    let response = await fetch("http://127.0.0.1:3000/api/posts/",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify({user: JSON.parse(sessionStorage.getItem("details")), text: text, img: imgSrc, postTime: Date.now()})
-    })
-    let data = await response.json();
-    newPost(data, true);
+  }
+  let response = await fetch("http://127.0.0.1:3000/api/posts/", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({
+      user: JSON.parse(sessionStorage.getItem("details")),
+      text: text,
+      img: imgSrc,
+      postTime: Date.now(),
+    }),
+  });
+  let data = await response.json();
+  newPost(data, true);
 }
 
-function postScreen(){
-  document.getElementsByClassName("reactive_top").item(0).classList.toggle("invisible");
-  document.getElementsByClassName("posts").item(0).classList.toggle("invisible");
-  document.getElementsByClassName("category").item(0).classList.toggle("invisible");
-  document.getElementsByClassName('tweet-box').item(0).classList.toggle("visible");
-  document.getElementsByClassName('reactive_post_navigation').item(0).classList.toggle("invisible");
+function postScreen() {
+  document
+    .getElementsByClassName("reactive_top")
+    .item(0)
+    .classList.toggle("invisible");
+  document
+    .getElementsByClassName("posts")
+    .item(0)
+    .classList.toggle("invisible");
+  document
+    .getElementsByClassName("category")
+    .item(0)
+    .classList.toggle("invisible");
+  document
+    .getElementsByClassName("tweet-box")
+    .item(0)
+    .classList.toggle("visible");
+  document
+    .getElementsByClassName("reactive_post_navigation")
+    .item(0)
+    .classList.toggle("invisible");
 }
 
-function mobileCreatePost(){
+function mobileCreatePost() {
   createPost();
   postScreen();
 }
 
-document.getElementById("logged-in-user-1").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
-document.getElementById("logged-in-user-2").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
-document.getElementById("logged-in-user-3").setAttribute("src", `data:image/png;base64, ${JSON.parse(sessionStorage.getItem("details")).pfp}`);
-document.getElementById("account-name-1").innerText = JSON.parse(sessionStorage.getItem("details")).user_name;
-document.getElementById("account-id-1").innerText = JSON.parse(sessionStorage.getItem("details")).profile_url;
+document
+  .getElementById("logged-in-user-1")
+  .setAttribute(
+    "src",
+    `data:image/png;base64, ${
+      JSON.parse(sessionStorage.getItem("details")).pfp
+    }`
+  );
+document
+  .getElementById("logged-in-user-2")
+  .setAttribute(
+    "src",
+    `data:image/png;base64, ${
+      JSON.parse(sessionStorage.getItem("details")).pfp
+    }`
+  );
+document
+  .getElementById("logged-in-user-3")
+  .setAttribute(
+    "src",
+    `data:image/png;base64, ${
+      JSON.parse(sessionStorage.getItem("details")).pfp
+    }`
+  );
+document.getElementById("account-name-1").innerText = JSON.parse(
+  sessionStorage.getItem("details")
+).user_name;
+document.getElementById("account-id-1").innerText = JSON.parse(
+  sessionStorage.getItem("details")
+).profile_url;
 
 let posts = 1;
 async function loadMorePosts() {
-  const response = await fetch(`http://127.0.0.1:3000/api/posts?page=${Math.floor(posts/5)+1}&size=5`);
+  const response = await fetch(
+    `http://127.0.0.1:3000/api/posts?page=${Math.floor(posts / 5) + 1}&size=5`
+  );
   const data = await response.json();
-  data.forEach(post => {
+  data.forEach((post) => {
     newPost(post, false);
-    posts+=1;
+    posts += 1;
   });
 }
 
@@ -199,9 +252,9 @@ function isScrollAtBottom() {
   return window.innerHeight + window.scrollY >= document.body.offsetHeight;
 }
 
-window.addEventListener('scroll', async () => {
+window.addEventListener("scroll", async () => {
   if (isScrollAtBottom()) {
-      await loadMorePosts();
+    await loadMorePosts();
   }
 });
 

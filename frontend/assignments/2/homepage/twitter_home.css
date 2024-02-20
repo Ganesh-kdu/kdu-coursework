@@ -194,7 +194,8 @@
   padding: 2px;
 }
 
-.spacer, .post_time {
+.spacer,
+.post_time {
   font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: rgb(113, 118, 123);
   font-size: 15px;
