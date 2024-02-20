@@ -27,6 +27,5 @@ replay_pid*
 .vscode
 
 node_modules
-style.css
 style.css.map
 frontend/assignments/1/cypress/
