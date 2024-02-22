@@ -1,23 +1,27 @@
+import "./container.scss";
 function Items({
     list,
     setList,
     searchQuery,
-}: {
+}: Readonly<{
     list: string[];
     setList: Function;
     searchQuery: string;
-}) {
-    let id = 0;
+}>) {
     const close = (index: number) => {
         setList(list.filter((item, i) => i !== index));
     };
+    let id = 0;
     return (
         <div>
             <h2>Items</h2>
-            <>
+            <div id="list">
                 {list.map((listItem: string, index: number) => {
-                    return listItem.match(searchQuery) ? (
-                        <div className="item" id={(id++).toString()}>
+                    return RegExp(searchQuery).exec(listItem) ? (
+                        <div
+                            className={`item ${id != 0 ? "" : "first-item"}`}
+                            id={(id++).toString()}
+                        >
                             <div>{listItem}</div>
                             <button
                                 className="close"
@@ -30,7 +34,7 @@ function Items({
                         ""
                     );
                 })}
-            </>
+            </div>
         </div>
     );
 }

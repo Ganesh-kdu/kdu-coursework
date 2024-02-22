@@ -2,32 +2,35 @@
     width: 73%;
     margin: auto;
     margin-top: 1%;
-    border: 1px solid rgba(53, 53, 53, 0.226);
-    border-radius: 3px;
-    padding: 10px;
+    border: 2px solid #eeeef5;
+    border-radius: 5px;
+    padding: 15px;
     input{
         padding: 8px;
-        border: 1px solid rgba(53, 53, 53, 0.226);
-        font-family: 'Lato';
+        border: 2px solid #eeeef5;
+        font-family: 'Lato',  sans-serif;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     .add{
         background-color: #343A40;
         color: white;
         border: none;
-        border-radius: 3px;
-        padding: 8px;
-        font-family: 'Lato';
+        border-radius: 4px;
+        padding: 10px;
+        margin-left: 8px;
+        font-family: 'Lato',  sans-serif;
     }
 }
 .item{
     width: 100%;
-    border: 1px solid rgba(53, 53, 53, 0.226);
-    border-radius: 3px;
-    margin-top: -1px;
+    border: 2px solid #eeeef5;
+    margin-top: -2px;
     padding: 10px;
     display: flex;
     align-items: center;
-    font-family: 'Lato';
+    font-family: 'Lato', sans-serif;
 }
 .close{
     display: flex;
@@ -39,5 +42,15 @@
     padding: 8px;
     color: white;
     border-radius: 5px;
-    font-family: 'Lato';
+    font-family: 'Lato',  sans-serif;
+}
+.first-item{
+    margin-top: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.item:last-child{
+    margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
