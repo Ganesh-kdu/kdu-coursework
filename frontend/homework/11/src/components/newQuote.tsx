@@ -1,7 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import IQuote from "../IQuote";
-
-function NewQuote({addQuote}:{addQuote: Function}){
+import "./newQuote.scss"
+function NewQuote({addQuote}:Readonly<{addQuote: Function}>){
     const getData = async () => {
         const response = await fetch(
             "https://api.quotable.io/quotes/random?limit=1"
@@ -10,7 +8,7 @@ function NewQuote({addQuote}:{addQuote: Function}){
         await addQuote((prev:string[]) => [...prev,...result]);
     };
     return (
-        <button onClick={getData}></button>
+        <button onClick={getData} className="quote-button">NEW QUOTE</button>
     )
 }
 export default NewQuote;

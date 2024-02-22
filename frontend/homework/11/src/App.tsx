@@ -7,7 +7,7 @@ import IQuote from "./IQuote";
 
 function App() {
     const [quotes, setQuotes] = useState<IQuote[]>([]);
-    const [filters, setFilters] = useState<string[]>(["dsd","dfgs"]);
+    const [filters, setFilters] = useState<string[]>(["Filters","dfgs"]);
     const getData = async () => {
       const response = await fetch(
           "https://api.quotable.io/quotes/random?limit=3"
@@ -20,9 +20,10 @@ function App() {
         getData();
     }, []);
     return (
-        <div>
+        <div className="container">
           <NewQuote addQuote = {setQuotes}/>
-          <Filters f={filters} />
+          <Filters filters={filters} setFilters={setFilters}/>
+          <hr></hr>
           <Quotes quotes = {quotes} filters = {filters} addFilter = {setFilters}/>
         </div>
     );
