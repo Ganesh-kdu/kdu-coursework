@@ -8,7 +8,7 @@ function Filters({
     };
     return (
         <div className="filters" id="filters">
-            Filters
+            <div className="label">Filters</div>
             {filters.map((filter: string, index: number) => {
                 return (
                     <div className="filter" key={`${filter}`}>
