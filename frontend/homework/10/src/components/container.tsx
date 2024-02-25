@@ -9,6 +9,7 @@ function MainContainer({ query }: any) {
             ...list,
             (document.getElementById("newItem") as HTMLInputElement).value,
         ]);
+        (document.getElementById("newItem") as HTMLInputElement).value = "";
     }
     return (
         <div className="container">
