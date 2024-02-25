@@ -49,7 +49,9 @@ app.get("/", (req, res) => {
 });
 app.get("/search?:query", (req, res) => {
     (async () => {
-        res.send(await searchRecipes(req.params.query));
+        const query = req.query.query?.toString();
+        const results = await searchRecipes(query ?? "");
+        res.send(results);
     })();
 });
 app.listen(3000, () => {
