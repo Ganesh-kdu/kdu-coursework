@@ -9,6 +9,7 @@ function MainContainer() {
             ...list,
             (document.getElementById("newItem") as HTMLInputElement).value,
         ]);
+        (document.getElementById("newItem") as HTMLInputElement).value = "";
     }
     const listObj = useMemo(() => ({list:list, setList:setList}),[list]);
     return (
