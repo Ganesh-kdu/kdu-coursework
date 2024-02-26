@@ -1,11 +1,12 @@
-import { SearchContext } from "../App";
+import { useDispatch } from "react-redux";
+import { setQuery } from "../redux/searchSlice";
+
 import "./header.scss";
-import React, { useContext } from "react";
 function Header() {
-    const context = useContext(SearchContext);
-    const { setQuery } = context as { searchQuery: string; setQuery: (searchQuery: string) => void };
+    const reduxDispatch = useDispatch();
+
     const querySetter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
+        reduxDispatch(setQuery(e.target.value));
     };
 
     return (

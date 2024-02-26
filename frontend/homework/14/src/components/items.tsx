@@ -1,18 +1,19 @@
-import { useContext } from "react";
 import "./container.scss";
-import { ListContext } from "./container";
-import { SearchContext } from "../App";
+
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { setList } from "../redux/listSlice";
 function Items() {
-    const listContext = useContext(ListContext);
-    const { list, setList } = listContext as { list: string[]; setList: (list: string[]) => void };
+    const reduxDispatch = useDispatch();
+    const list = useSelector((state: RootState) => state.list.list);
+    const searchQuery = useSelector(
+        (state: RootState) => state.search.searchQuery
+    );
+
     const close = (index: number) => {
-        setList(list.filter((item, i) => i !== index));
+        reduxDispatch(setList(list.filter((item, i) => i !== index)));
     };
-    const searchContext = useContext(SearchContext);
-    const { searchQuery } = searchContext as {
-        searchQuery: string;
-        setQuery: (searchQuery: string) => void;
-    };
+
     let id = 0;
     return (
         <div>
