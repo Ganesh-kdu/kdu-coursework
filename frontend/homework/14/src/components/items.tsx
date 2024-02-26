@@ -2,7 +2,8 @@ import "./container.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { setList } from "../redux/listSlice";
+import { setList, check } from "../redux/listSlice";
+
 function Items() {
     const reduxDispatch = useDispatch();
     const list = useSelector((state: RootState) => state.list.list);
@@ -24,8 +25,15 @@ function Items() {
                         <div
                             className={`item ${id !== 0 ? "" : "first-item"}`}
                             id={(id++).toString()}
+                            key={id+listItem}
                         >
-                            <div>{listItem}</div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    onChange={() => reduxDispatch(check(index))}
+                                />
+                                {listItem}
+                            </div>
                             <button
                                 className="close"
                                 onClick={() => close(index)}
