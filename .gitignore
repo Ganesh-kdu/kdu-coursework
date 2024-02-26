@@ -29,3 +29,5 @@ replay_pid*
 node_modules
 *.css.map
 frontend/assignments/1/cypress/
+.vite
+frontend/assignments/2/homepage/
