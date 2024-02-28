@@ -18,23 +18,23 @@ describe("<Header />", () => {
         )
         window.store = store;
     });
-    it("button disabled at start", () => {
+    it("Button should be disabled at start", () => {
         cy.get("input#newItem").should("exist");
         cy.get("input#newItem").should("have.value", "");
         cy.get("button#submit").should("exist");
         cy.get("button#submit").should("be.disabled");
     });
-    it("button enabled on typing", () => {
+    it("Button should get enabled on typing", () => {
         cy.get("input#newItem").type("test");
         cy.get("button#submit").should("be.enabled");
     });
-    it("button disabled again on removing text", () => {
+    it("Button should get disabled again on removing text", () => {
         cy.get("input#newItem").type("test");
         cy.get("button#submit").should("be.enabled");
         cy.get("input#newItem").clear();
         cy.get("button#submit").should("be.disabled");
     });
-    it("check if new item added to store", () => {
+    it("New item should get added to store", () => {
         cy.get("input#newItem").type("toy");
         cy.get("button#submit").click();
         cy.window()
@@ -45,7 +45,7 @@ describe("<Header />", () => {
                 expect(list).to.deep.include("toy");
             });
     });
-    it("checked item (according to store) removed from store", () => {
+    it("Checked item (according to store) should get removed from store", () => {
         const checked = "checked"
         cy.get("input#newItem").type(checked);
         cy.get("button#submit").click();

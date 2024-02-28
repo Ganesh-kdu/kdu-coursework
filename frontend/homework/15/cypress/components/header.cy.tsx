@@ -10,7 +10,7 @@ describe("<Header />", () => {
             </Provider>
         );
     });
-    it("search field input", () => {
+    it("Shoud be able to type in search field", () => {
         cy.get("input#search").should("exist");
         cy.get("input#search").should("have.value", "");
         cy.get("input#search").type("test search query");
