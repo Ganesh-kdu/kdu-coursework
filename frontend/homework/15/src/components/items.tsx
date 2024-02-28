@@ -12,7 +12,7 @@ function Items() {
     );
 
     const close = (index: number) => {
-        reduxDispatch(setList(list.filter((item, i) => i !== index)));
+        reduxDispatch(setList(list.filter((_item, i) => i !== index)));
     };
 
     let id = 0;
