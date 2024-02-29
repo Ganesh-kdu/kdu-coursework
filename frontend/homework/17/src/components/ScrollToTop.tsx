@@ -17,8 +17,7 @@ export const ScrollToTop = () => {
             }}
         >
             <p style={{ height: "3000px" }}>
-                This is a long content. Scroll down and refresh the page, you'll
-                be scrolled to top.
+                This is a long content.
             </p>
         </div>
     );
