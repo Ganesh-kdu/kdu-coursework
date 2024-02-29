@@ -8,7 +8,7 @@ declare global {
     }
 }
 
-describe("<Header />", () => {
+describe("<MainContainer />", () => {
     beforeEach(() => {
         cy.mount(
             <Provider store={store}>

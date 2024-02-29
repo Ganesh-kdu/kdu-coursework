@@ -11,7 +11,7 @@ declare global {
 const defaultList = ["Item1", "Item2"];
 store.dispatch(setList(defaultList));
 
-describe("<Header />", () => {
+describe("<Items />", () => {
     beforeEach(() => {
         cy.mount(
             <Provider store={store}>
