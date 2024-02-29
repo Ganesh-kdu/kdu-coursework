@@ -1,7 +1,7 @@
 import Header from "../../src/components/header";
 import { Provider } from "react-redux";
 import { store } from "../../src/redux/store";
-
+import React from "react";
 describe("<Header />", () => {
     beforeEach(() => {
         cy.mount(

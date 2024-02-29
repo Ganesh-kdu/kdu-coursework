@@ -1,6 +1,6 @@
 describe('Main Container Component', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:5174/');
+        cy.visit('http://localhost:5173/');
         cy.get('input#newItem').type('New Item');
         cy.contains('button', 'Submit').click();
     });
@@ -39,5 +39,10 @@ describe('Main Container Component', () => {
         cy.contains('#list', 'New Item').should('exist');
         cy.contains('#list', '3rd Item').should('exist');
 
+    });
+
+    it('Should still have list items after reload', () => {
+        cy.reload();
+        cy.contains('#list', 'New Item').should('exist'); 
     });
 });

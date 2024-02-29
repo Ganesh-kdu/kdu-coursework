@@ -2,6 +2,7 @@ import { Provider } from "react-redux";
 import { store, StoreType } from "../../src/redux/store";
 import MainContainer from "../../src/components/container";
 import { check } from "../../src/redux/listSlice";
+import React from "react";
 declare global {
     interface Window {
         store:StoreType;
