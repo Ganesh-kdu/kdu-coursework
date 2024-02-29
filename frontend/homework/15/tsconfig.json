@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals","cypress", "node","jest"],
 
     /* Linting */
     "strict": true,
@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "cypress/components/tests", "cypress/components/header.cy.tsx", "cypress/components/container.cy.tsx"],
+  "include": ["cypress","src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

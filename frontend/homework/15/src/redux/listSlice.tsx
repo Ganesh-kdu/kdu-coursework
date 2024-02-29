@@ -21,7 +21,9 @@ const listSlice = createSlice({
         },
         check: (state, action: PayloadAction<number>) => {
             if (state.checked.includes(action.payload)) {
-                state.checked = state.checked.filter((item) => item !== action.payload)
+                state.checked = state.checked.filter(
+                    (item) => item !== action.payload
+                );
             } else {
                 state.checked = [...state.checked, action.payload];
             }

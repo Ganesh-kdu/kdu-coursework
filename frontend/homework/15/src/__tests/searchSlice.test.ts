@@ -16,6 +16,6 @@ describe("searchSlice reducer", () => {
     it("should handle setting the same search query", () => {
         const initialState = { searchQuery: "Initial Query" };
         const newState = searchReducer(initialState, setQuery("Initial Query"));
-        expect(newState).toEqual(initialState); // State should remain unchanged
+        expect(newState).toEqual(initialState);
     });
 });

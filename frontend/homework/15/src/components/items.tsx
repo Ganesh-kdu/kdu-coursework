@@ -25,7 +25,7 @@ function Items() {
                         <div
                             className={`item ${id !== 0 ? "" : "first-item"}`}
                             id={(id++).toString()}
-                            key={id+listItem}
+                            key={id + listItem}
                         >
                             <div>
                                 <input

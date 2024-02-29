@@ -2,13 +2,11 @@ import { Provider } from "react-redux";
 import { store, StoreType } from "../../src/redux/store";
 import MainContainer from "../../src/components/container";
 import { check } from "../../src/redux/listSlice";
-import React from "react";
 declare global {
     interface Window {
-        store:StoreType;
+        store: StoreType;
     }
 }
-
 
 describe("<Header />", () => {
     beforeEach(() => {
@@ -16,7 +14,7 @@ describe("<Header />", () => {
             <Provider store={store}>
                 <MainContainer />
             </Provider>
-        )
+        );
         window.store = store;
     });
     it("Button should be disabled at start", () => {
@@ -47,21 +45,20 @@ describe("<Header />", () => {
             });
     });
     it("Checked item (according to store) should get removed from store", () => {
-        const checked = "checked"
+        const checked = "checked";
         cy.get("input#newItem").type(checked);
         cy.get("button#submit").click();
 
-        const unchecked = "unchecked"
+        const unchecked = "unchecked";
         cy.get("input#newItem").type(unchecked);
         cy.get("button#submit").click();
 
         cy.window()
             .its("store")
-            .then((store:StoreType) => {
+            .then((store: StoreType) => {
                 const state = store.getState();
-                store.dispatch(check(state.list.list.indexOf(checked)))
-            })
-            
+                store.dispatch(check(state.list.list.indexOf(checked)));
+            });
 
         cy.get("button#clear").click();
 
@@ -70,7 +67,7 @@ describe("<Header />", () => {
             .invoke("getState")
             .then((state: any) => {
                 const list = state.list.list;
-                expect(list).to.deep.not.include("checked");
+                expect(list).to.not.include("checked");
             });
     });
 });

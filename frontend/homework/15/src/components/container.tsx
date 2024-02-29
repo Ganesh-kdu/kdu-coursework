@@ -37,7 +37,6 @@ function MainContainer() {
                 type="text"
                 id="newItem"
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-
                     setEmpty(event.target.value === "");
                 }}
             ></input>
