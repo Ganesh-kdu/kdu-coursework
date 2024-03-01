@@ -28,6 +28,8 @@ function DateSection() {
         const diff = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)+1
         if (!Number.isNaN(diff) && diff>0)
             reduxDispatch(setDuration(diff))
+        else
+            reduxDispatch(setDuration(-1))
     }
     return (
         <div className={classes.sectionContainer}>

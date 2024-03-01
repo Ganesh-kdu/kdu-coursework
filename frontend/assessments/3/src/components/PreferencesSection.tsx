@@ -43,7 +43,6 @@ function PreferencesSection() {
     function toggleAddOn(addOn: IAddOn) {
         document.getElementById(addOn.name)?.classList.toggle(classes.selected);
         reduxDispatch(togglePreference(addOn));
-        console.log(addOn.name);
     }
     return (
         <div className={classes.sectionContainer}>

@@ -9,7 +9,10 @@ function Submit(){
             border: "none",
             color: "white",
             padding: '15px',
-            fontSize: '15px'
+            fontSize: '15px',
+            '&:disabled':{
+                opacity: '0.5'
+            }
         },
         option: {
             border: "1px solid #B3B3B3",
@@ -45,8 +48,8 @@ function Submit(){
     }
     return(
         <div>
-            <div>{bill*duration} + 18% GST = {bill*duration*1.18}</div>
-            <button className={classes.submit} onClick={generateBill}>Submit</button>
+            <div>{Math.max(bill*duration,0)} + 18% GST = {Math.max(bill*duration*1.18,0)}</div>
+            <button className={classes.submit} onClick={generateBill} disabled={duration<=0}>Submit</button>
         </div>
     )
 }

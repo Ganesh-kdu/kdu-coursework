@@ -25,7 +25,7 @@ const initialState: HotelState = {
     selected: null,
     preferences: [],
     bill: 0,
-    duration: 0
+    duration: -1
 };
 const listSlice = createSlice({
     name: "list",
