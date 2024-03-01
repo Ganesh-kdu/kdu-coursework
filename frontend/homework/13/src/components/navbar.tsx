@@ -1,6 +1,14 @@
+import { useContext } from "react";
 import "../styles/navbar.scss";
 import { FaSearch } from "react-icons/fa";
+import { ECommerceContext } from "../context/ProductContext";
 function Navbar() {
+    const {
+        handleSearch,
+    } = useContext(ECommerceContext);
+    const querySetter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        handleSearch(e.target.value);
+    };
     return (
         <div className="navbar">
             <div className="search">
@@ -9,6 +17,7 @@ function Navbar() {
                     className="search-input"
                     id="search-input"
                     placeholder="Search..."
+                    onChange={querySetter}
                 />
                 <button className="search-button">
                     <FaSearch />

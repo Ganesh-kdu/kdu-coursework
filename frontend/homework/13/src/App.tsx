@@ -14,7 +14,7 @@ function App() {
         toggleLoading(true);
         const response = await fetch("https://fakestoreapi.com/products");
         setProducts(await response.json());
-        toggleLoading(false);
+        toggleLoading(false)
     };
 
     useEffect(() => {

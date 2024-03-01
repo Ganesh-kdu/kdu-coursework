@@ -1,12 +1,13 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { IProduct, ECommerceType } from "../interfaces/interfaces";
 
 interface ECommerceProviderProps {
     children: React.ReactNode;
 }
 
-export const ECommerceContext = createContext<ECommerceType>({
+export const ECommerceContext = createContext<any>({
     productLists: [],
+    displayList: [],
     product: null,
     loading: false,
     toggleLoading: () => {},
@@ -17,9 +18,7 @@ export const ECommerceContext = createContext<ECommerceType>({
     handleSort: () => {},
     search: "",
     handleSearch: () => {},
-    filterProductLists: [],
     handleLists: () => {},
-    handleProduct: () => {},
 });
 
 export const ECommerceProvider = ({ children }: ECommerceProviderProps) => {
@@ -29,54 +28,46 @@ export const ECommerceProvider = ({ children }: ECommerceProviderProps) => {
     const [filter, setFilter] = useState<string>("");
     const [sort, setSort] = useState<string>("");
     const [search, setSearch] = useState<string>("");
-    const [filterProductLists, setFilterProductLists] =
-        useState<IProduct[]>(productLists);
+    const [displayList, setDisplayList] = useState<IProduct[]>([]);
+    useEffect(() => {
+        let tempList = productLists.filter(
+            (listItem: IProduct, _index: number) => {
+                return RegExp(search).exec(listItem.title);
+            }
+        );
 
-    const handleSearch = (searchStr: string) => {
-        setSearch(searchStr);
-    };
+        const sortByPriceAsc = (a: IProduct, b: IProduct) => {
+            return a.price - b.price;
+        };
+        const sortByPriceDesc = (a: IProduct, b: IProduct) => {
+            return b.price - a.price;
+        };
+        if (sort == "ASC") tempList = tempList.sort(sortByPriceAsc);
+        else tempList = tempList.sort(sortByPriceDesc);
 
-    const toggleLoading = (state: boolean) => {
-        setLoading(state);
-    };
-
-    const setProducts = (response: IProduct[]) => {
-        setProductLists(response);
-    };
-
-    const handleFilter = (filter: string) => {
-        setFilter(filter);
-    };
-
-    const handleSort = (sort: string) => {
-        setSort(sort);
-    };
-
-    const handleLists = (filterProductLists: IProduct[]) => {
-        setFilterProductLists(filterProductLists);
-    };
-
-    const handleProduct = (product: IProduct) => {
-        setProduct(product);
-    };
-
+        tempList = tempList.filter(
+            (listItem: IProduct, _index: number) => {
+                return RegExp(filter).exec(listItem.category);
+            }
+        );
+        setDisplayList(tempList)
+    }, [filter, sort, search, productLists]);
     return (
         <ECommerceContext.Provider
             value={{
-                productLists,
-                product,
-                loading,
-                filter,
-                sort,
-                search,
-                filterProductLists,
-                toggleLoading,
-                setProducts,
-                handleFilter,
-                handleSort,
-                handleSearch,
-                handleLists,
-                handleProduct,
+                productLists: productLists,
+                product: product,
+                loading: loading,
+                filter: filter,
+                sort: sort,
+                search: search,
+                displayList: displayList,
+                toggleLoading: setLoading,
+                setProducts: setProductLists,
+                handleFilter: setFilter,
+                handleSort: setSort,
+                handleSearch: setSearch,
+                handleProduct: setProduct,
             }}
         >
             {children}

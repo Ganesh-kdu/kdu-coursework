@@ -23,7 +23,6 @@ export interface ECommerceType {
     handleSort: (sort: string) => void;
     search: string;
     handleSearch: (searchStr: string) => void;
-    filterProductLists: IProduct[];
     handleLists: (filterProductLists: IProduct[]) => void;
     handleProduct: (product: IProduct) => void;
 }
