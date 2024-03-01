@@ -13,7 +13,7 @@ export interface IProduct {
 
 export interface ECommerceType {
     productLists: IProduct[];
-    product: IProduct | null;
+    displayList: IProduct[];
     loading: boolean;
     toggleLoading: (state: boolean) => void;
     setProducts: (response: IProduct[]) => void;
@@ -23,6 +23,4 @@ export interface ECommerceType {
     handleSort: (sort: string) => void;
     search: string;
     handleSearch: (searchStr: string) => void;
-    handleLists: (filterProductLists: IProduct[]) => void;
-    handleProduct: (product: IProduct) => void;
 }

@@ -27,12 +27,21 @@
         display: flex;
         align-items: center;
         margin-left: auto;
+        .option-title {
+            color: white;
+            padding: 5px;
+        }
         .filters {
             appearance: none;
-            // -webkit-appearance: none;
+            padding: 2px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
         .sort {
             appearance: none;
+            padding: 2px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
     }
 }

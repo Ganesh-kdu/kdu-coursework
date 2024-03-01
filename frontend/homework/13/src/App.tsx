@@ -1,7 +1,6 @@
 import Home from "./components/home";
 import Navbar from "./components/navbar";
-import Product from "./components/products";
-import "./styles/App.scss";
+import Product from "./components/product";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ECommerceContext } from "./context/ProductContext";
 import { useContext, useEffect } from "react";
@@ -14,7 +13,7 @@ function App() {
         toggleLoading(true);
         const response = await fetch("https://fakestoreapi.com/products");
         setProducts(await response.json());
-        toggleLoading(false)
+        toggleLoading(false);
     };
 
     useEffect(() => {

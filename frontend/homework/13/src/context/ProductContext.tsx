@@ -5,10 +5,9 @@ interface ECommerceProviderProps {
     children: React.ReactNode;
 }
 
-export const ECommerceContext = createContext<any>({
+export const ECommerceContext = createContext<ECommerceType>({
     productLists: [],
     displayList: [],
-    product: null,
     loading: false,
     toggleLoading: () => {},
     setProducts: () => {},
@@ -18,12 +17,10 @@ export const ECommerceContext = createContext<any>({
     handleSort: () => {},
     search: "",
     handleSearch: () => {},
-    handleLists: () => {},
 });
 
 export const ECommerceProvider = ({ children }: ECommerceProviderProps) => {
     const [productLists, setProductLists] = useState<IProduct[]>([]);
-    const [product, setProduct] = useState<IProduct | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [filter, setFilter] = useState<string>("");
     const [sort, setSort] = useState<string>("");
@@ -45,29 +42,25 @@ export const ECommerceProvider = ({ children }: ECommerceProviderProps) => {
         if (sort == "ASC") tempList = tempList.sort(sortByPriceAsc);
         else tempList = tempList.sort(sortByPriceDesc);
 
-        tempList = tempList.filter(
-            (listItem: IProduct, _index: number) => {
-                return RegExp(filter).exec(listItem.category);
-            }
-        );
-        setDisplayList(tempList)
+        tempList = tempList.filter((listItem: IProduct, _index: number) => {
+            return RegExp(filter).exec(listItem.category);
+        });
+        setDisplayList(tempList);
     }, [filter, sort, search, productLists]);
     return (
         <ECommerceContext.Provider
             value={{
                 productLists: productLists,
-                product: product,
+                displayList: displayList,
                 loading: loading,
+                toggleLoading: setLoading,
+                setProducts: setProductLists,
                 filter: filter,
                 sort: sort,
                 search: search,
-                displayList: displayList,
-                toggleLoading: setLoading,
-                setProducts: setProductLists,
                 handleFilter: setFilter,
                 handleSort: setSort,
                 handleSearch: setSearch,
-                handleProduct: setProduct,
             }}
         >
             {children}

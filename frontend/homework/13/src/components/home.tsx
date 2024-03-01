@@ -10,9 +10,17 @@ function Home() {
             <div className="title">
                 <h1 className="kdu">KDU</h1>
                 <h1 className="marketplace">MARKETPLACE</h1>
-
             </div>
-            {displayList.map((product:IProduct) => {return <ProductTile key={product.id} productDetails={product}/>})}
+            <div className="products">
+                {displayList.map((product: IProduct) => {
+                    return (
+                        <ProductTile
+                            key={product.id}
+                            productDetails={product}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 }
