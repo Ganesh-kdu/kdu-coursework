@@ -1,6 +1,7 @@
 import "../styles/home.scss"
 import ProductTile from "./productTile";
 function Home() {
+    const {productList } = useSelector(() => {state:}) 
     return(
         <div>
             <div className="title">
