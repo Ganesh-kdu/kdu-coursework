@@ -45,7 +45,7 @@ function Submit(){
     }
     return(
         <div>
-            <div>Cost + 18% GST = {bill*duration*1.18}</div>
+            <div>{bill*duration} + 18% GST = {bill*duration*1.18}</div>
             <button className={classes.submit} onClick={generateBill}>Submit</button>
         </div>
     )

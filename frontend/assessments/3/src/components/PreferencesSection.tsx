@@ -25,6 +25,11 @@ function PreferencesSection() {
         sectionContainer: {
             marginBottom: "20px",
         },
+        default: {
+            fontSize: "15px",
+            padding: "15px",
+            marginBottom: "10px",
+        },
     });
     const classes = useStyles();
     const { rooms, selected } = useSelector((state: RootState) => state.list);
@@ -59,7 +64,7 @@ function PreferencesSection() {
                     );
                 })
             ) : (
-                <div>No room selected</div>
+                <div className={classes.default}>No room selected</div>
             )}
         </div>
     );

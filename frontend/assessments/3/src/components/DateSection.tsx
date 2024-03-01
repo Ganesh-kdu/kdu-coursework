@@ -1,7 +1,6 @@
 import { createUseStyles } from "react-jss";
 import SectionHeader from "./SectionHeader";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch } from "react-redux";
 import { setDuration } from "../redux/hotelSlice";
 
 function DateSection() {
