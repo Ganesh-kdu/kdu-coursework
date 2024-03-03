@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import fetchProducts from "./context/thunk";
 import { store } from "./context/Store";
+import { SnackBar } from "./components/snackbar";
 
 function App() {
     type AppDispatch = typeof store.dispatch;
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/:id" element={<Product />} />
                 </Routes>
             </BrowserRouter>
+            <SnackBar/>
         </>
     );
 }
