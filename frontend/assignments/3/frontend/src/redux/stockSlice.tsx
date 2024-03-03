@@ -15,6 +15,9 @@ const productSlice = createSlice({
         setStocks: (state, action: PayloadAction<IStock[]>) => {
             state.stockList = action.payload;
         },
+        watchToggle: (state, action: PayloadAction<number>) => {
+            state.watchList[action.payload] = !state.watchList[action.payload];
+        }
     },
     extraReducers(builder) {
         builder.addCase(fetchStocks.pending, (state) => {
@@ -23,14 +26,13 @@ const productSlice = createSlice({
         builder.addCase(fetchStocks.fulfilled, (state, action) => {
             state.loading = "succeeded";
             state.stockList = action.payload;
-            console.log(state.stockList)
-            // state.watchList = 
+            state.watchList = Array<boolean>(state.stockList.length).fill(false);
         });
         builder.addCase(fetchStocks.rejected, (state) => {
             state.loading = "failed";
         });
     },
 });
-export const { setStocks } =
+export const { setStocks, watchToggle } =
     productSlice.actions;
 export default productSlice.reducer;

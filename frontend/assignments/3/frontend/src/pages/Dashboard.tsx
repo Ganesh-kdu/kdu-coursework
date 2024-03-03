@@ -6,6 +6,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Explore from '../components.tsx/explore';
+import Watchlist from '../components.tsx/watchlist';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -66,9 +68,10 @@ export default function FloatingActionButtonZoom() {
           indicatorColor="primary"
           textColor="primary"
           aria-label="action tabs example"
+          sx={{p: 0, height: 'max-content'}}
         >
-          <Tab label="Explore" {...a11yProps(0)} />
-          <Tab label="My Watchlist" {...a11yProps(1)} />
+          <Tab label="Explore" {...a11yProps(0)} sx={{p: 0, margin: 0, height: 'max-content'}}/>
+          <Tab label="My Watchlist" {...a11yProps(1)}  sx={{p: 0, margin: 0, height: 'max-content'}}/>
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -77,10 +80,10 @@ export default function FloatingActionButtonZoom() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
+          <Explore/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+          <Watchlist/>
         </TabPanel>
       </SwipeableViews>
     </Box>
