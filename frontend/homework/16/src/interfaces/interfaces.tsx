@@ -14,13 +14,8 @@ export interface IProduct {
 export interface ECommerceType {
     productLists: IProduct[];
     displayList: IProduct[];
-    loading: boolean;
-    toggleLoading: (state: boolean) => void;
-    setProducts: (response: IProduct[]) => void;
+    loading: string;
     filter: string;
     sort: string;
-    handleFilter: (filter: string) => void;
-    handleSort: (sort: string) => void;
     search: string;
-    handleSearch: (searchStr: string) => void;
 }

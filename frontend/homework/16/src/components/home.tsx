@@ -1,10 +1,11 @@
-import { useContext } from "react";
 import "../styles/home.scss";
 import ProductTile from "./productTile";
 import { IProduct } from "../interfaces/interfaces";
-import { ECommerceContext } from "../context/ProductContext";
+import { RootState } from "../context/Store";
+import { useSelector } from "react-redux";
 function Home() {
-    const { displayList } = useContext(ECommerceContext);
+    const { displayList } = useSelector((state: RootState) => state.products);
+
     return (
         <div>
             <div className="title">

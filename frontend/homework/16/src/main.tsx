@@ -2,11 +2,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/reset.scss";
 import "./styles/index.scss";
+import { store } from "./context/Store.tsx";
+import { Provider } from "react-redux";
 
-import { ECommerceProvider } from "./context/ProductContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ECommerceProvider>
+    <Provider store={store}>
         <App />
-    </ECommerceProvider>
+    </Provider>
 );

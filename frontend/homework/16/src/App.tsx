@@ -2,27 +2,14 @@ import Home from "./components/home";
 import Navbar from "./components/navbar";
 import Product from "./components/product";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ECommerceContext } from "./context/ProductContext";
-import { useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import fetchProducts from "./context/thunk";
+import { store } from "./context/Store";
 
 function App() {
-    const { setProducts, handleFilter, toggleLoading } =
-        useContext(ECommerceContext);
-
-    const fetchData = async (): Promise<void> => {
-        toggleLoading(true);
-        const response = await fetch("https://fakestoreapi.com/products");
-        setProducts(await response.json());
-        toggleLoading(false);
-    };
-
-    useEffect(() => {
-        fetchData();
-        const searchString = window.location.search;
-        const params = new URLSearchParams(searchString);
-        handleFilter(params.get("filter") ?? "");
-    }, []);
-
+    type AppDispatch = typeof store.dispatch;
+    const reduxDispatch = useDispatch<AppDispatch>();
+    reduxDispatch(fetchProducts());
     return (
         <>
             <Navbar />

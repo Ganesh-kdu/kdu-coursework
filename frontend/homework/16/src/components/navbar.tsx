@@ -1,19 +1,19 @@
-import { useContext } from "react";
 import "../styles/navbar.scss";
 import { FaSearch } from "react-icons/fa";
-import { ECommerceContext } from "../context/ProductContext";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleFilter, handleSearch, handleSort } from "../context/ProductSlice";
 function Navbar() {
-    const { handleSearch, handleFilter, handleSort } =
-        useContext(ECommerceContext);
+    const reduxDispatch = useDispatch();
+
     const querySetter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        handleSearch(e.target.value);
+        reduxDispatch(handleSearch(e.target.value));
     };
     const filterSetter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        handleFilter(e.target.value);
+        reduxDispatch(handleFilter(e.target.value));
     };
     const sortSetter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        handleSort(e.target.value);
+        reduxDispatch(handleSort(e.target.value));
     };
     const { id } = useParams();
     console.log(id)

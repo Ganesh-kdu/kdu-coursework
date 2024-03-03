@@ -1,10 +1,10 @@
-import { useContext } from "react";
 import "../styles/product.scss";
-import { ECommerceContext } from "../context/ProductContext";
 import { IProduct } from "../interfaces/interfaces";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../context/Store";
 function Product() {
-    const { displayList } = useContext(ECommerceContext);
+    const { displayList } = useSelector((state: RootState) => state.products);
     const { id } = useParams();
     const product: IProduct = displayList.filter(
         (product: IProduct) => product.id.toString() == id!.toString()
