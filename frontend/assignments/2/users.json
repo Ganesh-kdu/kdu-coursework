@@ -1,0 +1,23 @@
+{
+  "Ganesh": {
+    "id": "1",
+    "user_name": "Ganesh",
+    "user_email_id": "ganesh@kickdrumtech.com",
+    "password": "1111",
+    "profile_url": "@ggs"
+  },
+  "Ankush": {
+    "id": "2",
+    "user_name": "Ankush",
+    "user_email_id": "ankush@kickdrumtech.com",
+    "password": "2222",
+    "profile_url": "@ankush"
+  },
+  "Rahul": {
+    "id": "3",
+    "user_name": "Rahul",
+    "user_email_id": "ganesh@kickdrumtech.com",
+    "password": "3333",
+    "profile_url": "@rahul"
+  }
+}
