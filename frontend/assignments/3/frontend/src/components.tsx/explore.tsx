@@ -1,7 +1,6 @@
 import { createUseStyles } from "react-jss";
 import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import "../assets/plus.png";
 import { watchToggle } from "../redux/stockSlice";
 import { useState } from "react";
 import { Pagination } from "@mui/material";

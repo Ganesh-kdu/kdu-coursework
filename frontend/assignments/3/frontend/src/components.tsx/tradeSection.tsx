@@ -30,7 +30,7 @@ function TradeSection({
             alignItems: "flex-end",
             backgroundImage:
                 "linear-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px),linear-gradient(90deg, rgba(0, 0, 0, 0.4) 1px, transparent 1px)",
-            backgroundSize: "100px 100px",
+            backgroundSize: "100px 125px",
         },
         data: {
             display: "flex",
