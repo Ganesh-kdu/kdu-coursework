@@ -16,7 +16,11 @@ function TradeSection({
             justifyContent: "space-between",
         },
         priceContainer: {},
-        input: {},
+        input: {
+            flexGrow: 1,
+            marginLeft:"2px",
+            marginRight:"2px"
+        },
         graphContainer: {
             width: "100%",
             // flexGrow: 1,
@@ -45,8 +49,10 @@ function TradeSection({
             paddingLeft: "10px",
             paddingRight: "10px",
             border: "1px solid black",
+            fontSize: '20px',
+            marginRight:"2px"
         },
-        company: { border: "none", paddingRight: "5px", paddingLeft: "10px" },
+        company: { border: "none", paddingRight: "5px", paddingLeft: "10px", fontSize: '20px'},
         stockPrice: {
             display: "flex",
             justifyContent: "center",
@@ -54,10 +60,16 @@ function TradeSection({
             paddingLeft: "10px",
             paddingRight: "10px",
             border: "1px solid black",
+            fontSize: '20px',
+            marginLeft:"2px",
+            marginRight:"2px"
         },
         price: {
             paddingLeft: "20px",
             paddingRight: "15px",
+            fontSize: '20px',
+            marginLeft:"4px",
+            marginRight:"4px"
         },
         increase: {
             paddingLeft: "3px",
@@ -98,24 +110,33 @@ function TradeSection({
             backgroundColor: "#b2f2bb",
             borderColor: "#2f9e44",
             zIndex: "2",
+            fontSize: '20px',
+            marginLeft:"2px",
+            marginRight:"2px",
+            border: "1px solid"
         },
         increaseBox: {
             color: "#2f9e44",
             border: "1px solid",
             backgroundColor: "#b2f2bb",
             borderColor: "#2f9e44",
+            fontSize: '20px'
         },
         sell: {
             padding: "15px",
             color: "#e03131",
             backgroundColor: "#ffe9e9",
             borderColor: "#e03131",
+            fontSize: '20px',
+            marginLeft:"2px",
+            border: "1px solid"
         },
         decreaseBox: {
             color: "#e03131",
             border: "1px solid",
             backgroundColor: "#ffe9e9",
             borderColor: "#e03131",
+            fontSize: '20px'
         },
         symbol: {},
         container: {
@@ -202,7 +223,7 @@ function TradeSection({
                         {percentage.toFixed(2)}
                     </div>
                 </div>
-                <input type="number" placeholder="Enter QTY" id="qty" />
+                <input type="number" placeholder="Enter QTY" id="qty" className={classes.input}/>
                 <button
                     className={classes.buy}
                     name="BUY"
