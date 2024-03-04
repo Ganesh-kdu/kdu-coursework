@@ -1,11 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import fetchStocks from "./thunk";
-import { IStock, IStockMarket } from "../interfaces/interfaces";
+import { IStock, IStockMarket, ITransaction } from "../interfaces/interfaces";
 
 const initialState: IStockMarket = {
     stockList: [],
     watchList: [],
-    loading: ""
+    loading: "",
+    balance: 20000,
+    trades: []
 };
 
 const productSlice = createSlice({
@@ -17,7 +19,13 @@ const productSlice = createSlice({
         },
         watchToggle: (state, action: PayloadAction<number>) => {
             state.watchList[action.payload] = !state.watchList[action.payload];
-        }
+        },
+        addTransaction: (state, action: PayloadAction<ITransaction>) => {
+            state.trades = [...state.trades, action.payload];
+        },
+        updateBalance: (state, action: PayloadAction<number>) => {
+            state.balance = state.balance - action.payload;
+        },
     },
     extraReducers(builder) {
         builder.addCase(fetchStocks.pending, (state) => {
@@ -33,6 +41,6 @@ const productSlice = createSlice({
         });
     },
 });
-export const { setStocks, watchToggle } =
+export const { setStocks, watchToggle, addTransaction, updateBalance } =
     productSlice.actions;
 export default productSlice.reducer;

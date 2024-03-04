@@ -5,6 +5,7 @@ import "../assets/plus.png";
 import { watchToggle } from "../redux/stockSlice";
 import { useState } from "react";
 import { Pagination } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Explore() {
     const useStyles = createUseStyles({
@@ -34,7 +35,14 @@ function Explore() {
             boxSizing: "border-box",
             margin: "20px",
         },
-        company: {},
+        company: {
+            background:'none',
+            border:'none',
+            cursor: 'pointer',
+            margin: 0,
+            padding: 0,
+            fontSize: "16px"
+        },
         base: {
             textAlign: "end",
             marginLeft: "auto",
@@ -108,9 +116,11 @@ function Explore() {
                 {stockList.slice(pageSize*(page-1),pageSize*page).map((stock, index) => {
                     return (
                         <div className={classes.row} key={stock.id}>
-                            <div className={classes.company}>
+                            <Link to={stock.id.toString()}>
+                            <button className={classes.company}>
                                 {stock.stockSymbol}
-                            </div>
+                            </button>
+                            </Link>
                             <div className={classes.base}>
                                 {stock.basePrice}
                             </div>

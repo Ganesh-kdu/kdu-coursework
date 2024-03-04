@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Summarizer', 'My Portfolio'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -24,15 +24,14 @@ function ResponsiveAppBar() {
 
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: "#1871c2", height: '60px'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters  sx={{
             display: { xs: "flex", md: 'flex'},
             flexDirection: "row",
-            // backgroundColor: "blue",
             justifyContent: "space-between"
           }}>
-          
+          <i className="fi fi-sr-chart-histogram"></i>
           <Typography
             variant="h6"
             noWrap
@@ -47,7 +46,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            KDU
+            KDU Stock Market
           </Typography>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -55,7 +54,7 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 1, color: 'white', display: 'block' }}
               >
                 {page}
               </Button>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../assets/plus.png";
 import { watchToggle } from "../redux/stockSlice";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Watchlist() {
     const useStyles = createUseStyles({
@@ -29,7 +30,14 @@ function Watchlist() {
             boxSizing: "border-box",
             margin: "20px",
         },
-        company: {},
+        company: {
+            background:'none',
+            border:'none',
+            cursor: 'pointer',
+            margin: 0,
+            padding: 0,
+            fontSize: "16px"
+        },
         base: {
             textAlign: "end",
             marginLeft: "auto",
@@ -100,9 +108,11 @@ function Watchlist() {
                         <>
                         {watchList[index] ? (
                         <div className={classes.row} key={stock.id}>
-                            <div className={classes.company}>
+                            <Link to={stock.id.toString()}>
+                            <button className={classes.company}>
                                 {stock.stockSymbol}
-                            </div>
+                            </button>
+                            </Link>
                             <div className={classes.base}>
                                 {stock.basePrice}
                             </div>
