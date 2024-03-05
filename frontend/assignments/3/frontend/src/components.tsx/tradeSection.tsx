@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { addTransaction, updateBalance } from "../redux/stockSlice";
+import { Socket } from "socket.io-client";
 
 function TradeSection({
     stock,
     newTransaction,
-}: Readonly<{ stock: IStock; newTransaction: Function }>) {
+    socket
+}: Readonly<{ stock: IStock; newTransaction: Function, socket: Socket }>) {
     const { balance } = useSelector((state: RootState) => state.stocks);
+    
     const useStyles = createUseStyles({
         details: {
             display: "flex",
@@ -18,8 +21,8 @@ function TradeSection({
         priceContainer: {},
         input: {
             flexGrow: 1,
-            marginLeft:"2px",
-            marginRight:"2px"
+            marginLeft: "2px",
+            marginRight: "2px",
         },
         graphContainer: {
             width: "100%",
@@ -49,10 +52,15 @@ function TradeSection({
             paddingLeft: "10px",
             paddingRight: "10px",
             border: "1px solid black",
-            fontSize: '20px',
-            marginRight:"2px"
+            fontSize: "20px",
+            marginRight: "2px",
         },
-        company: { border: "none", paddingRight: "5px", paddingLeft: "10px", fontSize: '20px'},
+        company: {
+            border: "none",
+            paddingRight: "5px",
+            paddingLeft: "10px",
+            fontSize: "20px",
+        },
         stockPrice: {
             display: "flex",
             justifyContent: "center",
@@ -60,16 +68,16 @@ function TradeSection({
             paddingLeft: "10px",
             paddingRight: "10px",
             border: "1px solid black",
-            fontSize: '20px',
-            marginLeft:"2px",
-            marginRight:"2px"
+            fontSize: "20px",
+            marginLeft: "2px",
+            marginRight: "2px",
         },
         price: {
             paddingLeft: "20px",
             paddingRight: "15px",
-            fontSize: '20px',
-            marginLeft:"4px",
-            marginRight:"4px"
+            fontSize: "20px",
+            marginLeft: "4px",
+            marginRight: "4px",
         },
         increase: {
             paddingLeft: "3px",
@@ -90,6 +98,7 @@ function TradeSection({
         bar: {
             backgroundColor: "pink",
             width: "18px",
+            minWidth: '18px',
             zIndex: 3,
             // marginTop: 'auto',
             Bottom: "0px",
@@ -110,33 +119,33 @@ function TradeSection({
             backgroundColor: "#b2f2bb",
             borderColor: "#2f9e44",
             zIndex: "2",
-            fontSize: '20px',
-            marginLeft:"2px",
-            marginRight:"2px",
-            border: "1px solid"
+            fontSize: "20px",
+            marginLeft: "2px",
+            marginRight: "2px",
+            border: "1px solid",
         },
         increaseBox: {
             color: "#2f9e44",
             border: "1px solid",
             backgroundColor: "#b2f2bb",
             borderColor: "#2f9e44",
-            fontSize: '20px'
+            fontSize: "20px",
         },
         sell: {
             padding: "15px",
             color: "#e03131",
             backgroundColor: "#ffe9e9",
             borderColor: "#e03131",
-            fontSize: '20px',
-            marginLeft:"2px",
-            border: "1px solid"
+            fontSize: "20px",
+            marginLeft: "2px",
+            border: "1px solid",
         },
         decreaseBox: {
             color: "#e03131",
             border: "1px solid",
             backgroundColor: "#ffe9e9",
             borderColor: "#e03131",
-            fontSize: '20px'
+            fontSize: "20px",
         },
         symbol: {},
         container: {
@@ -146,6 +155,7 @@ function TradeSection({
             flexDirection: "column",
         },
     });
+    
     const classes = useStyles();
     const reduxDispatch = useDispatch();
     function trade(type: string) {
@@ -177,6 +187,11 @@ function TradeSection({
             reduxDispatch(
                 updateBalance(qty * price * (type == "Sell" ? -1 : 1))
             );
+            socket.emit("new-trade", {
+                qty:qty,
+                name: stock.stockName,
+                type: type
+            });
         }
     }
     let [currentPrice, setCurrentPrice] = useState(stock.basePrice);
@@ -190,7 +205,7 @@ function TradeSection({
         setChange(diff >= 0);
     }
     useEffect(() => {
-        const interval = setInterval(createPrices, 5000);
+        const interval = setInterval(createPrices, 500);
         return () => clearInterval(interval);
     }, []);
     useEffect(() => {
@@ -201,6 +216,7 @@ function TradeSection({
         bar.style.height = currentPrice / 20 + "px";
         document.getElementById("graph")!.appendChild(bar);
     }, [currentPrice]);
+
     return (
         <div className={classes.container}>
             <div className={classes.data}>
@@ -223,7 +239,12 @@ function TradeSection({
                         {percentage.toFixed(2)}
                     </div>
                 </div>
-                <input type="number" placeholder="Enter QTY" id="qty" className={classes.input}/>
+                <input
+                    type="number"
+                    placeholder="Enter QTY"
+                    id="qty"
+                    className={classes.input}
+                />
                 <button
                     className={classes.buy}
                     name="BUY"

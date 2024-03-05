@@ -117,7 +117,7 @@ function Explore() {
                         <div className={classes.row} key={stock.id}>
                             <Link to={stock.id.toString()}>
                             <button className={classes.company}>
-                                {stock.stockSymbol}
+                                {stock.stockName}
                             </button>
                             </Link>
                             <div className={classes.base}>

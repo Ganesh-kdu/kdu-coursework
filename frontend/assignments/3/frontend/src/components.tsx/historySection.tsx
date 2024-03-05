@@ -1,9 +1,10 @@
 import { createUseStyles } from "react-jss";
-import { IDisplayTransaction } from "../interfaces/interfaces";
+import { IDisplayTransaction, ILiveTrade } from "../interfaces/interfaces";
 
 function HistorySection({
     trades,
-}: Readonly<{ trades: IDisplayTransaction[] }>) {
+    liveTrades
+}: Readonly<{ trades: IDisplayTransaction[], liveTrades: ILiveTrade[] }>) {
     const classes = createUseStyles({
         container: { width: "25%", display: "flex", flexDirection: "column" },
         commonStyle: {
@@ -41,6 +42,7 @@ function HistorySection({
         }
 
     })();
+    
     return (
         <div className={classes.container}>
             <div className={classes.commonStyle}>
@@ -56,7 +58,13 @@ function HistorySection({
                     </div>;
                 })}
             </div>
-            <div className={classes.commonStyle}></div>
+            <div className={classes.commonStyle}>
+            {liveTrades.map((trade: ILiveTrade) => {
+                    return <div className={classes.transactionContainer} key={trade.name+trade.qty}>
+                        <div>Someone {trade.type} {trade.qty} {trade.name}</div>
+                    </div>;
+                })}
+            </div>
         </div>
     );
 }

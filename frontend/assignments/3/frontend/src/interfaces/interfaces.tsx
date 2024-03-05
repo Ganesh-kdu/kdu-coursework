@@ -43,9 +43,15 @@ export interface ISummarizerStock {
 }
 
 export interface IWorkerResult {
-    buyDate: string,
-    buyPrice:number,
-    sellDate: string,
-    sellPrice:number,
-    profit: number,
+    buyDate: string;
+    buyPrice: number;
+    sellDate: string;
+    sellPrice: number;
+    profit: number;
+}
+
+export interface ILiveTrade {
+    qty: number;
+    name: string;
+    type: string;
 }
