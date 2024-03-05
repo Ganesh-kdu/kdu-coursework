@@ -9,10 +9,10 @@ import { Socket } from "socket.io-client";
 function TradeSection({
     stock,
     newTransaction,
-    socket
-}: Readonly<{ stock: IStock; newTransaction: Function, socket: Socket }>) {
+    socket,
+}: Readonly<{ stock: IStock; newTransaction: Function; socket: Socket }>) {
     const { balance } = useSelector((state: RootState) => state.stocks);
-    
+
     const useStyles = createUseStyles({
         details: {
             display: "flex",
@@ -98,7 +98,7 @@ function TradeSection({
         bar: {
             backgroundColor: "pink",
             width: "18px",
-            minWidth: '18px',
+            minWidth: "18px",
             zIndex: 3,
             // marginTop: 'auto',
             Bottom: "0px",
@@ -155,7 +155,7 @@ function TradeSection({
             flexDirection: "column",
         },
     });
-    
+
     const classes = useStyles();
     const reduxDispatch = useDispatch();
     function trade(type: string) {
@@ -188,10 +188,12 @@ function TradeSection({
                 updateBalance(qty * price * (type == "Sell" ? -1 : 1))
             );
             socket.emit("new-trade", {
-                qty:qty,
+                qty: qty,
                 name: stock.stockName,
-                type: type
+                type: type,
             });
+        } else {
+            alert("You have insufficient balance");
         }
     }
     let [currentPrice, setCurrentPrice] = useState(stock.basePrice);

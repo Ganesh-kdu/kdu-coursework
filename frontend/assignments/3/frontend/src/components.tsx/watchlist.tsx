@@ -20,7 +20,7 @@ function Watchlist() {
             borderBottom: "2px solid black",
             display: "flex",
             padding: "20px",
-            marginBottom: "10px"
+            marginBottom: "10px",
         },
         row: {
             display: "flex",
@@ -30,12 +30,12 @@ function Watchlist() {
             margin: "20px",
         },
         company: {
-            background:'none',
-            border:'none',
-            cursor: 'pointer',
+            background: "none",
+            border: "none",
+            cursor: "pointer",
             margin: 0,
             padding: 0,
-            fontSize: "16px"
+            fontSize: "16px",
         },
         base: {
             textAlign: "end",
@@ -105,45 +105,56 @@ function Watchlist() {
                 {stockList.map((stock, index) => {
                     return (
                         <>
-                        {watchList[index] ? (
-                        <div className={classes.row} key={stock.id}>
-                            <Link to={stock.id.toString()}>
-                            <button className={classes.company}>
-                                {stock.stockName}
-                            </button>
-                            </Link>
-                            <div className={classes.base}>
-                                {stock.basePrice}
-                            </div>
-                            <div className={classes.watchlist}>
-                                <button
-                                    className={
-                                        isHover == index
-                                            ? classes.crossBg
-                                            : classes.bg
-                                    }
-                                    onClick={(e: any) => {
-                                        e.target.classList.toggle(classes.bg);
+                            {watchList[index] ? (
+                                <div className={classes.row} key={stock.id}>
+                                    <Link to={stock.id.toString()}>
+                                        <button className={classes.company}>
+                                            {stock.stockName}
+                                        </button>
+                                    </Link>
+                                    <div className={classes.base}>
+                                        {stock.basePrice}
+                                    </div>
+                                    <div className={classes.watchlist}>
+                                        <button
+                                            className={
+                                                isHover == index
+                                                    ? classes.crossBg
+                                                    : classes.bg
+                                            }
+                                            onClick={(e: any) => {
+                                                e.target.classList.toggle(
+                                                    classes.bg
+                                                );
 
-                                        reduxDispatch(watchToggle(index));
-                                    }}
-                                    onMouseEnter={() => setIsHover(index)}
-                                    onMouseLeave={() => setIsHover(null)}
-                                >
-                                    <div
-                                        className={
-                                            isHover == index
-                                                ? "fa fa-close" +
-                                                  " " +
-                                                  classes.cross
-                                                : "fa fa-check" +
-                                                  " " +
-                                                  classes.check
-                                        }
-                                    ></div>
-                                </button>
-                            </div>
-                        </div>):<></>}
+                                                reduxDispatch(
+                                                    watchToggle(index)
+                                                );
+                                            }}
+                                            onMouseEnter={() =>
+                                                setIsHover(index)
+                                            }
+                                            onMouseLeave={() =>
+                                                setIsHover(null)
+                                            }
+                                        >
+                                            <div
+                                                className={
+                                                    isHover == index
+                                                        ? "fa fa-close" +
+                                                          " " +
+                                                          classes.cross
+                                                        : "fa fa-check" +
+                                                          " " +
+                                                          classes.check
+                                                }
+                                            ></div>
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                         </>
                     );
                 })}

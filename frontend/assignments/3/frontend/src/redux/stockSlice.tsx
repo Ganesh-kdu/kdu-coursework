@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import fetchStocks from "./thunk";
+import { fetchStocks, fetchHistory } from "./thunk";
 import { IStock, IStockMarket, ITransaction } from "../interfaces/interfaces";
 
 const initialState: IStockMarket = {
@@ -7,7 +7,7 @@ const initialState: IStockMarket = {
     watchList: [],
     loading: "",
     balance: 20000,
-    trades: []
+    trades: [],
 };
 
 const productSlice = createSlice({
@@ -34,10 +34,15 @@ const productSlice = createSlice({
         builder.addCase(fetchStocks.fulfilled, (state, action) => {
             state.loading = "succeeded";
             state.stockList = action.payload;
-            state.watchList = Array<boolean>(state.stockList.length).fill(false);
+            state.watchList = Array<boolean>(state.stockList.length).fill(
+                false
+            );
         });
         builder.addCase(fetchStocks.rejected, (state) => {
             state.loading = "failed";
+        });
+        builder.addCase(fetchHistory.fulfilled, (state, action) => {
+            state.trades = [...action.payload];
         });
     },
 });

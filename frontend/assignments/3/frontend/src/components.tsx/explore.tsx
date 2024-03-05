@@ -35,12 +35,12 @@ function Explore() {
             margin: "20px",
         },
         company: {
-            background:'none',
-            border:'none',
-            cursor: 'pointer',
+            background: "none",
+            border: "none",
+            cursor: "pointer",
             margin: 0,
             padding: 0,
-            fontSize: "16px"
+            fontSize: "16px",
         },
         base: {
             textAlign: "end",
@@ -97,12 +97,15 @@ function Explore() {
         (state: RootState) => state.stocks
     );
     const reduxDispatch = useDispatch();
-    
-    const [isHover, setIsHover] = useState<number|null>(null)
+
+    const [isHover, setIsHover] = useState<number | null>(null);
     const [page, setPage] = useState<number>(1);
-    const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    const handleChange = (
+        _event: React.ChangeEvent<unknown>,
+        value: number
+    ) => {
         setPage(value);
-      };
+    };
     const pageSize = 6;
     return (
         <div className={classes.tableContainer}>
@@ -112,65 +115,110 @@ function Explore() {
                 <div className={classes.watchlist}>Watch List</div>
             </div>
             <div className={classes.tableBody}>
-                {stockList.slice(pageSize*(page-1),pageSize*page).map((stock, index) => {
-                    return (
-                        <div className={classes.row} key={stock.id}>
-                            <Link to={stock.id.toString()}>
-                            <button className={classes.company}>
-                                {stock.stockName}
-                            </button>
-                            </Link>
-                            <div className={classes.base}>
-                                {stock.basePrice}
-                            </div>
-                            <div className={classes.watchlist}>
-                                {!watchList[index] ? (
-                                    <button
-                                        className={classes.bg}
-                                        onClick={() =>
-                                            reduxDispatch(watchToggle(index))
-                                        }
-                                        onMouseEnter={() => setIsHover(index)}
-                                        onMouseLeave={() => setIsHover(null)}
-                                    >
-                                        <div
-                                            className={
-                                                "fa fa-plus-circle" +
-                                                " " +
-                                                classes.plus
-                                            }
-                                        ></div>
+                {stockList
+                    .slice(pageSize * (page - 1), pageSize * page)
+                    .map((stock, index) => {
+                        return (
+                            <div className={classes.row} key={stock.id}>
+                                <Link to={stock.id.toString()}>
+                                    <button className={classes.company}>
+                                        {stock.stockName}
                                     </button>
-                                ) : (
-                                    <button
-                                        className={isHover==index?classes.crossBg:classes.bg}
-                                        onClick={(e:any) => {
-                                            e.target.classList.toggle(classes.bg);
+                                </Link>
+                                <div className={classes.base}>
+                                    {stock.basePrice}
+                                </div>
+                                <div className={classes.watchlist}>
+                                    {!watchList[index] ? (
+                                        <button
+                                            className={classes.bg}
+                                            onClick={() =>
+                                                reduxDispatch(
+                                                    watchToggle(index)
+                                                )
+                                            }
+                                            onMouseEnter={() =>
+                                                setIsHover(index)
+                                            }
+                                            onMouseLeave={() =>
+                                                setIsHover(null)
+                                            }
+                                        >
+                                            <div
+                                                className={
+                                                    "fa fa-plus-circle" +
+                                                    " " +
+                                                    classes.plus
+                                                }
+                                            ></div>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className={
+                                                isHover == index
+                                                    ? classes.crossBg
+                                                    : classes.bg
+                                            }
+                                            onClick={(e: any) => {
+                                                e.target.classList.toggle(
+                                                    classes.bg
+                                                );
 
-                                            reduxDispatch(watchToggle(index));
-                                        }}
-                                        onMouseEnter={() => setIsHover(index)}
-                                        onMouseLeave={() => setIsHover(null)}
-                                    >
-                                        <div
-                                            className={
-                                                isHover==index?"fa fa-close" +
-                                                " " +
-                                                classes.cross:"fa fa-check" +
-                                                " " +
-                                                classes.check
+                                                reduxDispatch(
+                                                    watchToggle(index)
+                                                );
+                                            }}
+                                            onMouseEnter={() =>
+                                                setIsHover(index)
                                             }
-                                        ></div>
-                                    </button>
-                                )}
+                                            onMouseLeave={() =>
+                                                setIsHover(null)
+                                            }
+                                        >
+                                            <div
+                                                className={
+                                                    isHover == index
+                                                        ? "fa fa-close" +
+                                                          " " +
+                                                          classes.cross
+                                                        : "fa fa-check" +
+                                                          " " +
+                                                          classes.check
+                                                }
+                                            ></div>
+                                        </button>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
             </div>
-            <Pagination count={Math.ceil(stockList.length/pageSize)} page={page} onChange={handleChange} variant="outlined" color="primary" sx={{p:1.5, margin: "auto", display: { xs: 'none', md: 'block' }}} />
-            <Pagination count={Math.ceil(stockList.length/pageSize)} page={page} onChange={handleChange} variant="outlined" color="primary" sx={{p:1.5, margin: "auto", display: { xs: 'block', md: 'none' }}} siblingCount={0} boundaryCount={0}/>
-
+            <Pagination
+                count={Math.ceil(stockList.length / pageSize)}
+                page={page}
+                onChange={handleChange}
+                variant="outlined"
+                color="primary"
+                sx={{
+                    p: 1.5,
+                    margin: "auto",
+                    display: { xs: "none", md: "block" },
+                }}
+            />
+            <Pagination
+                count={Math.ceil(stockList.length / pageSize)}
+                page={page}
+                onChange={handleChange}
+                variant="outlined"
+                color="primary"
+                sx={{
+                    p: 1.5,
+                    margin: "auto",
+                    display: { xs: "block", md: "none" },
+                }}
+                siblingCount={0}
+                boundaryCount={0}
+            />
         </div>
     );
 }

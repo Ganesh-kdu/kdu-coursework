@@ -48,8 +48,8 @@ function Summarizer() {
             justifyContent: "space-between",
             flexDirection: "column",
         },
-        big: { color: "white", padding: 0, margin: 0, fontSize: '30px'},
-        small: { color: "white"},
+        big: { color: "white", padding: 0, margin: 0, fontSize: "30px" },
+        small: { color: "white" },
     })();
     return (
         <div>
@@ -57,7 +57,9 @@ function Summarizer() {
                 <div key={profit.profit} className={classes.container}>
                     <div className={classes.pair}>
                         <h2 className={classes.big}>{stocks[index].company}</h2>
-                        <p className={classes.small}>Profit margin: {profit.profit}</p>
+                        <p className={classes.small}>
+                            Profit margin: ${profit.profit}
+                        </p>
                     </div>
                     <div>
                         <p className={classes.small}>

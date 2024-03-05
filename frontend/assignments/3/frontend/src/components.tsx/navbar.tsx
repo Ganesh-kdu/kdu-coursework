@@ -11,7 +11,10 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 
-const pages = [{title: "Summarizer", link: '/summarizer'}, {title: "My Portfolio", link: '/portfolio'}];
+const pages = [
+    { title: "Summarizer", link: "/summarizer" },
+    { title: "My Portfolio", link: "/portfolio" },
+];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -24,7 +27,7 @@ function ResponsiveAppBar() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     return (
         <AppBar
             position="static"
@@ -39,28 +42,43 @@ function ResponsiveAppBar() {
                         justifyContent: "space-between",
                     }}
                 >
-                  <div style={{display:'flex', alignContent:'center', justifyContent: 'center'}}>
-                    <Link to={'http://localhost:5173/'}>
-                        <i className="fi fi-sr-chart-histogram" style={{backgroundColor:'transparent', border: 'none', color: 'white', fontSize: '27px', textDecoration: 'none'}}></i>
-                    </Link>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{
-                            mr: 2,
-                            display: { xs: "flex", md: "flex" },
-                            fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".1rem",
-                            color: "inherit",
-                            textDecoration: "none",
-                            marginLeft: '20px'
+                    <div
+                        style={{
+                            display: "flex",
+                            alignContent: "center",
+                            justifyContent: "center",
                         }}
                     >
-                        KDU Stock Market
-                    </Typography>
-                  </div>
+                        <Link to={"http://localhost:5173/"}>
+                            <i
+                                className="fi fi-sr-chart-histogram"
+                                style={{
+                                    backgroundColor: "transparent",
+                                    border: "none",
+                                    color: "white",
+                                    fontSize: "27px",
+                                    textDecoration: "none",
+                                }}
+                            ></i>
+                        </Link>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{
+                                mr: 2,
+                                display: { xs: "flex", md: "flex" },
+                                fontFamily: "monospace",
+                                fontWeight: 700,
+                                letterSpacing: ".1rem",
+                                color: "inherit",
+                                textDecoration: "none",
+                                marginLeft: "20px",
+                            }}
+                        >
+                            KDU Stock Market
+                        </Typography>
+                    </div>
                     <Box sx={{ display: { xs: "none", md: "flex" } }}>
                         {pages.map((page) => (
                             <Button
