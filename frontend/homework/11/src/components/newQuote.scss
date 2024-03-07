@@ -1,0 +1,54 @@
+.quote-button{
+   color: #0C359E;
+   background-color: #FFE3CA;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    padding: 17px;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+}
+.quote-button:disabled{
+    opacity: 0.3;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+.spinner {
+    margin-top: 15px;
+    margin-left: 55px;
+    animation: rotate 1s linear infinite;
+    background: rgb(255, 0, 0);
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    position: fixed;
+}
+.spinner::before,
+.spinner::after {
+    opacity: 1;
+    content: '';
+    position: absolute;
+}
+.spinner::before {
+    border-radius: 50%;
+    background-image: conic-gradient(hsla(0, 0%, 100%, 1  ), hsla(0, 0%, 100%, 0.7 ), hsla(0, 0%, 100%, 0.4 ),  hsla(0, 0%, 100%, 0.3 ),  hsla(0, 0%, 100%, 0 ));
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+.spinner::after {
+    background: white;
+    border-radius: 50%;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    top: 10%;
+    bottom: 7%;
+    left: 7%;
+    right: 9%;
+}
