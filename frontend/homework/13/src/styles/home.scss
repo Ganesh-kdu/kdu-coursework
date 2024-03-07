@@ -1,0 +1,22 @@
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    .kdu {
+        color: black;
+        font-size: xx-large;
+        letter-spacing: 5px;
+        font-weight: 600;
+    }
+    .marketplace {
+        font-size: xx-large;
+        font-weight: 600;
+        color: #282871;
+        letter-spacing: 5px;
+    }
+}
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
