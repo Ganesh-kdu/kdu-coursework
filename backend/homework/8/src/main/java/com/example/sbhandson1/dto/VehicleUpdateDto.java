@@ -1,0 +1,13 @@
+package com.example.sbhandson1.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class VehicleUpdateDto {
+    private String company;
+    private int year;
+    private String color;
+    private int price;
+}
