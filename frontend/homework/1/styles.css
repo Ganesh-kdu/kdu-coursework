@@ -1,0 +1,56 @@
+body{
+    padding: 0;
+    margin: auto;
+    width: 96vw;
+
+}
+div {
+    color: rgb(75, 75, 75);
+}
+
+header{
+    width: 100%;
+}
+
+.section_div {
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid;
+    height: 100%;
+    width: 100%;
+    border-color: black;
+    padding: 1% 0% 1% 1%;
+    margin-bottom: -1px;
+}
+
+#tea #img1:hover{
+    opacity: 0;    
+}
+#tea #img1{
+    position: relative;
+}
+#tea > img{
+    height: 225px;
+    width: 225px;
+}
+p::first-line{
+    font-style: italic;
+}
+h2 + img{
+    position:absolute;
+    object-fit: cover;
+}
+h2 ~ div:hover{
+    font-size: 55px;
+}
+#lists{
+    display: flex;
+}
+#child_vs_decendant > div{
+
+    color: blue;
+}
+#child_vs_decendant div{
+    font-style: italic;
+}
+
