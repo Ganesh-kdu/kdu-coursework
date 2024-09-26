@@ -64,14 +64,14 @@ public class MainTest {
     public void testParseCSV() throws IOException {
         // check for coins.csv
         Path coinCsvPath = Path.of("src/test/resources/coins.csv");
-        ArrayList<String[]> expectedCoins = new ArrayList<>();
+        List<String[]> expectedCoins = new ArrayList<>();
         expectedCoins.add(new String[]{"0", "1", "Bitcoin", "BTC", "34194.58", "18938712"});
         expectedCoins.add(new String[]{"1", "2", "Ethereum", "ETH", "2270.78", "119292815"});
         expectedCoins.add(new String[]{"2", "3", "Tether", "USDT", "1.00", "78311766178"});
         expectedCoins.add(new String[]{"3", "4", "BNB", "BNB", "351.39", "165116761"});
         expectedCoins.add(new String[]{"4", "5", "USD Coin", "USDC", "1.00", "47861732704"});
         expectedCoins.add(new String[]{"5", "6", "Cardano", "ADA", "1.02", "33550574442"});
-        ArrayList<String[]> actual = Main.parseCSV(coinCsvPath);
+        List<String[]> actual = Main.parseCSV(coinCsvPath);
 
         Assertions.assertEquals(expectedCoins.size(), actual.size());
         for (int i = 0; i < expectedCoins.size(); i++) {
@@ -82,14 +82,14 @@ public class MainTest {
 
         //check for traders.csv
         Path traderCsvPath = Path.of("src/test/resources/traders.csv");
-        ArrayList<String[]> expectedTraders = new ArrayList<>();
+        List<String[]> expectedTraders = new ArrayList<>();
         expectedTraders.add(new String[]{"0", "James", "Butt", "504-621-8927", "0x6048710a582fc9ebc9f46afd0fcda2f8"});
         expectedTraders.add(new String[]{"1", "Josephine", "Darakjy", "810-292-9388", "0x5a1fcde6a86ea0dd483f33d81f35000f"});
         expectedTraders.add(new String[]{"2", "Art", "Venere", "856-636-8749", "0xaf903c532c73b66c934f6e2356344bb0"});
         expectedTraders.add(new String[]{"3", "Lenna", "Paprocki", "907-385-4412", "0xab190b6af9471e4c8e717418e940423c"});
         expectedTraders.add(new String[]{"4", "Donette", "Foller", "513-570-1893", "0xbe3887c02d3d33e16ba49b3607c50e3a"});
         expectedTraders.add(new String[]{"5", "Simona", "Morasca", "419-503-2484", "0xbd670dbca4260f5f1403b555bbe2dd9e"});
-        ArrayList<String[]> actualTraders = Main.parseCSV(traderCsvPath);
+        List<String[]> actualTraders = Main.parseCSV(traderCsvPath);
 
         Assertions.assertEquals(expectedTraders.size(), actualTraders.size());
 
@@ -124,7 +124,7 @@ public class MainTest {
 
             new Main();
             Main.executeTransactions(transactionArray, latch);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             // TODO Auto-generated catch block
             fail();
         }
@@ -162,7 +162,7 @@ public class MainTest {
 
             new Main();
             Main.executeTransactions(transactionArray, latch);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             // TODO Auto-generated catch block
             fail();
         }
@@ -199,7 +199,7 @@ public class MainTest {
             transactionArray = Main.parseJsonFile("src/test/resources/test_transaction_3.json");
 
             Main.executeTransactions(transactionArray, latch);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             fail();
         }
 
@@ -235,7 +235,7 @@ public class MainTest {
             transactionArray = Main.parseJsonFile("src/test/resources/test_transaction_4.json");
 
             Main.executeTransactions(transactionArray, latch);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             fail();
         }
 
